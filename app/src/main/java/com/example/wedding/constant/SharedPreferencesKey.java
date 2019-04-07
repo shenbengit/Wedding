@@ -11,4 +11,13 @@ public class SharedPreferencesKey {
      */
     public static final String SHARED_PREFERENCE_NAME = "Wedding";
 
+    /**
+     * 定位位置
+     */
+    public static final String LOCATION = "location";
+    /**
+     * 网络请求city header
+     */
+    public static final String CITY_HEADER = "cityHeader";
+
 }

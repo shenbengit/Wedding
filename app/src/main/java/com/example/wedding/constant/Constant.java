@@ -19,4 +19,8 @@ public class Constant {
      * Bmob云 控制台上 Application ID
      */
     public static final String BMOB_APP_KEY = "bbb82cc6991985c5e2b43030d529d613";
+    /**
+     * 自定义短息模板
+     */
+    public static final String SMS_TEMPLATE = "Wedding";
 }

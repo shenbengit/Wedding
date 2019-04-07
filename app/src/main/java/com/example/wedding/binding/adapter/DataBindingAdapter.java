@@ -56,7 +56,7 @@ public class DataBindingAdapter {
     @SuppressLint("CheckResult")
     @BindingAdapter(value = {"onClickCommand", "isThrottleFirst"}, requireAll = false)
     public static void onClickCommand(View view, BindingCommand command, boolean isThrottleFirst) {
-        if (isThrottleFirst) {
+        if (!isThrottleFirst) {
             RxView.clicks(view)
                     .subscribe(o -> {
                         if (command != null) {
@@ -225,4 +225,16 @@ public class DataBindingAdapter {
                 });
     }
 
+    /**
+     * 回调当前view
+     *
+     * @param view view
+     * @param command 命令绑定
+     */
+    @BindingAdapter(value = "onReplayCurrentView")
+    public static void onReplayCurrentView(View view, BindingCommand<View> command) {
+        if (command != null) {
+            command.execute(view);
+        }
+    }
 }

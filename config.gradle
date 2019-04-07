@@ -58,6 +58,10 @@ ext {
             //bmon云,已经包含bmob-sms短信功能
             "bmob-sdk"                       : "cn.bmob.android:bmob-sdk:3.7.2",
             //bmob兼容Android6.0系统
-            "http-legacy"                    : "cn.bmob.android:http-legacy:1.0"
+            "http-legacy"                    : "cn.bmob.android:http-legacy:1.0",
+            //轮播图控件 banner
+            "banner"                         : "com.youth.banner:banner:1.4.10",
+            //greenDao
+            "greendao"                       : "org.greenrobot:greendao:3.2.2",
     ]
 }

@@ -9,55 +9,113 @@
             type="com.example.wedding.mvvm.viewmodel.HomeViewModel" />
     </data>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-
-        <EditText
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="请输入用户名"
-            android:text="@={viewModel.userName}" />
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="请输入密码"
-            android:text="@={viewModel.password}" />
+            <android.support.constraint.Guideline
+                android:id="@+id/line_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="?android:attr/actionBarSize" />
 
-        <Button
-            onClickCommand="@{viewModel.loginCommand}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="登录" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@={viewModel.sex}" />
-
-        <RadioGroup
-            onRadioGroupCheckedChangeCommand="@{viewModel.sexCommand}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/rb_man"
+            <TextView
+                onClickCommand="@{viewModel.locationCommand}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="男" />
+                android:layout_marginStart="@dimen/dp_5"
+                android:drawablePadding="@dimen/dp_5"
+                android:drawableStart="@drawable/ic_location"
+                android:gravity="center"
+                android:text="@={viewModel.location}"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/line_horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <RadioButton
-                android:id="@+id/rb_woman"
+            <ImageView
+                android:id="@+id/iv_search_bg"
+                onClickCommand="@{viewModel.searchCommand}"
+                android:layout_width="@dimen/dp_200"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/ic_ellipse_bg"
+                app:layout_constraintBottom_toBottomOf="@+id/line_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="女" />
-        </RadioGroup>
+                android:layout_marginStart="@dimen/dp_10"
+                android:drawablePadding="@dimen/dp_5"
+                android:drawableStart="@drawable/ic_search"
+                android:gravity="center"
+                android:text="搜你想搜的"
+                android:textColor="@color/_9"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_search_bg"
+                app:layout_constraintStart_toStartOf="@+id/iv_search_bg"
+                app:layout_constraintTop_toTopOf="@+id/iv_search_bg" />
 
-    </LinearLayout>
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_140"
+                app:indicator_drawable_selected="@drawable/circular_unselected_bg"
+                app:indicator_drawable_unselected="@drawable/circular_selected_bg"
+                app:indicator_height="@dimen/dp_3"
+                app:indicator_margin="@dimen/dp_5"
+                app:indicator_width="@dimen/dp_3"
+                app:is_auto_play="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line_horizontal" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvWeddingType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/banner">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="备婚工具"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_23"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvWeddingType" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvWeddingTool"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layout_constraintTop_toBottomOf="@+id/tv1">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 </layout>

@@ -19,7 +19,7 @@ import java.util.List;
  * @date 2018/11/8 13:19
  * @email 714081644@qq.com
  */
-public abstract class BaseBindingAdapter<T> extends BaseQuickAdapter<T, BaseBindingViewHolder> {
+public abstract class BaseBindingAdapter<T, K extends BaseBindingViewHolder> extends BaseQuickAdapter<T, K> {
 
     public BaseBindingAdapter(@Nullable List<T> data) {
         this(0, data);

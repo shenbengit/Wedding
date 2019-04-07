@@ -21,10 +21,10 @@
 
         </FrameLayout>
 
-        <ImageView
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/actionbar_shadow_up" />
+            android:layout_height="1dp"
+            android:background="@color/_9" />
 
         <com.example.wedding.widget.BottomBar
             android:id="@+id/bottomBar"

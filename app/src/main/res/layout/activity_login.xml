@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.wedding.mvvm.viewmodel.LoginViewModel" />
+
+        <variable
+            name="visibility"
+            type="Boolean" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".mvvm.view.activity.LoginActivity">
+
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:indicator_drawable_selected="@drawable/circular_unselected_bg"
+            app:indicator_drawable_unselected="@drawable/circular_selected_bg"
+            app:indicator_margin="@dimen/dp_5"
+            app:is_auto_play="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/line_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_200"
+            android:layout_marginEnd="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_30"
+            android:alpha="0.8"
+            android:background="@drawable/ic_stroke_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_horizontal" />
+
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="@dimen/dp_30"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/dp_70"
+            android:background="@color/_9"
+            app:layout_constraintEnd_toEndOf="@+id/iv_bg"
+            app:layout_constraintStart_toStartOf="@+id/iv_bg"
+            app:layout_constraintTop_toTopOf="@+id/iv_bg" />
+
+        <ImageView
+            android:id="@+id/iv_send_code"
+            onClickCommand="@{viewModel.sendCode}"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:src="@drawable/ic_arrow_right_round"
+            android:visibility="@{visibility ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/view1"
+            app:layout_constraintEnd_toEndOf="@+id/view1" />
+
+        <TextView
+            onClickCommand="@{viewModel.sendCode}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:text="@{viewModel.countDownTime}"
+            android:visibility="@{visibility ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/view1"
+            app:layout_constraintEnd_toEndOf="@+id/view1" />
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:layout_marginEnd="@dimen/dp_50"
+            android:background="@null"
+            android:hint="请输入手机号"
+            android:inputType="number"
+            android:text="@={viewModel.phone}"
+            app:layout_constraintBottom_toTopOf="@+id/view1"
+            app:layout_constraintEnd_toEndOf="@+id/view1"
+            app:layout_constraintStart_toStartOf="@+id/view1" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="@dimen/dp_30"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/dp_70"
+            android:background="@color/_9"
+            android:visibility="@{visibility ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@+id/iv_bg"
+            app:layout_constraintStart_toStartOf="@+id/iv_bg"
+            app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+        <ImageView
+            onClickCommand="@{viewModel.verifyCode}"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:src="@drawable/ic_arrow_right_round"
+            android:visibility="@{visibility ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
+            app:layout_constraintEnd_toEndOf="@+id/view2" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:layout_marginEnd="@dimen/dp_50"
+            android:background="@null"
+            android:hint="请输入验证码"
+            android:inputType="number"
+            android:text="@={viewModel.smsCode}"
+            android:visibility="@{visibility ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
+            app:layout_constraintEnd_toEndOf="@+id/view2"
+            app:layout_constraintStart_toStartOf="@+id/view2" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

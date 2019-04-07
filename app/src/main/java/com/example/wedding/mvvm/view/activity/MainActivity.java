@@ -1,9 +1,10 @@
 package com.example.wedding.mvvm.view.activity;
 
-import com.example.wedding.BR;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseActivity;
 import com.example.wedding.base.BaseViewModel;
+import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.databinding.ActivityMainBinding;
 import com.example.wedding.mvvm.view.fragment.BrideSaidFragment;
 import com.example.wedding.mvvm.view.fragment.CollectFragment;
@@ -17,6 +18,7 @@ import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
+@Route(path = ARouterPath.MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> {
     private static final int FIRST = 0;
     private static final int SECOND = 1;

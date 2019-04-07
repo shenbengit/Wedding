@@ -60,7 +60,7 @@ public class BottomBarTab extends FrameLayout {
         lLContainer.setLayoutParams(paramsContainer);
 
         mIcon = new ImageView(context);
-        int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 27, getResources().getDisplayMetrics());
+        int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
         mIcon.setImageResource(icon);
         mIcon.setLayoutParams(params);
