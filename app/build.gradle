@@ -135,4 +135,5 @@ dependencies {
     implementation rootProject.ext.dependencies["greendao"]
     implementation rootProject.ext.dependencies["circleimageview"]
     implementation rootProject.ext.dependencies["ucrop"]
+    implementation rootProject.ext.dependencies["Luban"]
 }

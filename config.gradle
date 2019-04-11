@@ -67,6 +67,7 @@ ext {
             "circleimageview"                : "de.hdodenhof:circleimageview:3.0.0",
             //ucrop
             "ucrop"                          : "com.github.yalantis:ucrop:2.2.3",
-
+            //Luban图片压缩
+            "Luban"                          : "top.zibin:Luban:1.1.8",
     ]
 }

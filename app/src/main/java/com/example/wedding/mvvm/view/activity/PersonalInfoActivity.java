@@ -1,6 +1,9 @@
 package com.example.wedding.mvvm.view.activity;
 
 import android.Manifest;
+import android.arch.lifecycle.Observer;
+import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
@@ -12,7 +15,9 @@ import com.example.wedding.base.BaseActivity;
 import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.databinding.ActivityPersonalInfoBinding;
 import com.example.wedding.mvvm.viewmodel.PersonalInfoViewModel;
+import com.example.wedding.util.LogUtil;
 import com.example.wedding.widget.SelectPictureDialog;
+import com.yalantis.ucrop.UCrop;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
@@ -27,6 +32,7 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 @Route(path = ARouterPath.PERSONAL_INFO_ACTIVITY)
 public class PersonalInfoActivity extends BaseActivity<ActivityPersonalInfoBinding, PersonalInfoViewModel> {
+
     private SelectPictureDialog mDialog;
 
     @Override
@@ -68,7 +74,11 @@ public class PersonalInfoActivity extends BaseActivity<ActivityPersonalInfoBindi
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-
+        mViewModel.toUCrop.observe(this, uCrop -> {
+            if (uCrop != null) {
+                uCrop.start(PersonalInfoActivity.this);
+            }
+        });
     }
 
     @Override
@@ -77,12 +87,20 @@ public class PersonalInfoActivity extends BaseActivity<ActivityPersonalInfoBindi
         PersonalInfoActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mViewModel.onActivityResult(requestCode, resultCode, data);
+    }
+
     /**
      * 获取读取内存卡权限
      */
     @NeedsPermission({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
     public void needStoragePermission() {
-
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, PersonalInfoViewModel.SELECT_PICTURE_FROM_ALBUM);
+        mDialog.cancel();
     }
 
     /**
@@ -91,5 +109,6 @@ public class PersonalInfoActivity extends BaseActivity<ActivityPersonalInfoBindi
     @NeedsPermission(Manifest.permission.CAMERA)
     public void needCamera() {
 
+        mDialog.cancel();
     }
 }

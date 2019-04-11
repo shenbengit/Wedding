@@ -15,6 +15,11 @@
         android:layout_height="match_parent"
         tools:context=".mvvm.view.activity.PersonalInfoActivity">
 
+        <com.yalantis.ucrop.view.CropImageView
+            loadImageData="@{viewModel.compressPictureUri}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/btnTest"
             android:layout_width="wrap_content"
