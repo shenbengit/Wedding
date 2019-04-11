@@ -34,7 +34,7 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends BaseV
         mBinding = DataBindingUtil.setContentView(this, getLayoutId());
         init();
         initView();
-        initData();
+        initData(savedInstanceState);
     }
 
     @Override
@@ -91,8 +91,10 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends BaseV
 
     /**
      * 初始化数据
+     *
+     * @param savedInstanceState
      */
-    protected abstract void initData();
+    protected abstract void initData(@Nullable Bundle savedInstanceState);
 
     /**
      * 设置ToolBar

@@ -1,5 +1,7 @@
 package com.example.wedding.mvvm.view.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.WindowManager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -52,7 +54,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     }
 
     @Override
-    protected void initData() {
+    protected void initData(@Nullable Bundle savedInstanceState) {
         if (isLogin) {
             return;
         }

@@ -63,5 +63,10 @@ ext {
             "banner"                         : "com.youth.banner:banner:1.4.10",
             //greenDao
             "greendao"                       : "org.greenrobot:greendao:3.2.2",
+            //CircleImageView
+            "circleimageview"                : "de.hdodenhof:circleimageview:3.0.0",
+            //ucrop
+            "ucrop"                          : "com.github.yalantis:ucrop:2.2.3",
+
     ]
 }

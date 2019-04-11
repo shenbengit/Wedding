@@ -1,5 +1,8 @@
 package com.example.wedding.mvvm.view.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
 import com.example.wedding.R;
 import com.example.wedding.base.BaseFragment;
 import com.example.wedding.base.BaseViewModel;
@@ -34,7 +37,7 @@ public class MarriageGoodsFragment extends BaseFragment<FragmentMarriageGoodsBin
     }
 
     @Override
-    protected void initData() {
+    protected void initData(@Nullable Bundle savedInstanceState) {
 
     }
 }

@@ -1,9 +1,13 @@
 package com.example.wedding.mvvm.view.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
+import com.example.wedding.BR;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseFragment;
-import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.databinding.FragmentWeBinding;
+import com.example.wedding.mvvm.viewmodel.WeViewModel;
 
 /**
  * 我们Fragment
@@ -12,7 +16,7 @@ import com.example.wedding.databinding.FragmentWeBinding;
  * @date 2019/4/5 14:46
  * @email 714081644@qq.com
  */
-public class WeFragment extends BaseFragment<FragmentWeBinding, BaseViewModel> {
+public class WeFragment extends BaseFragment<FragmentWeBinding, WeViewModel> {
 
     public static WeFragment newInstance() {
         return new WeFragment();
@@ -24,17 +28,17 @@ public class WeFragment extends BaseFragment<FragmentWeBinding, BaseViewModel> {
     }
 
     @Override
-    protected Class<BaseViewModel> getModelClass() {
-        return BaseViewModel.class;
+    protected Class<WeViewModel> getModelClass() {
+        return WeViewModel.class;
     }
 
     @Override
     protected int getVariableId() {
-        return 0;
+        return BR.viewModel;
     }
 
     @Override
-    protected void initData() {
+    protected void initData(@Nullable Bundle savedInstanceState) {
 
     }
 }

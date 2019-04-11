@@ -16,6 +16,10 @@ public class UserBean extends BmobUser {
      */
     private String nickName;
     /**
+     * 真实姓名
+     */
+    private String realName;
+    /**
      * 性别
      */
     private String sex;
@@ -23,6 +27,22 @@ public class UserBean extends BmobUser {
      * 头像
      */
     private BmobFile headImg;
+    /**
+     * 年龄
+     */
+    private int age;
+    /**
+     * 住址
+     */
+    private String homeAddress;
+    /**
+     * 结婚日期
+     */
+    private String weddingDate;
+    /**
+     * 爱人的objectId
+     */
+    private String loverObjectId;
 
     public UserBean() {
     }
@@ -33,6 +53,14 @@ public class UserBean extends BmobUser {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getSex() {
@@ -49,5 +77,37 @@ public class UserBean extends BmobUser {
 
     public void setHeadImg(BmobFile headImg) {
         this.headImg = headImg;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(String homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public String getWeddingDate() {
+        return weddingDate;
+    }
+
+    public void setWeddingDate(String weddingDate) {
+        this.weddingDate = weddingDate;
+    }
+
+    public String getLoverObjectId() {
+        return loverObjectId;
+    }
+
+    public void setLoverObjectId(String loverObjectId) {
+        this.loverObjectId = loverObjectId;
     }
 }

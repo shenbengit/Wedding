@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <ImageView
-            imageUrl="@{bean.getImage_path}"
+            loadImageData="@{bean.getImage_path}"
             android:layout_width="@dimen/dp_50"
             android:layout_height="@dimen/dp_50" />
 

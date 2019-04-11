@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.SwitchCompat;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -176,26 +175,26 @@ public class DataBindingAdapter {
      * Glide 加载图片url
      *
      * @param imageView           要加载的图片控件
-     * @param url                 图片url地址
+     * @param data                图片数据
      * @param placeholderImageRes 图片加载中显示展位图
      * @param errorImageRes       图片加载失败显示占位图
      * @param noLoadCache         加载图片是否使用缓存,默认使用缓存
      */
     @SuppressLint("CheckResult")
-    @BindingAdapter(value = {"imageUrl", "placeholderImageRes", "errorImageRes", "noLoadCache"}, requireAll = false)
-    public static void setImageUrl(ImageView imageView, String url, Drawable placeholderImageRes, Drawable errorImageRes, boolean noLoadCache) {
-        if (!TextUtils.isEmpty(url)) {
+    @BindingAdapter(value = {"loadImageData", "placeholderImageRes", "errorImageRes", "noLoadCache"}, requireAll = false)
+    public static void setImageUrl(ImageView imageView, Object data, Drawable placeholderImageRes, Drawable errorImageRes, boolean noLoadCache) {
+        if (data != null) {
             RequestOptions options = new RequestOptions()
                     .placeholder(placeholderImageRes)
                     .error(errorImageRes);
             if (!noLoadCache) {
                 GlideApp.with(imageView)
-                        .load(url)
+                        .load(data)
                         .apply(options)
                         .into(imageView);
             } else {
                 GlideApp.with(imageView)
-                        .load(url)
+                        .load(data)
                         .skipMemoryCache(true)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .apply(options)
@@ -228,7 +227,7 @@ public class DataBindingAdapter {
     /**
      * 回调当前view
      *
-     * @param view view
+     * @param view    view
      * @param command 命令绑定
      */
     @BindingAdapter(value = "onReplayCurrentView")

@@ -1,5 +1,7 @@
 package com.example.wedding.mvvm.view.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 
 import com.android.databinding.library.baseAdapters.BR;
@@ -76,7 +78,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     }
 
     @Override
-    protected void initData() {
+    protected void initData(@Nullable Bundle savedInstanceState) {
         mViewModel.firstPageInfo.observe(this, homeInfoBean -> {
             mBannerList.clear();
             mWeddingTypeList.clear();

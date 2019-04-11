@@ -15,6 +15,8 @@ import com.trello.rxlifecycle2.LifecycleProvider;
  */
 public class BaseViewModel<M extends BaseModel> extends AndroidViewModel implements IBaseViewModel {
 
+    protected final String TAG = getClass().getSimpleName();
+
     protected M mModel;
     protected LifecycleProvider mLifecycleProvider;
 

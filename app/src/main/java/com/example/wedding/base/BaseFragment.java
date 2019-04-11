@@ -45,7 +45,7 @@ public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends BaseV
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initData();
+        initData(savedInstanceState);
     }
 
     @Override
@@ -102,8 +102,9 @@ public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends BaseV
 
     /**
      * 初始化数据
+     * @param savedInstanceState
      */
-    protected abstract void initData();
+    protected abstract void initData(@Nullable Bundle savedInstanceState);
 
     /**
      * 设置ToolBar

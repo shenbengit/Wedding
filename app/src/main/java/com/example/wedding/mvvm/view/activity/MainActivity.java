@@ -1,5 +1,8 @@
 package com.example.wedding.mvvm.view.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseActivity;
@@ -68,7 +71,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
     }
 
     @Override
-    protected void initData() {
+    protected void initData(@Nullable Bundle savedInstanceState) {
         ISupportFragment firstFragment = findFragment(HomeFragment.class);
         if (firstFragment == null) {
             mFragments[FIRST] = HomeFragment.newInstance();
