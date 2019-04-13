@@ -69,5 +69,7 @@ ext {
             "ucrop"                          : "com.github.yalantis:ucrop:2.2.3",
             //Luban图片压缩
             "Luban"                          : "top.zibin:Luban:1.1.8",
+            //Android-PickerView
+            "Android-PickerView"             : "com.contrarywind:Android-PickerView:4.1.7",
     ]
 }

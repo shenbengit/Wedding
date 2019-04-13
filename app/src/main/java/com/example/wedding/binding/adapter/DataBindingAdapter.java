@@ -3,6 +3,7 @@ package com.example.wedding.binding.adapter;
 import android.annotation.SuppressLint;
 import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.SwitchCompat;
@@ -184,9 +185,13 @@ public class DataBindingAdapter {
     @BindingAdapter(value = {"loadImageData", "placeholderImageRes", "errorImageRes", "noLoadCache"}, requireAll = false)
     public static void setImageUrl(ImageView imageView, Object data, Drawable placeholderImageRes, Drawable errorImageRes, boolean noLoadCache) {
         if (data != null) {
-            RequestOptions options = new RequestOptions()
-                    .placeholder(placeholderImageRes)
-                    .error(errorImageRes);
+            RequestOptions options = new RequestOptions();
+            if (placeholderImageRes != null) {
+                options.placeholder(placeholderImageRes);
+            }
+            if (errorImageRes != null) {
+                options.error(errorImageRes);
+            }
             if (!noLoadCache) {
                 GlideApp.with(imageView)
                         .load(data)
@@ -198,6 +203,18 @@ public class DataBindingAdapter {
                         .skipMemoryCache(true)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .apply(options)
+                        .into(imageView);
+            }
+        } else {
+            if (errorImageRes != null) {
+                GlideApp.with(imageView)
+                        .load(errorImageRes)
+                        .into(imageView);
+                return;
+            }
+            if (placeholderImageRes != null) {
+                GlideApp.with(imageView)
+                        .load(placeholderImageRes)
                         .into(imageView);
             }
         }

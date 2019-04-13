@@ -102,6 +102,7 @@ public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends BaseV
 
     /**
      * 初始化数据
+     *
      * @param savedInstanceState
      */
     protected abstract void initData(@Nullable Bundle savedInstanceState);
@@ -112,7 +113,7 @@ public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends BaseV
      * @param toolbar 传入子类中的ToolBar
      */
     protected void initToolbarNav(Toolbar toolbar) {
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setNavigationOnClickListener(v -> _mActivity.onBackPressed());
     }
 

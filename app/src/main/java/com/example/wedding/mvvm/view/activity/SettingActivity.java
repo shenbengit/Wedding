@@ -40,7 +40,8 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, Settin
 
     @Override
     protected void initView() {
-        mBinding.btnTest.setOnClickListener(v -> ARouter.getInstance().build(ARouterPath.PERSONAL_INFO_ACTIVITY).navigation());
+        mBinding.toolbar.setTitle("设置");
+        initToolbarNav(mBinding.toolbar);
     }
 
     @Override

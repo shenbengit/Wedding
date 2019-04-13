@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#F73244</color>
-    <color name="colorPrimaryDark">#F73244</color>
+    <color name="colorPrimary">#FDFDFE</color>
+    <color name="colorPrimaryDark">#FDFDFE</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorTheme">#F73244</color>
     <color name="c">#CCCCCC</color>
@@ -10,4 +10,5 @@
     <color name="_9">#999999</color>
     <color name="black">#000000</color>
     <color name="font_black">#393939</color>
+    <color name="line_color">#E2E2E2</color>
 </resources>

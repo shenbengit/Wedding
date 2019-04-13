@@ -6,21 +6,30 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.Intent;
 import android.databinding.ObservableField;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
 import com.example.wedding.R;
 import com.example.wedding.base.BaseViewModel;
+import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.Constant;
+import com.example.wedding.http.bean.UserBean;
+import com.example.wedding.mvvm.model.PersonalInfoModel;
 import com.example.wedding.util.LogUtil;
 import com.example.wedding.util.ToastUtil;
+import com.example.wedding.widget.SelectPictureDialog;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 import java.io.File;
 
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import io.reactivex.functions.Consumer;
 import top.zibin.luban.Luban;
 import top.zibin.luban.OnCompressListener;
 
@@ -29,7 +38,9 @@ import top.zibin.luban.OnCompressListener;
  * @date 2019/4/11 15:21
  * @email 714081644@qq.com
  */
-public class PersonalInfoViewModel extends BaseViewModel {
+public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
+
+    private UserBean mCurrentUser;
     /**
      * 从相册选取照片
      */
@@ -38,17 +49,63 @@ public class PersonalInfoViewModel extends BaseViewModel {
      * 拍照方式选取照片
      */
     public static final int SELECT_PICTURE_FROM_CAMERA = 2;
+
+    /**
+     * 选中图片dialog
+     */
+    private SelectPictureDialog mDialog;
+
     /**
      * 跳转至剪裁界面
      */
     public MutableLiveData<UCrop> toUCrop;
+    /**
+     * 头像
+     */
+    public ObservableField<Object> headPicture;
 
-    public ObservableField<Uri> compressPictureUri;
+    public ObservableField<String> nickName;
+    /**
+     * 显示选择头像dialog
+     */
+    public BindingCommand selectHeadCommand;
+
 
     public PersonalInfoViewModel(@NonNull Application application) {
-        super(application);
+        super(application, new PersonalInfoModel());
         toUCrop = new MutableLiveData<>();
-        compressPictureUri = new ObservableField<>();
+        headPicture = new ObservableField<>();
+        nickName = new ObservableField<>();
+        selectHeadCommand = new BindingCommand(() -> {
+            if (mDialog != null && !mDialog.isShowing()) {
+                mDialog.show();
+            }
+        });
+    }
+
+
+    @Override
+    public void onCreate() {
+        mCurrentUser = BmobUser.getCurrentUser(UserBean.class);
+        if (mCurrentUser.getHeadImg() != null) {
+            headPicture.set(mCurrentUser.getHeadImg().getFileUrl());
+        }
+        nickName.set(mCurrentUser.getNickName());
+    }
+
+    public void initDialog(Activity activity) {
+        mDialog = new SelectPictureDialog(activity);
+        mDialog.setOnSelectPictureModeListener(new SelectPictureDialog.OnSelectPictureModeListener() {
+            @Override
+            public void fromCamera() {
+                getBaseLiveData().postValue(String.valueOf(SELECT_PICTURE_FROM_CAMERA));
+            }
+
+            @Override
+            public void formAlbum() {
+                getBaseLiveData().postValue(String.valueOf(SELECT_PICTURE_FROM_ALBUM));
+            }
+        });
     }
 
     /**
@@ -63,7 +120,6 @@ public class PersonalInfoViewModel extends BaseViewModel {
             case SELECT_PICTURE_FROM_ALBUM: {//相册选取图片
                 if (resultCode == Activity.RESULT_OK) {
                     if (data != null && data.getData() != null) {
-                        //剪裁图片
                         inToUCrop(data.getData());
                     }
                 }
@@ -71,8 +127,16 @@ public class PersonalInfoViewModel extends BaseViewModel {
             break;
             case SELECT_PICTURE_FROM_CAMERA: {//拍照选取图片
                 if (resultCode == Activity.RESULT_OK) {
-                    if (data != null) {
-                        LogUtil.e("相册返回数据: " + data.getData());
+                    File pictureFile = new File(Constant.CACHE_PICTURE, Constant.CAMERA_HEAD_NAME);
+                    if (pictureFile.exists()) {
+                        Uri uri;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            uri = FileProvider.getUriForFile(getApplication(),
+                                    "com.example.wedding.PictureProvider", pictureFile);
+                        } else {
+                            uri = Uri.fromFile(pictureFile);
+                        }
+                        inToUCrop(uri);
                     }
                 }
             }
@@ -81,13 +145,14 @@ public class PersonalInfoViewModel extends BaseViewModel {
                 if (resultCode == Activity.RESULT_OK) {
                     if (data != null) {
                         Uri resultUri = UCrop.getOutput(data);
-                        compressPictureUri.set(resultUri);
+                        headPicture.set(resultUri);
                         compressPicture(resultUri);
                     }
                 }
                 break;
-            case UCrop.RESULT_ERROR://
+            case UCrop.RESULT_ERROR://剪裁出错
                 if (data != null) {
+                    headPicture.set(null);
                     final Throwable cropError = UCrop.getError(data);
                     if (cropError != null) {
                         ToastUtil.show(getApplication(), "图片剪裁失败: " + cropError.getMessage());
@@ -103,8 +168,14 @@ public class PersonalInfoViewModel extends BaseViewModel {
      * @param source 被剪裁的图片资源
      */
     private void inToUCrop(Uri source) {
-        String imageName = String.valueOf(System.currentTimeMillis());
-        Uri destinationUri = Uri.fromFile(new File(getApplication().getCacheDir(), imageName + ".jpeg"));
+        File file = new File(Constant.CACHE_PICTURE, Constant.UCROP_HEAD_NAME);
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+        if (file.exists()) {
+            file.delete();
+        }
+        Uri destinationUri = Uri.fromFile(file);
 
         UCrop.Options options = new UCrop.Options();
         //设置裁剪图片可操作的手势
@@ -146,9 +217,10 @@ public class PersonalInfoViewModel extends BaseViewModel {
         if (!file.exists()) {
             file.mkdirs();
         }
+
         Luban.with(getApplication())
                 .load(uri)
-                .ignoreBy(180)
+                .ignoreBy(200)
                 .setTargetDir(Constant.COMPRESS_PICTURE)
                 .filter(path -> !(TextUtils.isEmpty(path) || path.toLowerCase().endsWith(".gif")))
                 .setCompressListener(new OnCompressListener() {
@@ -159,7 +231,7 @@ public class PersonalInfoViewModel extends BaseViewModel {
 
                     @Override
                     public void onSuccess(File file) {
-                        LogUtil.i("压缩图片地址: " + file.getAbsolutePath() + "，图片大小: " + file.length());
+                        updateUserHeadImg(file);
                     }
 
                     @Override
@@ -168,5 +240,19 @@ public class PersonalInfoViewModel extends BaseViewModel {
                     }
                 })
                 .launch();
+    }
+
+    /**
+     * 上传用户头像
+     *
+     * @param file 用户头像文件
+     */
+    private void updateUserHeadImg(File file) {
+        mModel.updateUserInfo(mCurrentUser, file, null, new Consumer<BmobException>() {
+            @Override
+            public void accept(BmobException e) throws Exception {
+                LogUtil.e("上传图片失败: " + e.getMessage());
+            }
+        });
     }
 }

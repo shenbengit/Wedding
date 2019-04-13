@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.trello.rxlifecycle2.LifecycleProvider;
@@ -20,6 +21,8 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     protected M mModel;
     protected LifecycleProvider mLifecycleProvider;
 
+    private MutableLiveData<String> mBaseLiveData;
+
     public BaseViewModel(@NonNull Application application) {
         this(application, null);
     }
@@ -27,6 +30,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     public BaseViewModel(@NonNull Application application, M model) {
         super(application);
         mModel = model;
+        mBaseLiveData = new MutableLiveData<>();
     }
 
     /**
@@ -36,6 +40,16 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
      */
     public void injectLifecycleProvider(LifecycleProvider lifecycleProvider) {
         mLifecycleProvider = lifecycleProvider;
+    }
+
+    /**
+     * 获取最基本的与Activity通信事例
+     * 可以通过约定的字符串进行通信
+     *
+     * @return mBaseLiveData
+     */
+    public MutableLiveData<String> getBaseLiveData() {
+        return mBaseLiveData;
     }
 
     @Override

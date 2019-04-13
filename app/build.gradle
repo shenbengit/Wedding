@@ -136,4 +136,5 @@ dependencies {
     implementation rootProject.ext.dependencies["circleimageview"]
     implementation rootProject.ext.dependencies["ucrop"]
     implementation rootProject.ext.dependencies["Luban"]
+    implementation rootProject.ext.dependencies["Android-PickerView"]
 }

@@ -11,9 +11,11 @@ import com.example.wedding.R;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.Constant;
+import com.example.wedding.constant.SharedPreferencesKey;
 import com.example.wedding.http.bean.UserBean;
 import com.example.wedding.rxbus.RxSubscriptions;
 import com.example.wedding.util.LogUtil;
+import com.example.wedding.util.SharedPreferencesUtil;
 import com.example.wedding.util.ToastUtil;
 
 import java.util.Arrays;
@@ -25,6 +27,7 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.QueryListener;
+import cn.bmob.v3.listener.UpdateListener;
 import io.reactivex.disposables.Disposable;
 
 /**
@@ -82,6 +85,8 @@ public class LoginViewModel extends BaseViewModel {
     private Disposable mRequestSmsDisposable;
 
     private Disposable mSignOrLoginDisposable;
+
+    private Disposable mUserUpdateDisposable;
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
@@ -176,7 +181,16 @@ public class LoginViewModel extends BaseViewModel {
             @Override
             public void done(UserBean userBean, BmobException e) {
                 if (userBean != null) {
-                    singOrLoginSuccess.postValue(true);
+                    SharedPreferencesUtil.getInstance().putString(SharedPreferencesKey.USER_PHONE, phone.get());
+                    userBean.setPassword(phone.get());
+                    mUserUpdateDisposable = userBean.update(new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e != null) {
+                                singOrLoginSuccess.postValue(true);
+                            }
+                        }
+                    });
                 } else {
                     ToastUtil.show(mContext, "登录失败，errorCode： " + e.getErrorCode() + "，message： " + e.getMessage());
                 }
@@ -191,5 +205,6 @@ public class LoginViewModel extends BaseViewModel {
         mTimer.cancel();
         RxSubscriptions.remove(mRequestSmsDisposable);
         RxSubscriptions.remove(mSignOrLoginDisposable);
+        RxSubscriptions.remove(mUserUpdateDisposable);
     }
 }

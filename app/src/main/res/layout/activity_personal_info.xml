@@ -13,21 +13,152 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#F2F3F6"
         tools:context=".mvvm.view.activity.PersonalInfoActivity">
 
-        <com.yalantis.ucrop.view.CropImageView
-            loadImageData="@{viewModel.compressPictureUri}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/btnTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="测试"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+        </android.support.v7.widget.Toolbar>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_0_1"
+            android:background="@color/line_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+
+        <ImageButton
+            android:id="@+id/ib_head_img"
+            onClickCommand="@{viewModel.selectHeadCommand}"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_45"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:text="头像"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_head_img"
+            app:layout_constraintStart_toStartOf="@+id/ib_head_img"
+            app:layout_constraintTop_toTopOf="@+id/ib_head_img" />
+
+        <ImageView
+            android:id="@+id/iv_head_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:src="@drawable/ic_go"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_head_img"
+            app:layout_constraintEnd_toEndOf="@+id/ib_head_img"
+            app:layout_constraintTop_toTopOf="@+id/ib_head_img" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            errorImageRes="@{@drawable/ic_head_img}"
+            loadImageData="@{viewModel.headPicture}"
+            noLoadCache="@{true}"
+            placeholderImageRes="@{@drawable/ic_head_img}"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
+            android:layout_marginEnd="@dimen/dp_10"
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_width="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_head_img"
+            app:layout_constraintEnd_toStartOf="@+id/iv_head_go"
+            app:layout_constraintTop_toTopOf="@+id/ib_head_img" />
+
+        <ImageButton
+            android:id="@+id/ib_nick"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_45"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ib_head_img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:text="昵称"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_nick"
+            app:layout_constraintStart_toStartOf="@+id/ib_nick"
+            app:layout_constraintTop_toTopOf="@+id/ib_nick" />
+
+        <ImageView
+            android:id="@+id/iv_nick_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:src="@drawable/ic_go"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_nick"
+            app:layout_constraintEnd_toEndOf="@+id/ib_nick"
+            app:layout_constraintTop_toTopOf="@+id/ib_nick" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:text="@{viewModel.nickName}"
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_width="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_nick"
+            app:layout_constraintEnd_toStartOf="@+id/iv_nick_go"
+            app:layout_constraintTop_toTopOf="@+id/ib_nick" />
+
+        <ImageButton
+            android:id="@+id/ib_wedding"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_45"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ib_nick" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:text="我的婚期"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_wedding"
+            app:layout_constraintStart_toStartOf="@+id/ib_wedding"
+            app:layout_constraintTop_toTopOf="@+id/ib_wedding" />
+
+        <ImageView
+            android:id="@+id/iv_wedding_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:src="@drawable/ic_go"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_wedding"
+            app:layout_constraintEnd_toEndOf="@+id/ib_wedding"
+            app:layout_constraintTop_toTopOf="@+id/ib_wedding" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_10"
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_width="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_wedding"
+            app:layout_constraintEnd_toStartOf="@+id/iv_wedding_go"
+            app:layout_constraintTop_toTopOf="@+id/ib_wedding" />
     </android.support.constraint.ConstraintLayout>
 </layout>

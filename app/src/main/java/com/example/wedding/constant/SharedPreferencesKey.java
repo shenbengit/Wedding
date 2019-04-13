@@ -19,5 +19,9 @@ public class SharedPreferencesKey {
      * 网络请求city header
      */
     public static final String CITY_HEADER = "cityHeader";
+    /**
+     * 用户登录手机号
+     */
+    public static final String USER_PHONE = "UserPhone";
 
 }

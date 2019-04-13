@@ -8,6 +8,7 @@ import com.example.wedding.R;
 import com.example.wedding.base.BaseActivity;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.constant.ARouterPath;
+import com.example.wedding.constant.Constant;
 import com.example.wedding.databinding.ActivityMainBinding;
 import com.example.wedding.mvvm.view.fragment.BrideSaidFragment;
 import com.example.wedding.mvvm.view.fragment.CollectFragment;
@@ -17,6 +18,7 @@ import com.example.wedding.mvvm.view.fragment.WeFragment;
 import com.example.wedding.widget.BottomBar;
 import com.example.wedding.widget.BottomBarTab;
 
+import cn.bmob.v3.BmobUser;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
@@ -47,6 +49,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
 
     @Override
     protected void initView() {
+        if (getIntent() != null) {
+            //如果需要登录
+            if (getIntent().getBooleanExtra(Constant.IS_NEED_LOGIN, true)) {
+
+            }
+        }
         mBinding.bottomBar.addItem(new BottomBarTab(this, R.drawable.ic_tab_home, "主页"))
                 .addItem(new BottomBarTab(this, R.drawable.ic_tab_social, "新娘说"))
                 .addItem(new BottomBarTab(this, R.drawable.ic_tab_shop, "婚品"))

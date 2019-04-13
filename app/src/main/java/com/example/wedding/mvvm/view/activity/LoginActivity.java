@@ -9,6 +9,7 @@ import com.example.wedding.BR;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseActivity;
 import com.example.wedding.constant.ARouterPath;
+import com.example.wedding.constant.Constant;
 import com.example.wedding.databinding.ActivityLoginBinding;
 import com.example.wedding.loader.GlideImageLoader;
 import com.example.wedding.mvvm.viewmodel.LoginViewModel;
@@ -31,7 +32,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     protected void beforeSetContentView() {
         if (BmobUser.isLogin()) {//是否有用户登录
             isLogin = true;
-            intentToMain();
+            intentToMain(true);
             return;
         }
         //透明状态栏
@@ -71,7 +72,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
         mViewModel.sendCodeIcoVisible.observe(this, aBoolean -> mBinding.setVisibility(aBoolean));
         mViewModel.singOrLoginSuccess.observe(this, aBoolean -> {
             if (aBoolean != null && aBoolean) {
-                intentToMain();
+                intentToMain(false);
             }
         });
     }
@@ -79,8 +80,11 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     /**
      * 跳转到主页
      */
-    private void intentToMain() {
-        ARouter.getInstance().build(ARouterPath.MAIN_ACTIVITY).navigation();
+    private void intentToMain(boolean isNeedLogin) {
+        ARouter.getInstance()
+                .build(ARouterPath.MAIN_ACTIVITY)
+                .withBoolean(Constant.IS_NEED_LOGIN, isNeedLogin)
+                .navigation();
         finish();
     }
 }

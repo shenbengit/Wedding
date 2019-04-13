@@ -44,9 +44,11 @@ public class SelectPictureDialog extends Dialog {
         mTvCancel.setOnClickListener(v -> cancel());
         mTvCamera.setOnClickListener(v -> {
             mListener.fromCamera();
+            cancel();
         });
         mTvFile.setOnClickListener(v -> {
             mListener.formAlbum();
+            cancel();
         });
 
 
