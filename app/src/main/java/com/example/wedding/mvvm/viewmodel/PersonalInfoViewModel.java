@@ -13,8 +13,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseViewModel;
+import com.example.wedding.binding.command.BindingAction;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.Constant;
 import com.example.wedding.http.bean.UserBean;
@@ -51,38 +53,96 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
     public static final int SELECT_PICTURE_FROM_CAMERA = 2;
 
     /**
-     * 选中图片dialog
+     * 头像
      */
-    private SelectPictureDialog mDialog;
-
+    public ObservableField<Object> headPicture;
+    /**
+     * 昵称
+     */
+    public ObservableField<String> nickName;
+    /**
+     * 结婚日期
+     */
+    public ObservableField<String> weddingDate;
+    /**
+     * 性别
+     */
+    public ObservableField<String> sex;
+    /**
+     * 性别
+     */
+    public ObservableField<String> age;
+    /**
+     * 头像点击事件
+     */
+    public BindingCommand selectHeadCommand;
+    /**
+     * 昵称点击事件
+     */
+    public BindingCommand nickNameCommand;
+    /**
+     * 婚期点击事件
+     */
+    public BindingCommand weddingDateCommand;
+    /**
+     * 性别点击事件
+     */
+    public BindingCommand sexCommand;
+    /**
+     * 年龄点击事件
+     */
+    public BindingCommand ageCommand;
     /**
      * 跳转至剪裁界面
      */
     public MutableLiveData<UCrop> toUCrop;
     /**
-     * 头像
+     * 选中图片dialog
      */
-    public ObservableField<Object> headPicture;
-
-    public ObservableField<String> nickName;
+    private SelectPictureDialog mDialog;
     /**
-     * 显示选择头像dialog
+     * 婚期PickerView
      */
-    public BindingCommand selectHeadCommand;
-
+    private TimePickerView mWeddingDatePickerView;
 
     public PersonalInfoViewModel(@NonNull Application application) {
         super(application, new PersonalInfoModel());
-        toUCrop = new MutableLiveData<>();
         headPicture = new ObservableField<>();
         nickName = new ObservableField<>();
+        weddingDate = new ObservableField<>();
+        sex = new ObservableField<>();
+        age = new ObservableField<>();
+        toUCrop = new MutableLiveData<>();
         selectHeadCommand = new BindingCommand(() -> {
             if (mDialog != null && !mDialog.isShowing()) {
                 mDialog.show();
             }
         });
-    }
+        nickNameCommand = new BindingCommand(new BindingAction() {
+            @Override
+            public void execute() {
 
+            }
+        });
+        weddingDateCommand = new BindingCommand(new BindingAction() {
+            @Override
+            public void execute() {
+
+            }
+        });
+        sexCommand = new BindingCommand(new BindingAction() {
+            @Override
+            public void execute() {
+
+            }
+        });
+        ageCommand = new BindingCommand(new BindingAction() {
+            @Override
+            public void execute() {
+
+            }
+        });
+    }
 
     @Override
     public void onCreate() {
@@ -91,6 +151,9 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
             headPicture.set(mCurrentUser.getHeadImg().getFileUrl());
         }
         nickName.set(mCurrentUser.getNickName());
+        weddingDate.set(mCurrentUser.getWeddingDate());
+        sex.set(mCurrentUser.getSex());
+        age.set(mCurrentUser.getAge() + "");
     }
 
     public void initDialog(Activity activity) {
@@ -217,7 +280,6 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
         if (!file.exists()) {
             file.mkdirs();
         }
-
         Luban.with(getApplication())
                 .load(uri)
                 .ignoreBy(200)

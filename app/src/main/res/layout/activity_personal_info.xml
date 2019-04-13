@@ -84,6 +84,7 @@
 
         <ImageButton
             android:id="@+id/ib_nick"
+            onClickCommand="@{viewModel.nickNameCommand}"
             android:layout_width="@dimen/dp_0"
             android:layout_height="@dimen/dp_45"
             android:layout_marginTop="@dimen/dp_10"
@@ -124,9 +125,10 @@
 
         <ImageButton
             android:id="@+id/ib_wedding"
+            onClickCommand="@{viewModel.weddingDateCommand}"
             android:layout_width="@dimen/dp_0"
             android:layout_height="@dimen/dp_45"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_1"
             android:background="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -155,10 +157,94 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp_10"
+            android:text="@{viewModel.weddingDate}"
             app:civ_border_color="@android:color/transparent"
             app:civ_border_width="1dp"
             app:layout_constraintBottom_toBottomOf="@+id/ib_wedding"
             app:layout_constraintEnd_toStartOf="@+id/iv_wedding_go"
             app:layout_constraintTop_toTopOf="@+id/ib_wedding" />
+
+        <ImageButton
+            android:id="@+id/ib_sex"
+            onClickCommand="@{viewModel.sexCommand}"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_45"
+            android:layout_marginTop="@dimen/dp_1"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ib_wedding" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:text="性别"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_sex"
+            app:layout_constraintStart_toStartOf="@+id/ib_sex"
+            app:layout_constraintTop_toTopOf="@+id/ib_sex" />
+
+        <ImageView
+            android:id="@+id/iv_sex_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:src="@drawable/ic_go"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_sex"
+            app:layout_constraintEnd_toEndOf="@+id/ib_sex"
+            app:layout_constraintTop_toTopOf="@+id/ib_sex" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:text="@{viewModel.sex}"
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_width="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_sex"
+            app:layout_constraintEnd_toStartOf="@+id/iv_sex_go"
+            app:layout_constraintTop_toTopOf="@+id/ib_sex" />
+
+
+        <ImageButton
+            android:id="@+id/ib_age"
+            onClickCommand="@{viewModel.ageCommand}"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_45"
+            android:layout_marginTop="@dimen/dp_1"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ib_sex" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:text="性别"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_age"
+            app:layout_constraintStart_toStartOf="@+id/ib_age"
+            app:layout_constraintTop_toTopOf="@+id/ib_age" />
+
+        <ImageView
+            android:id="@+id/iv_age_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:src="@drawable/ic_go"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_age"
+            app:layout_constraintEnd_toEndOf="@+id/ib_age"
+            app:layout_constraintTop_toTopOf="@+id/ib_age" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:text="@{viewModel.age}"
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_width="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_age"
+            app:layout_constraintEnd_toStartOf="@+id/iv_age_go"
+            app:layout_constraintTop_toTopOf="@+id/ib_age" />
     </android.support.constraint.ConstraintLayout>
 </layout>
