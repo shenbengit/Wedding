@@ -16,6 +16,7 @@
 
         <ImageView
             loadImageData="@{bean.getImage_path}"
+            noLoadCache="@{true}"
             android:layout_width="@dimen/dp_50"
             android:layout_height="@dimen/dp_50" />
 

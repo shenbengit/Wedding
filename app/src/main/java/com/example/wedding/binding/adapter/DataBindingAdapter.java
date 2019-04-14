@@ -3,7 +3,7 @@ package com.example.wedding.binding.adapter;
 import android.annotation.SuppressLint;
 import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
+import android.net.Uri;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.SwitchCompat;
@@ -22,12 +22,14 @@ import android.widget.ToggleButton;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.wedding.GlideApp;
+import com.example.wedding.GlideRequests;
 import com.example.wedding.binding.command.BindingCommand;
 import com.jakewharton.rxbinding3.view.RxView;
 import com.jakewharton.rxbinding3.widget.RxCompoundButton;
 import com.jakewharton.rxbinding3.widget.RxRadioGroup;
 import com.jakewharton.rxbinding3.widget.RxTextView;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 /**

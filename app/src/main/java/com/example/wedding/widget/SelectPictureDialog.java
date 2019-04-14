@@ -80,6 +80,7 @@ public class SelectPictureDialog extends Dialog {
     }
 
     public interface OnSelectPictureModeListener {
+
         /**
          * 拍照选取
          */

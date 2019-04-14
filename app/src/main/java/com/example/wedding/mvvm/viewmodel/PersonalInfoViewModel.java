@@ -12,7 +12,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
+import android.view.View;
 
+import com.bigkoo.pickerview.configure.PickerOptions;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseViewModel;
@@ -124,10 +127,9 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
 
             }
         });
-        weddingDateCommand = new BindingCommand(new BindingAction() {
-            @Override
-            public void execute() {
-
+        weddingDateCommand = new BindingCommand(() -> {
+            if (mWeddingDatePickerView != null && !mWeddingDatePickerView.isShowing()) {
+                mWeddingDatePickerView.show();
             }
         });
         sexCommand = new BindingCommand(new BindingAction() {
@@ -169,6 +171,15 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
                 getBaseLiveData().postValue(String.valueOf(SELECT_PICTURE_FROM_ALBUM));
             }
         });
+        PickerOptions weddingOptions = new PickerOptions(PickerOptions.TYPE_PICKER_TIME);
+        weddingOptions.optionsSelectListener = new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                LogUtil.i("options1: " + options1 + ",options2: " + options2 + ",options3: " + options3);
+            }
+        };
+        weddingOptions.context = activity;
+        mWeddingDatePickerView = new TimePickerView(weddingOptions);
     }
 
     /**

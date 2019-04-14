@@ -16,7 +16,6 @@
         android:background="#F2F3F6"
         tools:context=".mvvm.view.activity.PersonalInfoActivity">
 
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="0dp"
@@ -36,7 +35,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
 
         <ImageButton
             android:id="@+id/ib_head_img"

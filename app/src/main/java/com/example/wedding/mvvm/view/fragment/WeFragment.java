@@ -39,6 +39,6 @@ public class WeFragment extends BaseFragment<FragmentWeBinding, WeViewModel> {
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-
+        mViewModel.initPickerView(_mActivity);
     }
 }
