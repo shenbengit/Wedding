@@ -48,4 +48,10 @@ public class Constant {
      */
     public static final String SMS_TEMPLATE = "Wedding";
 
+
+    /**
+     * 时间模板
+     */
+    public static final String DATA_FORMAT_PATTERN = "yyyy-MM-dd";
+
 }

@@ -5,17 +5,23 @@ import android.app.Application;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bigkoo.pickerview.configure.PickerOptions;
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.ARouterPath;
+import com.example.wedding.constant.Constant;
 import com.example.wedding.http.bean.UserBean;
-import com.example.wedding.util.LogUtil;
+import com.example.wedding.mvvm.model.WeModel;
+import com.example.wedding.util.ToolUtil;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import cn.bmob.v3.BmobUser;
 
@@ -24,11 +30,12 @@ import cn.bmob.v3.BmobUser;
  * @date 2019/4/8 22:51
  * @email 714081644@qq.com
  */
-public class WeViewModel extends BaseViewModel {
+public class WeViewModel extends BaseViewModel<WeModel> {
     /**
      * 当前登录用户
      */
     private UserBean mCurrentUser;
+    private SimpleDateFormat mDateFormat;
     /**
      * 头像url地址
      */
@@ -57,7 +64,11 @@ public class WeViewModel extends BaseViewModel {
     private TimePickerView mWeddingDatePickerView;
 
     public WeViewModel(@NonNull Application application) {
-        super(application);
+        super(application, new WeModel());
+        mCurrentUser = BmobUser.getCurrentUser(UserBean.class);
+        mDateFormat = new SimpleDateFormat(Constant.DATA_FORMAT_PATTERN, Locale.getDefault());
+        mDateFormat.setLenient(false);
+
         headPicture = new ObservableField<>();
         weddingDataCountTime = new ObservableField<>();
         nickName = new ObservableField<>();
@@ -69,15 +80,36 @@ public class WeViewModel extends BaseViewModel {
         });
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
+    public void initPickerView(Activity activity) {
+        PickerOptions weddingOptions = new PickerOptions(PickerOptions.TYPE_PICKER_TIME);
+        weddingOptions.startDate = Calendar.getInstance();//起始时间
+        if (!TextUtils.isEmpty(mCurrentUser.getWeddingDate())) {
+            try {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(mDateFormat.parse(mCurrentUser.getWeddingDate()));
+                weddingOptions.date = calendar;//当前选中时间
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        weddingOptions.timeSelectListener = (date, v) -> {
+            mCurrentUser.setWeddingDate(mDateFormat.format(date));
+            int days = ToolUtil.differentDays(new Date(), date);
+            if (days <= 0) {
+                weddingDataCountTime.set("已完婚");
+            } else {
+                weddingDataCountTime.set("婚礼倒计时" + days + "天");
+            }
+            mModel.updateUserInfo(mCurrentUser, null, null);
+        };
+        weddingOptions.context = activity;
+        mWeddingDatePickerView = new TimePickerView(weddingOptions);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    /**
+     * fragment可见时调用
+     */
+    public void onSupportVisible() {
         mCurrentUser = BmobUser.getCurrentUser(UserBean.class);
         if (mCurrentUser.getHeadImg() != null) {
             headPicture.set(mCurrentUser.getHeadImg().getFileUrl());
@@ -85,21 +117,20 @@ public class WeViewModel extends BaseViewModel {
         if (TextUtils.isEmpty(mCurrentUser.getWeddingDate())) {
             weddingDataCountTime.set("设置结婚日期");
         } else {
-            weddingDataCountTime.set(mCurrentUser.getWeddingDate());
+            //计算与结婚日期差
+            try {
+                int days = ToolUtil.differentDays(new Date(), mDateFormat.parse(mCurrentUser.getWeddingDate()));
+                if (days <= 0) {
+                    weddingDataCountTime.set("已完婚");
+                } else {
+                    weddingDataCountTime.set("婚礼倒计时" + days + "天");
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
         }
         nickName.set(TextUtils.isEmpty(mCurrentUser.getNickName()) ?
                 mCurrentUser.getUsername() : mCurrentUser.getNickName());
-    }
-
-    public void initPickerView(Activity activity) {
-        PickerOptions weddingOptions = new PickerOptions(PickerOptions.TYPE_PICKER_TIME);
-        weddingOptions.optionsSelectListener = new OnOptionsSelectListener() {
-            @Override
-            public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                LogUtil.i("options1: " + options1 + ",options2: " + options2 + ",options3: " + options3);
-            }
-        };
-        weddingOptions.context = activity;
-        mWeddingDatePickerView = new TimePickerView(weddingOptions);
     }
 }

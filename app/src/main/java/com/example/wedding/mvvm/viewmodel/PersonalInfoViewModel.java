@@ -12,10 +12,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
-import android.view.View;
 
 import com.bigkoo.pickerview.configure.PickerOptions;
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseViewModel;
@@ -31,10 +29,12 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
-import io.reactivex.functions.Consumer;
 import top.zibin.luban.Luban;
 import top.zibin.luban.OnCompressListener;
 
@@ -54,6 +54,8 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
      * 拍照方式选取照片
      */
     public static final int SELECT_PICTURE_FROM_CAMERA = 2;
+
+    private SimpleDateFormat mDateFormat;
 
     /**
      * 头像
@@ -110,6 +112,10 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
 
     public PersonalInfoViewModel(@NonNull Application application) {
         super(application, new PersonalInfoModel());
+        mCurrentUser = BmobUser.getCurrentUser(UserBean.class);
+        mDateFormat = new SimpleDateFormat(Constant.DATA_FORMAT_PATTERN, Locale.getDefault());
+        mDateFormat.setLenient(false);
+
         headPicture = new ObservableField<>();
         nickName = new ObservableField<>();
         weddingDate = new ObservableField<>();
@@ -148,7 +154,6 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
 
     @Override
     public void onCreate() {
-        mCurrentUser = BmobUser.getCurrentUser(UserBean.class);
         if (mCurrentUser.getHeadImg() != null) {
             headPicture.set(mCurrentUser.getHeadImg().getFileUrl());
         }
@@ -159,6 +164,7 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
     }
 
     public void initDialog(Activity activity) {
+        //选择图片Dialog
         mDialog = new SelectPictureDialog(activity);
         mDialog.setOnSelectPictureModeListener(new SelectPictureDialog.OnSelectPictureModeListener() {
             @Override
@@ -171,12 +177,24 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
                 getBaseLiveData().postValue(String.valueOf(SELECT_PICTURE_FROM_ALBUM));
             }
         });
+
+        //时间PickerView
         PickerOptions weddingOptions = new PickerOptions(PickerOptions.TYPE_PICKER_TIME);
-        weddingOptions.optionsSelectListener = new OnOptionsSelectListener() {
-            @Override
-            public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                LogUtil.i("options1: " + options1 + ",options2: " + options2 + ",options3: " + options3);
+        weddingOptions.startDate = Calendar.getInstance();
+        if (!TextUtils.isEmpty(mCurrentUser.getWeddingDate())) {
+            try {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(mDateFormat.parse(mCurrentUser.getWeddingDate()));
+                weddingOptions.date = calendar;//当前选中时间
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
+        }
+        weddingOptions.timeSelectListener = (date, v) -> {
+            String day = mDateFormat.format(date);
+            weddingDate.set(day);
+            mCurrentUser.setWeddingDate(day);
+            mModel.updateUserInfo(mCurrentUser, null, null);
         };
         weddingOptions.context = activity;
         mWeddingDatePickerView = new TimePickerView(weddingOptions);
@@ -321,11 +339,6 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
      * @param file 用户头像文件
      */
     private void updateUserHeadImg(File file) {
-        mModel.updateUserInfo(mCurrentUser, file, null, new Consumer<BmobException>() {
-            @Override
-            public void accept(BmobException e) throws Exception {
-                LogUtil.e("上传图片失败: " + e.getMessage());
-            }
-        });
+        mModel.updateUserInfo(mCurrentUser, file, null, e -> ToastUtil.show(getApplication(), "上传图片失败，请重试！"));
     }
 }
