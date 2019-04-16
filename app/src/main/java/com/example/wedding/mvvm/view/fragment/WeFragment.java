@@ -8,7 +8,6 @@ import com.example.wedding.R;
 import com.example.wedding.base.BaseFragment;
 import com.example.wedding.databinding.FragmentWeBinding;
 import com.example.wedding.mvvm.viewmodel.WeViewModel;
-import com.example.wedding.util.LogUtil;
 
 /**
  * 我们Fragment
@@ -40,12 +39,17 @@ public class WeFragment extends BaseFragment<FragmentWeBinding, WeViewModel> {
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-        mViewModel.initPickerView(_mActivity);
-    }
 
+    }
     @Override
     public void onSupportVisible() {
         super.onSupportVisible();
         mViewModel.onSupportVisible();
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        mViewModel.initPickerView(_mActivity);
     }
 }

@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bigkoo.pickerview.configure.PickerOptions;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
@@ -80,32 +80,6 @@ public class WeViewModel extends BaseViewModel<WeModel> {
         });
     }
 
-    public void initPickerView(Activity activity) {
-        PickerOptions weddingOptions = new PickerOptions(PickerOptions.TYPE_PICKER_TIME);
-        weddingOptions.startDate = Calendar.getInstance();//起始时间
-        if (!TextUtils.isEmpty(mCurrentUser.getWeddingDate())) {
-            try {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(mDateFormat.parse(mCurrentUser.getWeddingDate()));
-                weddingOptions.date = calendar;//当前选中时间
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-        weddingOptions.timeSelectListener = (date, v) -> {
-            mCurrentUser.setWeddingDate(mDateFormat.format(date));
-            int days = ToolUtil.differentDays(new Date(), date);
-            if (days <= 0) {
-                weddingDataCountTime.set("已完婚");
-            } else {
-                weddingDataCountTime.set("婚礼倒计时" + days + "天");
-            }
-            mModel.updateUserInfo(mCurrentUser, null, null);
-        };
-        weddingOptions.context = activity;
-        mWeddingDatePickerView = new TimePickerView(weddingOptions);
-    }
-
     /**
      * fragment可见时调用
      */
@@ -133,4 +107,29 @@ public class WeViewModel extends BaseViewModel<WeModel> {
         nickName.set(TextUtils.isEmpty(mCurrentUser.getNickName()) ?
                 mCurrentUser.getUsername() : mCurrentUser.getNickName());
     }
+
+    public void initPickerView(Activity activity) {
+        TimePickerBuilder builder = new TimePickerBuilder(activity, (date, v) -> {
+            mCurrentUser.setWeddingDate(mDateFormat.format(date));
+            int days = ToolUtil.differentDays(new Date(), date);
+            if (days <= 0) {
+                weddingDataCountTime.set("已完婚");
+            } else {
+                weddingDataCountTime.set("婚礼倒计时" + days + "天");
+            }
+            mModel.updateUserInfo(mCurrentUser, null, null);
+        })
+                .setRangDate(Calendar.getInstance(), null);
+        mWeddingDatePickerView = builder.build();
+        if (!TextUtils.isEmpty(mCurrentUser.getWeddingDate())) {
+            try {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(mDateFormat.parse(mCurrentUser.getWeddingDate()));
+                mWeddingDatePickerView.setDate(calendar);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

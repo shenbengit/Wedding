@@ -219,7 +219,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_20"
-            android:text="性别"
+            android:text="年龄"
             app:layout_constraintBottom_toBottomOf="@+id/ib_age"
             app:layout_constraintStart_toStartOf="@+id/ib_age"
             app:layout_constraintTop_toTopOf="@+id/ib_age" />

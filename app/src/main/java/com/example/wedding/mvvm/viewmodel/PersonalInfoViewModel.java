@@ -13,7 +13,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
-import com.bigkoo.pickerview.configure.PickerOptions;
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseViewModel;
@@ -22,6 +24,7 @@ import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.Constant;
 import com.example.wedding.http.bean.UserBean;
 import com.example.wedding.mvvm.model.PersonalInfoModel;
+import com.example.wedding.mvvm.view.activity.NickNameActivity;
 import com.example.wedding.util.LogUtil;
 import com.example.wedding.util.ToastUtil;
 import com.example.wedding.widget.SelectPictureDialog;
@@ -31,7 +34,9 @@ import com.yalantis.ucrop.UCropActivity;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import cn.bmob.v3.BmobUser;
@@ -54,6 +59,12 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
      * 拍照方式选取照片
      */
     public static final int SELECT_PICTURE_FROM_CAMERA = 2;
+    /**
+     * 修改昵称返回
+     */
+    public static final int CHANGE_NICK_NAME = 100;
+
+    private static final List<String> mSexList = Arrays.asList("男", "女", "保密");
 
     private SimpleDateFormat mDateFormat;
 
@@ -110,6 +121,8 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
      */
     private TimePickerView mWeddingDatePickerView;
 
+    private OptionsPickerView<String> mSexOptionsPicekerView;
+
     public PersonalInfoViewModel(@NonNull Application application) {
         super(application, new PersonalInfoModel());
         mCurrentUser = BmobUser.getCurrentUser(UserBean.class);
@@ -127,21 +140,15 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
                 mDialog.show();
             }
         });
-        nickNameCommand = new BindingCommand(new BindingAction() {
-            @Override
-            public void execute() {
-
-            }
-        });
+        nickNameCommand = new BindingCommand(() -> getBaseLiveData().postValue(String.valueOf(CHANGE_NICK_NAME)));
         weddingDateCommand = new BindingCommand(() -> {
             if (mWeddingDatePickerView != null && !mWeddingDatePickerView.isShowing()) {
                 mWeddingDatePickerView.show();
             }
         });
-        sexCommand = new BindingCommand(new BindingAction() {
-            @Override
-            public void execute() {
-
+        sexCommand = new BindingCommand(() -> {
+            if (mSexOptionsPicekerView != null && !mSexOptionsPicekerView.isShowing()) {
+                mSexOptionsPicekerView.show();
             }
         });
         ageCommand = new BindingCommand(new BindingAction() {
@@ -178,26 +185,43 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
             }
         });
 
-        //时间PickerView
-        PickerOptions weddingOptions = new PickerOptions(PickerOptions.TYPE_PICKER_TIME);
-        weddingOptions.startDate = Calendar.getInstance();
-        if (!TextUtils.isEmpty(mCurrentUser.getWeddingDate())) {
-            try {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(mDateFormat.parse(mCurrentUser.getWeddingDate()));
-                weddingOptions.date = calendar;//当前选中时间
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-        weddingOptions.timeSelectListener = (date, v) -> {
+        //婚期DatePickerView
+        TimePickerBuilder dateBuilder = new TimePickerBuilder(activity, (date, v) -> {
             String day = mDateFormat.format(date);
             weddingDate.set(day);
             mCurrentUser.setWeddingDate(day);
             mModel.updateUserInfo(mCurrentUser, null, null);
-        };
-        weddingOptions.context = activity;
-        mWeddingDatePickerView = new TimePickerView(weddingOptions);
+        })
+                .setRangDate(Calendar.getInstance(), null);
+        mWeddingDatePickerView = dateBuilder.build();
+        if (!TextUtils.isEmpty(mCurrentUser.getWeddingDate())) {
+            try {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(mDateFormat.parse(mCurrentUser.getWeddingDate()));
+                mWeddingDatePickerView.setDate(calendar);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //性别OptionsPickerView
+        OptionsPickerBuilder sexBuilder = new OptionsPickerBuilder(activity, (options1, options2, options3, v) -> {
+            sex.set(mSexList.get(options1));
+            mCurrentUser.setSex(mSexList.get(options1));
+            mModel.updateUserInfo(mCurrentUser, null, null);
+        });
+        mSexOptionsPicekerView = sexBuilder.build();
+        mSexOptionsPicekerView.setPicker(mSexList);
+        if (!TextUtils.isEmpty(mCurrentUser.getSex())) {
+            for (int i = 0; i < mSexList.size(); i++) {
+                if (TextUtils.equals(mCurrentUser.getSex(), mSexList.get(i))) {
+                    mSexOptionsPicekerView.setSelectOptions(i);
+                    break;
+                }
+            }
+        }
+
+
     }
 
     /**
@@ -209,15 +233,14 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
      */
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         switch (requestCode) {
-            case SELECT_PICTURE_FROM_ALBUM: {//相册选取图片
+            case SELECT_PICTURE_FROM_ALBUM: //相册选取图片
                 if (resultCode == Activity.RESULT_OK) {
                     if (data != null && data.getData() != null) {
                         inToUCrop(data.getData());
                     }
                 }
-            }
-            break;
-            case SELECT_PICTURE_FROM_CAMERA: {//拍照选取图片
+                break;
+            case SELECT_PICTURE_FROM_CAMERA: //拍照选取图片
                 if (resultCode == Activity.RESULT_OK) {
                     File pictureFile = new File(Constant.CACHE_PICTURE, Constant.CAMERA_HEAD_NAME);
                     if (pictureFile.exists()) {
@@ -231,8 +254,7 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
                         inToUCrop(uri);
                     }
                 }
-            }
-            break;
+                break;
             case UCrop.REQUEST_CROP://图片剪裁
                 if (resultCode == Activity.RESULT_OK) {
                     if (data != null) {
@@ -250,6 +272,13 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
                         ToastUtil.show(getApplication(), "图片剪裁失败: " + cropError.getMessage());
                     }
                 }
+                break;
+            case CHANGE_NICK_NAME:
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    nickName.set(data.getStringExtra(NickNameActivity.NICK_NAME));
+                }
+                break;
+            default:
                 break;
         }
     }

@@ -1,7 +1,6 @@
 package com.example.wedding.mvvm.view.activity;
 
 import android.Manifest;
-import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +12,7 @@ import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.wedding.BR;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseActivity;
@@ -20,7 +20,6 @@ import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.constant.Constant;
 import com.example.wedding.databinding.ActivityPersonalInfoBinding;
 import com.example.wedding.mvvm.viewmodel.PersonalInfoViewModel;
-import com.example.wedding.widget.SelectPictureDialog;
 
 import java.io.File;
 
@@ -76,6 +75,11 @@ public class PersonalInfoActivity extends BaseActivity<ActivityPersonalInfoBindi
                 case "2"://拍照方式选取照片
                     selectPictureType = PersonalInfoViewModel.SELECT_PICTURE_FROM_CAMERA;
                     PersonalInfoActivityPermissionsDispatcher.needCameraWithPermissionCheck(PersonalInfoActivity.this);
+                    break;
+                case "100":
+                    ARouter.getInstance()
+                            .build(ARouterPath.NICK_NAME_ACTIVITY)
+                            .navigation(this, PersonalInfoViewModel.CHANGE_NICK_NAME);
                     break;
             }
         });

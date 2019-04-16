@@ -21,4 +21,8 @@ public class ARouterPath {
      * 个人信息页
      */
     public static final String PERSONAL_INFO_ACTIVITY = BASE_ACTIVITY_PATH + "PersonalInfoActivity";
+    /**
+     * 修改昵称页
+     */
+    public static final String NICK_NAME_ACTIVITY = BASE_ACTIVITY_PATH + "NickNameActivity";
 }
