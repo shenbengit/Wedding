@@ -25,4 +25,8 @@ public class ARouterPath {
      * 修改昵称页
      */
     public static final String NICK_NAME_ACTIVITY = BASE_ACTIVITY_PATH + "NickNameActivity";
+    /**
+     * 账号安全
+     */
+    public static final String ACCOUNT_SECURITY_ACTIVITY = BASE_ACTIVITY_PATH + "AccountSecurityActivity";
 }

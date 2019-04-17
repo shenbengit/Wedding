@@ -12,7 +12,6 @@ import com.example.wedding.base.BaseActivity;
 import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.databinding.ActivityNickNameBinding;
 import com.example.wedding.mvvm.viewmodel.NickNameViewModel;
-import com.example.wedding.util.ToastUtil;
 
 /**
  * @author ShenBen
@@ -48,10 +47,10 @@ public class NickNameActivity extends BaseActivity<ActivityNickNameBinding, Nick
     protected void initData(@Nullable Bundle savedInstanceState) {
         mViewModel.getBaseLiveData().observe(this, s -> {
             if (!TextUtils.isEmpty(s)) {
-                ToastUtil.show(this, "修改成功");
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putString(NICK_NAME, s);
+                intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
                 onBackPressedSupport();
             }

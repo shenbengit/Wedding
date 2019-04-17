@@ -12,6 +12,7 @@ import com.example.wedding.mvvm.model.PersonalInfoModel;
 import com.example.wedding.util.ToastUtil;
 
 import cn.bmob.v3.BmobUser;
+import io.reactivex.functions.Action;
 
 /**
  * @author ShenBen
@@ -32,7 +33,10 @@ public class NickNameViewModel extends BaseViewModel<PersonalInfoModel> {
                 return;
             }
             mCurrentUser.setNickName(nickName.get());
-            mModel.updateUserInfo(mCurrentUser, () -> getBaseLiveData().postValue(nickName.get()), null);
+            mModel.updateUserInfo(mCurrentUser, () -> {
+                ToastUtil.show(getApplication(), "修改成功");
+                getBaseLiveData().postValue(nickName.get());
+            }, null);
         });
     }
 

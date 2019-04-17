@@ -23,6 +23,13 @@ import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
+/**
+ * 主页
+ *
+ * @author ShenBen
+ * @date 2019/4/2 13:11
+ * @email 714081644@qq.com
+ */
 @Route(path = ARouterPath.MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> {
     private static final int FIRST = 0;

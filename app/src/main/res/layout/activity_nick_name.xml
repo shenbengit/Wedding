@@ -54,6 +54,8 @@
             android:layout_height="@dimen/dp_45"
             android:background="@color/colorPrimary"
             android:inputType="text"
+            android:paddingEnd="@dimen/dp_5"
+            android:paddingStart="@dimen/dp_5"
             android:text="@={viewModel.nickName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

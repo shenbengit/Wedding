@@ -24,16 +24,14 @@ public class SettingViewModel extends BaseViewModel {
 
     public SettingViewModel(@NonNull Application application) {
         super(application);
-        accountCommand = new BindingCommand(new BindingAction() {
-            @Override
-            public void execute() {
-
-            }
-        });
+        accountCommand = new BindingCommand(() -> ARouter.getInstance()
+                .build(ARouterPath.ACCOUNT_SECURITY_ACTIVITY)
+                .navigation());
 
         personalCommand = new BindingCommand(() -> ARouter.getInstance()
                 .build(ARouterPath.PERSONAL_INFO_ACTIVITY)
                 .navigation());
+
         logoutCommand = new BindingCommand(new BindingAction() {
             @Override
             public void execute() {

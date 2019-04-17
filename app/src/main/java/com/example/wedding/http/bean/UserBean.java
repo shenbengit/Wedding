@@ -40,6 +40,10 @@ public class UserBean extends BmobUser {
      */
     private String weddingDate;
     /**
+     * 生日
+     */
+    private String birthday;
+    /**
      * 爱人的objectId
      */
     private String loverObjectId;
@@ -101,6 +105,14 @@ public class UserBean extends BmobUser {
 
     public void setWeddingDate(String weddingDate) {
         this.weddingDate = weddingDate;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getLoverObjectId() {

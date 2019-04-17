@@ -206,7 +206,7 @@
 
         <ImageButton
             android:id="@+id/ib_age"
-            onClickCommand="@{viewModel.ageCommand}"
+            onClickCommand="@{viewModel.birthdayCommand}"
             android:layout_width="@dimen/dp_0"
             android:layout_height="@dimen/dp_45"
             android:layout_marginTop="@dimen/dp_1"
@@ -219,7 +219,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_20"
-            android:text="年龄"
+            android:text="生日"
             app:layout_constraintBottom_toBottomOf="@+id/ib_age"
             app:layout_constraintStart_toStartOf="@+id/ib_age"
             app:layout_constraintTop_toTopOf="@+id/ib_age" />
@@ -238,7 +238,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp_10"
-            android:text="@{viewModel.age}"
+            android:text="@{viewModel.birthday}"
             app:civ_border_color="@android:color/transparent"
             app:civ_border_width="1dp"
             app:layout_constraintBottom_toBottomOf="@+id/ib_age"

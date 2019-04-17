@@ -1,35 +1,35 @@
 package com.example.wedding.mvvm.view.activity;
 
-import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.wedding.BR;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseActivity;
 import com.example.wedding.constant.ARouterPath;
-import com.example.wedding.databinding.ActivitySettingBinding;
-import com.example.wedding.mvvm.viewmodel.SettingViewModel;
+import com.example.wedding.databinding.ActivityAccountSecurityBinding;
+import com.example.wedding.mvvm.viewmodel.AccountSecurityViewModel;
 
 /**
- * 设置页
+ * 账号安全
  *
  * @author ShenBen
- * @date 2019/4/8 22:35
+ * @date 2019/4/17 22:24
  * @email 714081644@qq.com
  */
+@Route(path = ARouterPath.ACCOUNT_SECURITY_ACTIVITY)
+public class AccountSecurityActivity extends BaseActivity<ActivityAccountSecurityBinding, AccountSecurityViewModel> {
 
-@Route(path = ARouterPath.SETTING_ACTIVITY)
-public class SettingActivity extends BaseActivity<ActivitySettingBinding, SettingViewModel> {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_setting;
+        return R.layout.activity_account_security;
     }
 
     @Override
-    protected Class<SettingViewModel> getModelClass() {
-        return SettingViewModel.class;
+    protected Class<AccountSecurityViewModel> getModelClass() {
+        return AccountSecurityViewModel.class;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, Settin
 
     @Override
     protected void initView() {
-        mBinding.toolbar.setTitle("设置");
+        mBinding.toolbar.setTitle("账号安全");
         initToolbarNav(mBinding.toolbar);
     }
 
@@ -47,5 +47,4 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, Settin
     protected void initData(@Nullable Bundle savedInstanceState) {
 
     }
-
 }

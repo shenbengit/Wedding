@@ -12,9 +12,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.wedding.R;
@@ -36,6 +38,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -85,9 +88,9 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
      */
     public ObservableField<String> sex;
     /**
-     * 性别
+     * 生日
      */
-    public ObservableField<String> age;
+    public ObservableField<String> birthday;
     /**
      * 头像点击事件
      */
@@ -105,9 +108,9 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
      */
     public BindingCommand sexCommand;
     /**
-     * 年龄点击事件
+     * 生日点击事件
      */
-    public BindingCommand ageCommand;
+    public BindingCommand birthdayCommand;
     /**
      * 跳转至剪裁界面
      */
@@ -120,8 +123,14 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
      * 婚期PickerView
      */
     private TimePickerView mWeddingDatePickerView;
-
+    /**
+     * 性别OptionsPicekerView
+     */
     private OptionsPickerView<String> mSexOptionsPicekerView;
+    /**
+     * 生日PickerView
+     */
+    private TimePickerView mBirthdayPickerView;
 
     public PersonalInfoViewModel(@NonNull Application application) {
         super(application, new PersonalInfoModel());
@@ -133,7 +142,7 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
         nickName = new ObservableField<>();
         weddingDate = new ObservableField<>();
         sex = new ObservableField<>();
-        age = new ObservableField<>();
+        birthday = new ObservableField<>();
         toUCrop = new MutableLiveData<>();
         selectHeadCommand = new BindingCommand(() -> {
             if (mDialog != null && !mDialog.isShowing()) {
@@ -151,10 +160,9 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
                 mSexOptionsPicekerView.show();
             }
         });
-        ageCommand = new BindingCommand(new BindingAction() {
-            @Override
-            public void execute() {
-
+        birthdayCommand = new BindingCommand(() -> {
+            if (mBirthdayPickerView != null && !mBirthdayPickerView.isShowing()) {
+                mBirthdayPickerView.show();
             }
         });
     }
@@ -167,7 +175,7 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
         nickName.set(mCurrentUser.getNickName());
         weddingDate.set(mCurrentUser.getWeddingDate());
         sex.set(mCurrentUser.getSex());
-        age.set(mCurrentUser.getAge() + "");
+        birthday.set(mCurrentUser.getBirthday());
     }
 
     public void initDialog(Activity activity) {
@@ -221,7 +229,23 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
             }
         }
 
-
+        //年龄PickerView
+        TimePickerBuilder ageBuilder = new TimePickerBuilder(activity, (date, v) -> {
+            String day = mDateFormat.format(date);
+            birthday.set(day);
+            mCurrentUser.setBirthday(day);
+            mModel.updateUserInfo(mCurrentUser, null, null);
+        });
+        mBirthdayPickerView = ageBuilder.build();
+        if (!TextUtils.isEmpty(mCurrentUser.getBirthday())) {
+            try {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(mDateFormat.parse(mCurrentUser.getBirthday()));
+                mBirthdayPickerView.setDate(calendar);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -356,6 +380,7 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
 
                     @Override
                     public void onError(Throwable e) {
+                        ToastUtil.show(getApplication(), "出错啦，请重试！");
                         LogUtil.e("压缩图片失败: " + e.getMessage());
                     }
                 })

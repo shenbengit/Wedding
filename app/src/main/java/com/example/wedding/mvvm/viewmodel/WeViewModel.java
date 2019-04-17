@@ -10,6 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.wedding.base.BaseViewModel;
+import com.example.wedding.binding.command.BindingAction;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.constant.Constant;
@@ -56,7 +57,10 @@ public class WeViewModel extends BaseViewModel<WeModel> {
      * 设置按钮点击事件
      */
     public BindingCommand settingCommand;
-
+    /**
+     * 头像点击事件
+     */
+    public BindingCommand headImageCommand;
 
     /**
      * 婚期PickerView
@@ -72,12 +76,17 @@ public class WeViewModel extends BaseViewModel<WeModel> {
         headPicture = new ObservableField<>();
         weddingDataCountTime = new ObservableField<>();
         nickName = new ObservableField<>();
-        settingCommand = new BindingCommand(() -> ARouter.getInstance().build(ARouterPath.SETTING_ACTIVITY).navigation());
         weddingDataCountTimeCommand = new BindingCommand(() -> {
             if (mWeddingDatePickerView != null && !mWeddingDatePickerView.isShowing()) {
                 mWeddingDatePickerView.show();
             }
         });
+        settingCommand = new BindingCommand(() -> ARouter.getInstance()
+                .build(ARouterPath.SETTING_ACTIVITY)
+                .navigation());
+        headImageCommand = new BindingCommand(() -> ARouter.getInstance()
+                .build(ARouterPath.PERSONAL_INFO_ACTIVITY)
+                .navigation());
     }
 
     /**

@@ -27,6 +27,7 @@
             android:id="@+id/civ_head"
             errorImageRes="@{@drawable/ic_head_img}"
             loadImageData="@{viewModel.headPicture}"
+            onClickCommand="@{viewModel.headImageCommand}"
             placeholderImageRes="@{@drawable/ic_head_img}"
             android:layout_width="@dimen/dp_50"
             android:layout_height="@dimen/dp_50"
