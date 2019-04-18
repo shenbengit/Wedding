@@ -11,4 +11,5 @@
     <color name="black">#000000</color>
     <color name="font_black">#393939</color>
     <color name="line_color">#E2E2E2</color>
+    <color name="red">#F73244</color>
 </resources>

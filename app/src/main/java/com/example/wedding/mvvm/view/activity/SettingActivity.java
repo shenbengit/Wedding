@@ -45,7 +45,7 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, Settin
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-
+        mViewModel.initDialog(this);
     }
 
 }

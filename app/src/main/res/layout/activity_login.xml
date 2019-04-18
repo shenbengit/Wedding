@@ -66,12 +66,14 @@
             app:layout_constraintStart_toStartOf="@+id/iv_bg"
             app:layout_constraintTop_toTopOf="@+id/iv_bg" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/iv_send_code"
             onClickCommand="@{viewModel.sendCode}"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30"
             android:layout_marginBottom="@dimen/dp_5"
+            android:background="@null"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_arrow_right_round"
             android:visibility="@{visibility ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@+id/view1"
@@ -96,6 +98,7 @@
             android:background="@null"
             android:hint="请输入手机号"
             android:inputType="number"
+            android:singleLine="true"
             android:text="@={viewModel.phone}"
             app:layout_constraintBottom_toTopOf="@+id/view1"
             app:layout_constraintEnd_toEndOf="@+id/view1"
@@ -114,11 +117,13 @@
             app:layout_constraintStart_toStartOf="@+id/iv_bg"
             app:layout_constraintTop_toBottomOf="@+id/view1" />
 
-        <ImageView
+        <ImageButton
             onClickCommand="@{viewModel.verifyCode}"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30"
             android:layout_marginBottom="@dimen/dp_5"
+            android:background="@null"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_arrow_right_round"
             android:visibility="@{visibility ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/view2"
@@ -132,6 +137,7 @@
             android:background="@null"
             android:hint="请输入验证码"
             android:inputType="number"
+            android:singleLine="true"
             android:text="@={viewModel.smsCode}"
             android:visibility="@{visibility ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/view2"

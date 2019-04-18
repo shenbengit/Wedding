@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.WindowManager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.wedding.BR;
 import com.example.wedding.R;
@@ -24,6 +25,7 @@ import cn.bmob.v3.BmobUser;
  * @date 2018/11/8 13:19
  * @email 714081644@qq.com
  */
+@Route(path = ARouterPath.LOGIN_ACTIVITY)
 public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewModel> {
 
     private boolean isLogin;

@@ -186,8 +186,10 @@ public class LoginViewModel extends BaseViewModel {
                     mUserUpdateDisposable = userBean.update(new UpdateListener() {
                         @Override
                         public void done(BmobException e) {
-                            if (e != null) {
+                            if (e == null) {
                                 singOrLoginSuccess.postValue(true);
+                            } else {
+                                LogUtil.e("设置密码出错: " + e.getMessage());
                             }
                         }
                     });

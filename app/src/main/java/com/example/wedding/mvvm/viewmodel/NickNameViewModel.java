@@ -44,6 +44,9 @@ public class NickNameViewModel extends BaseViewModel<PersonalInfoModel> {
     public void onCreate() {
         super.onCreate();
         mCurrentUser = BmobUser.getCurrentUser(UserBean.class);
+        if (mCurrentUser == null) {
+            return;
+        }
         nickName.set(mCurrentUser.getNickName());
     }
 }

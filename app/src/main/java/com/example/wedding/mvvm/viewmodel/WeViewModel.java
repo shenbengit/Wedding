@@ -94,8 +94,16 @@ public class WeViewModel extends BaseViewModel<WeModel> {
      */
     public void onSupportVisible() {
         mCurrentUser = BmobUser.getCurrentUser(UserBean.class);
+        if (mCurrentUser == null) {
+            headPicture.set(null);
+            weddingDataCountTime.set("设置结婚日期");
+            nickName.set(null);
+            return;
+        }
         if (mCurrentUser.getHeadImg() != null) {
             headPicture.set(mCurrentUser.getHeadImg().getFileUrl());
+        } else {
+            headPicture.set(null);
         }
         if (TextUtils.isEmpty(mCurrentUser.getWeddingDate())) {
             weddingDataCountTime.set("设置结婚日期");

@@ -138,11 +138,11 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
         mDateFormat = new SimpleDateFormat(Constant.DATA_FORMAT_PATTERN, Locale.getDefault());
         mDateFormat.setLenient(false);
 
-        headPicture = new ObservableField<>();
-        nickName = new ObservableField<>();
-        weddingDate = new ObservableField<>();
-        sex = new ObservableField<>();
-        birthday = new ObservableField<>();
+        headPicture = new ObservableField<>("");
+        nickName = new ObservableField<>("");
+        weddingDate = new ObservableField<>("");
+        sex = new ObservableField<>("");
+        birthday = new ObservableField<>("");
         toUCrop = new MutableLiveData<>();
         selectHeadCommand = new BindingCommand(() -> {
             if (mDialog != null && !mDialog.isShowing()) {
@@ -169,6 +169,9 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
 
     @Override
     public void onCreate() {
+        if (mCurrentUser == null) {
+            return;
+        }
         if (mCurrentUser.getHeadImg() != null) {
             headPicture.set(mCurrentUser.getHeadImg().getFileUrl());
         }
