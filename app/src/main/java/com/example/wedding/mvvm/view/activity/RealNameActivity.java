@@ -7,31 +7,28 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.wedding.BR;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseActivity;
 import com.example.wedding.constant.ARouterPath;
-import com.example.wedding.databinding.ActivityAccountSecurityBinding;
+import com.example.wedding.databinding.ActivityRealNameBinding;
 import com.example.wedding.mvvm.viewmodel.AccountSecurityViewModel;
+import com.example.wedding.mvvm.viewmodel.RealNameViewModel;
 
 /**
- * 账号安全页
- *
- * @author
+ * 输入真实姓名页
  */
-@Route(path = ARouterPath.ACCOUNT_SECURITY_ACTIVITY)
-public class AccountSecurityActivity extends BaseActivity<ActivityAccountSecurityBinding, AccountSecurityViewModel> {
-
+@Route(path = ARouterPath.REAL_NAME_ACTIVITY)
+public class RealNameActivity extends BaseActivity<ActivityRealNameBinding, RealNameViewModel> {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_account_security;
+        return R.layout.activity_real_name;
     }
 
     @Override
-    protected Class<AccountSecurityViewModel> getModelClass() {
-        return AccountSecurityViewModel.class;
+    protected Class<RealNameViewModel> getModelClass() {
+        return RealNameViewModel.class;
     }
 
     @Override
@@ -41,7 +38,7 @@ public class AccountSecurityActivity extends BaseActivity<ActivityAccountSecurit
 
     @Override
     protected void initView() {
-        mBinding.toolbar.setTitle("账号安全");
+        mBinding.toolbar.setTitle("真实姓名");
         initToolbarNav(mBinding.toolbar);
     }
 
@@ -49,16 +46,11 @@ public class AccountSecurityActivity extends BaseActivity<ActivityAccountSecurit
     protected void initData(@Nullable Bundle savedInstanceState) {
         mViewModel.getBaseLiveData().observe(this, (Observer<String>) s -> {
             if (!TextUtils.isEmpty(s)) {
-                ARouter.getInstance()
-                        .build(ARouterPath.REAL_NAME_ACTIVITY)
-                        .navigation(AccountSecurityActivity.this, AccountSecurityViewModel.REAL_NAME_TAG);
+                Intent intent = new Intent();
+                intent.putExtra(AccountSecurityViewModel.REAL_NAME, s);
+                setResult(RESULT_OK, intent);
+                onBackPressed();
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        mViewModel.onActivityResult(requestCode, resultCode, data);
     }
 }

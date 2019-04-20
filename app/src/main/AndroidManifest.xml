@@ -58,7 +58,9 @@
         </provider>
 
         <activity android:name=".mvvm.view.activity.NickNameActivity" />
-        <activity android:name=".mvvm.view.activity.AccountSecurityActivity"></activity>
+        <activity android:name=".mvvm.view.activity.AccountSecurityActivity" />
+        <activity android:name=".mvvm.view.activity.FeedbackActivity" />
+        <activity android:name=".mvvm.view.activity.RealNameActivity"></activity>
     </application>
 
 </manifest>

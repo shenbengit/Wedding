@@ -72,7 +72,7 @@
             onClickCommand="@{viewModel.personalCommand}"
             android:layout_width="@dimen/dp_0"
             android:layout_height="@dimen/dp_45"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_5"
             android:background="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +96,34 @@
             app:layout_constraintEnd_toEndOf="@+id/ib_personal"
             app:layout_constraintTop_toTopOf="@+id/ib_personal" />
 
+        <ImageButton
+            android:id="@+id/ib_feedback"
+            onClickCommand="@{viewModel.feedbackCommand}"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_45"
+            android:layout_marginTop="@dimen/dp_5"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ib_personal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:text="用户反馈"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_feedback"
+            app:layout_constraintStart_toStartOf="@+id/ib_feedback"
+            app:layout_constraintTop_toTopOf="@+id/ib_feedback" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:src="@drawable/ic_go"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_feedback"
+            app:layout_constraintEnd_toEndOf="@+id/ib_feedback"
+            app:layout_constraintTop_toTopOf="@+id/ib_feedback" />
 
         <ImageButton
             android:id="@+id/ib_logout"
@@ -106,7 +134,7 @@
             android:background="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ib_personal" />
+            app:layout_constraintTop_toBottomOf="@+id/ib_feedback" />
 
         <TextView
             android:layout_width="wrap_content"

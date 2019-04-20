@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.wedding.base.BaseViewModel;
-import com.example.wedding.binding.command.BindingAction;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.widget.SureCancelDialog;
@@ -15,14 +14,23 @@ import cn.bmob.v3.BmobUser;
 
 /**
  * @author
-
  */
 public class SettingViewModel extends BaseViewModel {
-
+    /**
+     * 账号安全安全点击
+     */
     public BindingCommand accountCommand;
-
+    /**
+     * 个人资料点击
+     */
     public BindingCommand personalCommand;
-
+    /**
+     * 用户反馈点击
+     */
+    public BindingCommand feedbackCommand;
+    /**
+     * 退出登录点击
+     */
     public BindingCommand logoutCommand;
 
     private SureCancelDialog mDialog;
@@ -37,6 +45,9 @@ public class SettingViewModel extends BaseViewModel {
                 .build(ARouterPath.PERSONAL_INFO_ACTIVITY)
                 .navigation());
 
+        feedbackCommand = new BindingCommand(() -> ARouter.getInstance()
+                .build(ARouterPath.FEEDBACK_ACTIVITY)
+                .navigation());
         logoutCommand = new BindingCommand(() -> {
             if (mDialog != null && !mDialog.isShowing()) {
                 mDialog.show();

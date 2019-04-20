@@ -2,7 +2,6 @@ package com.example.wedding.constant;
 
 /**
  * @author
-
  */
 public class ARouterPath {
 
@@ -32,4 +31,12 @@ public class ARouterPath {
      * 账号安全
      */
     public static final String ACCOUNT_SECURITY_ACTIVITY = BASE_ACTIVITY_PATH + "AccountSecurityActivity";
+    /**
+     * 用户反馈
+     */
+    public static final String FEEDBACK_ACTIVITY = BASE_ACTIVITY_PATH + "FeedbackActivity";
+    /**
+     * 真实姓名页
+     */
+    public static final String REAL_NAME_ACTIVITY = BASE_ACTIVITY_PATH + "RealNameActivity";
 }

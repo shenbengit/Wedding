@@ -14,8 +14,9 @@ import com.example.wedding.databinding.ActivityNickNameBinding;
 import com.example.wedding.mvvm.viewmodel.NickNameViewModel;
 
 /**
+ * 修改昵称页
+ *
  * @author
-
  */
 @Route(path = ARouterPath.NICK_NAME_ACTIVITY)
 public class NickNameActivity extends BaseActivity<ActivityNickNameBinding, NickNameViewModel> {

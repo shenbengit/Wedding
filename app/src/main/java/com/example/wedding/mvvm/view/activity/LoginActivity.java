@@ -19,7 +19,7 @@ import com.youth.banner.BannerConfig;
 import cn.bmob.v3.BmobUser;
 
 /**
- * 用户登录Activity
+ * 用户登录页
  *
  * @author
 

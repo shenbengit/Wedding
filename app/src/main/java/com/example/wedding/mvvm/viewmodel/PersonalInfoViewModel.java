@@ -12,16 +12,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
-import android.view.View;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseViewModel;
-import com.example.wedding.binding.command.BindingAction;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.Constant;
 import com.example.wedding.http.bean.UserBean;
@@ -38,7 +35,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -48,7 +44,6 @@ import top.zibin.luban.OnCompressListener;
 
 /**
  * @author
-
  */
 public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
 
@@ -144,22 +139,44 @@ public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
         birthday = new ObservableField<>("");
         toUCrop = new MutableLiveData<>();
         selectHeadCommand = new BindingCommand(() -> {
+            if (mCurrentUser == null) {
+                ToastUtil.show(getApplication(), "请先登录");
+                return;
+            }
             if (mDialog != null && !mDialog.isShowing()) {
                 mDialog.show();
             }
         });
-        nickNameCommand = new BindingCommand(() -> getBaseLiveData().postValue(String.valueOf(CHANGE_NICK_NAME)));
+        nickNameCommand = new BindingCommand(() -> {
+            if (mCurrentUser == null) {
+                ToastUtil.show(getApplication(), "请先登录");
+                return;
+            }
+            getBaseLiveData().postValue(String.valueOf(CHANGE_NICK_NAME));
+        });
         weddingDateCommand = new BindingCommand(() -> {
+            if (mCurrentUser == null) {
+                ToastUtil.show(getApplication(), "请先登录");
+                return;
+            }
             if (mWeddingDatePickerView != null && !mWeddingDatePickerView.isShowing()) {
                 mWeddingDatePickerView.show();
             }
         });
         sexCommand = new BindingCommand(() -> {
+            if (mCurrentUser == null) {
+                ToastUtil.show(getApplication(), "请先登录");
+                return;
+            }
             if (mSexOptionsPicekerView != null && !mSexOptionsPicekerView.isShowing()) {
                 mSexOptionsPicekerView.show();
             }
         });
         birthdayCommand = new BindingCommand(() -> {
+            if (mCurrentUser == null) {
+                ToastUtil.show(getApplication(), "请先登录");
+                return;
+            }
             if (mBirthdayPickerView != null && !mBirthdayPickerView.isShowing()) {
                 mBirthdayPickerView.show();
             }
