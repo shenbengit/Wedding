@@ -5,7 +5,9 @@ import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.SharedPreferencesKey;
@@ -43,7 +45,7 @@ public class HomeViewModel extends BaseViewModel {
     public MutableLiveData<HomeInfoBean> firstPageInfo;
 
     public WeddingTypeAdapter mWeddingTypeAdapter;
-    public WeddingTypeAdapter mWeddingToolAdapter;
+//    public WeddingTypeAdapter mWeddingToolAdapter;
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -65,7 +67,14 @@ public class HomeViewModel extends BaseViewModel {
         firstPageInfo = new MutableLiveData<>();
 
         mWeddingTypeAdapter = new WeddingTypeAdapter();
-        mWeddingToolAdapter = new WeddingTypeAdapter();
+//        mWeddingToolAdapter = new WeddingTypeAdapter();
+
+        mWeddingTypeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+            }
+        });
     }
 
     @Override
@@ -75,7 +84,7 @@ public class HomeViewModel extends BaseViewModel {
 
     @Override
     public void onResume() {
-        location.set(SharedPreferencesUtil.getInstance().getString(SharedPreferencesKey.LOCATION, "北京"));
+        location.set(SharedPreferencesUtil.getInstance().getString(SharedPreferencesKey.LOCATION, "南京"));
     }
 
     /**
