@@ -13,8 +13,7 @@ import com.example.wedding.mvvm.viewmodel.WeViewModel;
  * 我们Fragment
  *
  * @author
- * @date 2019/4/5 14:46
- * @email 714081644@qq.com
+
  */
 public class WeFragment extends BaseFragment<FragmentWeBinding, WeViewModel> {
 

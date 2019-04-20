@@ -9,8 +9,7 @@ import java.util.List;
 
 /**
  * @author
- * @date 2019/4/5 16:49
- * @email 714081644@qq.com
+
  */
 public class GsonUtil {
     private static Gson sGson;

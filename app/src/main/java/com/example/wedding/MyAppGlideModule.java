@@ -7,8 +7,7 @@ import com.bumptech.glide.module.AppGlideModule;
  * 生成GlideApp
  *
  * @author
- * @date 2018/8/7
- * Email: 714081644@qq.com
+
  */
 @GlideModule
 public class MyAppGlideModule extends AppGlideModule {

@@ -30,8 +30,7 @@ import permissions.dispatcher.RuntimePermissions;
  * 个人资料页
  *
  * @author
- * @date 2019/4/11 15:18
- * @email 714081644@qq.com
+
  */
 @RuntimePermissions
 @Route(path = ARouterPath.PERSONAL_INFO_ACTIVITY)

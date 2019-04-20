@@ -17,8 +17,7 @@ import com.example.wedding.base.support.AbstractSupportFragment;
 
 /**
  * @author
- * @date 2018/8/1
- * Email: 714081644@qq.com
+
  */
 
 public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends BaseViewModel> extends AbstractSupportFragment {

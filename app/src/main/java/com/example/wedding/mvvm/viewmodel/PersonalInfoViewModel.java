@@ -48,8 +48,7 @@ import top.zibin.luban.OnCompressListener;
 
 /**
  * @author
- * @date 2019/4/11 15:21
- * @email 714081644@qq.com
+
  */
 public class PersonalInfoViewModel extends BaseViewModel<PersonalInfoModel> {
 

@@ -9,8 +9,7 @@ import com.orhanobut.logger.Logger;
  * Logger 工具类封装
  *
  * @author
- * @date 2018/9/12
- * Email: 714081644@qq.com
+
  */
 public class LogUtil{
 

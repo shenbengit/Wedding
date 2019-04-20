@@ -6,24 +6,23 @@ import android.support.annotation.Nullable;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseFragment;
 import com.example.wedding.base.BaseViewModel;
-import com.example.wedding.databinding.FragmentMarriageGoodsBinding;
+import com.example.wedding.databinding.FragmentFindHomeBinding;
 
 /**
  * 婚品Fragment
  *
  * @author
- * @date 2019/4/5 14:49
- * @email 714081644@qq.com
- */
-public class MarriageGoodsFragment extends BaseFragment<FragmentMarriageGoodsBinding, BaseViewModel> {
 
-    public static MarriageGoodsFragment newInstance() {
-        return new MarriageGoodsFragment();
+ */
+public class FindingFragment extends BaseFragment<FragmentFindHomeBinding, BaseViewModel> {
+
+    public static FindingFragment newInstance() {
+        return new FindingFragment();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_marriage_goods;
+        return R.layout.fragment_find_home;
     }
 
     @Override

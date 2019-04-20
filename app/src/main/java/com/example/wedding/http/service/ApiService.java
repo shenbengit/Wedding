@@ -25,8 +25,7 @@ import retrofit2.http.Url;
  * 文件下载
  *
  * @author
- * @date 2018/9/12
- * Email: 714081644@qq.com
+
  */
 public interface ApiService {
 

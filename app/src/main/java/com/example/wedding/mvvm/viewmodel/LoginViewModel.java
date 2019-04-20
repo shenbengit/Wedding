@@ -32,8 +32,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * @author
- * @date 2019/4/6 19:14
- * @email 714081644@qq.com
+
  */
 public class LoginViewModel extends BaseViewModel {
 

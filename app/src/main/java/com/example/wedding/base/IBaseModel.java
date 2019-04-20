@@ -2,8 +2,7 @@ package com.example.wedding.base;
 
 /**
  * @author
- * @date 2018/12/4 15:19
- * @email 714081644@qq.com
+
  */
 public interface IBaseModel {
     /**

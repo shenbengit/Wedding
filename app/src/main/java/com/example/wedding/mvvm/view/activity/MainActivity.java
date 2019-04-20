@@ -10,15 +10,13 @@ import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.constant.Constant;
 import com.example.wedding.databinding.ActivityMainBinding;
-import com.example.wedding.mvvm.view.fragment.BrideSaidFragment;
-import com.example.wedding.mvvm.view.fragment.CollectFragment;
+import com.example.wedding.mvvm.view.fragment.WeddToolsFragment;
 import com.example.wedding.mvvm.view.fragment.HomeFragment;
-import com.example.wedding.mvvm.view.fragment.MarriageGoodsFragment;
+import com.example.wedding.mvvm.view.fragment.FindingFragment;
 import com.example.wedding.mvvm.view.fragment.WeFragment;
 import com.example.wedding.widget.BottomBar;
 import com.example.wedding.widget.BottomBarTab;
 
-import cn.bmob.v3.BmobUser;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
@@ -27,8 +25,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * 主页
  *
  * @author
- * @date 2019/4/2 13:11
- * @email 714081644@qq.com
+
  */
 @Route(path = ARouterPath.MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> {
@@ -89,8 +86,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         ISupportFragment firstFragment = findFragment(HomeFragment.class);
         if (firstFragment == null) {
             mFragments[FIRST] = HomeFragment.newInstance();
-            mFragments[SECOND] = BrideSaidFragment.newInstance();
-            mFragments[THIRD] = MarriageGoodsFragment.newInstance();
+            mFragments[SECOND] = WeddToolsFragment.newInstance();
+            mFragments[THIRD] = FindingFragment.newInstance();
             mFragments[FOURTH] = WeFragment.newInstance();
             loadMultipleRootFragment(R.id.fl_container,
                     FIRST,
@@ -100,8 +97,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
                     mFragments[FOURTH]);
         } else {
             mFragments[FIRST] = firstFragment;
-            mFragments[SECOND] = BrideSaidFragment.newInstance();
-            mFragments[THIRD] = MarriageGoodsFragment.newInstance();
+            mFragments[SECOND] = WeddToolsFragment.newInstance();
+            mFragments[THIRD] = FindingFragment.newInstance();
             mFragments[FOURTH] = WeFragment.newInstance();
         }
     }

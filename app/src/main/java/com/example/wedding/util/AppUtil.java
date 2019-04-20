@@ -5,8 +5,7 @@ import android.util.DisplayMetrics;
 
 /**
  * @author
- * @date 2018/8/1
- * Email: 714081644@qq.com
+
  */
 
 public class AppUtil {

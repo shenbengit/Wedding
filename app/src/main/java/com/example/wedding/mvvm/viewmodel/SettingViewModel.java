@@ -15,8 +15,7 @@ import cn.bmob.v3.BmobUser;
 
 /**
  * @author
- * @date 2019/4/8 22:38
- * @email 714081644@qq.com
+
  */
 public class SettingViewModel extends BaseViewModel {
 

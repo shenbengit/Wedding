@@ -15,8 +15,7 @@ import com.example.wedding.mvvm.viewmodel.AccountSecurityViewModel;
  * 账号安全
  *
  * @author
- * @date 2019/4/17 22:24
- * @email 714081644@qq.com
+
  */
 @Route(path = ARouterPath.ACCOUNT_SECURITY_ACTIVITY)
 public class AccountSecurityActivity extends BaseActivity<ActivityAccountSecurityBinding, AccountSecurityViewModel> {

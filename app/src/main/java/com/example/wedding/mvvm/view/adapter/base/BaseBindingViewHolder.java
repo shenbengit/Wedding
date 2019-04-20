@@ -11,8 +11,7 @@ import com.example.wedding.R;
  * 使用DataBinding
  *
  * @author
- * @date 2018/11/8 13:17
- * @email 714081644@qq.com
+
  */
 public class BaseBindingViewHolder extends BaseViewHolder {
 

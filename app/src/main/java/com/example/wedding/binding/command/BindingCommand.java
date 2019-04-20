@@ -2,8 +2,7 @@ package com.example.wedding.binding.command;
 
 /**
  * @author
- * @date 2018/11/22 9:23
- * @email 714081644@qq.com
+
  */
 public class BindingCommand<T> {
     private BindingAction mAction;

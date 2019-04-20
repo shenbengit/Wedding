@@ -2,8 +2,7 @@ package com.example.wedding.constant;
 
 /**
  * @author
- * @date 2018/9/12
- * Email: 714081644@qq.com
+
  */
 public class ARouterPath {
 

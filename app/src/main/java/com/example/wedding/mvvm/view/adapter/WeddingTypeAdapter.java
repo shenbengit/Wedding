@@ -8,8 +8,7 @@ import com.example.wedding.mvvm.view.bean.HomeWeddingBean;
 
 /**
  * @author
- * @date 2019/4/7 15:17
- * @email 714081644@qq.com
+
  */
 public class WeddingTypeAdapter extends BaseBindingAdapter<HomeWeddingBean, BaseBindingViewHolder> {
 

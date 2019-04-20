@@ -8,8 +8,7 @@ import com.youth.banner.loader.ImageLoader;
 
 /**
  * @author
- * @date 2019/4/6 19:49
- * @email 714081644@qq.com
+
  */
 public class GlideImageLoader extends ImageLoader {
     @Override

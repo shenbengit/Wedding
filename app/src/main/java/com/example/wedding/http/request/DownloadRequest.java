@@ -13,8 +13,7 @@ import okhttp3.ResponseBody;
 
 /**
  * @author
- * @date 2018/9/18
- * Email: 714081644@qq.com
+
  */
 public class DownloadRequest extends BaseRequest<DownloadRequest> {
 

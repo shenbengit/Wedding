@@ -13,8 +13,7 @@ import cn.bmob.v3.BmobUser;
 
 /**
  * @author
- * @date 2019/4/17 22:27
- * @email 714081644@qq.com
+
  */
 public class AccountSecurityViewModel extends BaseViewModel {
 

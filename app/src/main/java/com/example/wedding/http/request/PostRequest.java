@@ -19,8 +19,7 @@ import okhttp3.ResponseBody;
  * 请求体只能为一种类型，不可同时设置多种请求体
  *
  * @author
- * @date 2018/9/18
- * Email: 714081644@qq.com
+
  */
 public class PostRequest extends BaseRequest<PostRequest> {
     public static final MediaType MEDIA_TYPE_PLAIN = MediaType.parse("text/plain;charset=utf-8");

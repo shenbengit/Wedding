@@ -7,8 +7,7 @@ import java.lang.reflect.Type;
 
 /**
  * @author
- * @date 2018/9/17
- * Email: 714081644@qq.com
+
  */
 public abstract class Callback<T> {
     public abstract void onStart();

@@ -4,8 +4,7 @@ import java.util.List;
 
 /**
  * @author
- * @date 2019/4/6 16:34
- * @email 714081644@qq.com
+
  */
 public class HomeInfoBean {
 

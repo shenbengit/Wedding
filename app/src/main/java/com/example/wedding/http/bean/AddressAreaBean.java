@@ -6,8 +6,7 @@ import cn.bmob.v3.BmobObject;
 
 /**
  * @author
- * @date 2019/4/6 18:27
- * @email 714081644@qq.com
+
  */
 public class AddressAreaBean extends BmobObject {
 

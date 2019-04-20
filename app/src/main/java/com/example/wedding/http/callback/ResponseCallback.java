@@ -2,8 +2,7 @@ package com.example.wedding.http.callback;
 
 /**
  * @author
- * @date 2018/9/17
- * Email: 714081644@qq.com
+
  */
 public class ResponseCallback<T> extends Callback<T> {
 

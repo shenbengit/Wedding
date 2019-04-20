@@ -8,8 +8,7 @@ import android.widget.Toast;
  * 封装Toast,避免重复显示
  *
  * @author
- * @date 2018/8/7
- * Email: 714081644@qq.com
+
  */
 
 public class ToastUtil {

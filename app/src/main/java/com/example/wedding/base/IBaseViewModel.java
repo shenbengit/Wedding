@@ -9,8 +9,7 @@ import android.arch.lifecycle.OnLifecycleEvent;
  * Activity、Fragment生命周期会在下面对应的方法进行回调
  *
  * @author
- * @date 2018/11/8 15:27
- * @email 714081644@qq.com
+
  */
 public interface IBaseViewModel extends LifecycleObserver {
 

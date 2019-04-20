@@ -5,8 +5,7 @@ import java.util.Date;
 
 /**
  * @author
- * @date 2019/4/15 22:01
- * @email 714081644@qq.com
+
  */
 public class ToolUtil {
     /**

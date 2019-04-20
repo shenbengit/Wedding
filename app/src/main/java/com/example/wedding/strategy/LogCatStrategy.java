@@ -9,8 +9,7 @@ import com.orhanobut.logger.LogStrategy;
 
 /**
  * @author
- * @date 2018/9/12
- * Email: 714081644@qq.com
+
  */
 public class LogCatStrategy implements LogStrategy {
     private int last;

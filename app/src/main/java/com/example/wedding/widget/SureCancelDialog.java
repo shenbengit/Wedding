@@ -11,8 +11,7 @@ import com.example.wedding.R;
 
 /**
  * @author
- * @date 2019/4/18 21:54
- * @email 714081644@qq.com
+
  */
 public class SureCancelDialog extends Dialog {
     private ImageView mIvLogo;

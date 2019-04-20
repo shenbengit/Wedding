@@ -18,9 +18,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 /**
  * 自己定制SupportActivity，继承自RxAppCompatActivity
  *
- * @author
- * @date 2018/11/8 16:28
- * @email 714081644@qq.com
+
  */
 public abstract class AbstractSupportActivity extends RxAppCompatActivity implements ISupportActivity {
     private final SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);

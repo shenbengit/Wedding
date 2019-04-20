@@ -24,8 +24,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * @author
- * @date 2018/11/22 14:24
- * @email 714081644@qq.com
+
  */
 public class HomeViewModel extends BaseViewModel {
     /**

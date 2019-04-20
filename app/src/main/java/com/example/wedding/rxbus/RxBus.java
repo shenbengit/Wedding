@@ -23,8 +23,7 @@ import io.reactivex.processors.PublishProcessor;
  * 封装RxBus，事件总线
  *
  * @author
- * @date 2018/11/21 16:57
- * @email 714081644@qq.com
+
  */
 public class RxBus {
 

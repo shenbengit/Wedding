@@ -22,8 +22,7 @@ import java.util.List;
  * 首页Fragment
  *
  * @author
- * @date 2019/4/5 14:43
- * @email 714081644@qq.com
+
  */
 public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> {
 

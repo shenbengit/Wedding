@@ -15,8 +15,7 @@ import com.example.wedding.mvvm.viewmodel.NickNameViewModel;
 
 /**
  * @author
- * @date 2019/4/16 22:11
- * @email 714081644@qq.com
+
  */
 @Route(path = ARouterPath.NICK_NAME_ACTIVITY)
 public class NickNameActivity extends BaseActivity<ActivityNickNameBinding, NickNameViewModel> {

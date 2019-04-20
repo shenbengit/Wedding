@@ -21,8 +21,7 @@ import me.yokeyword.fragmentation.Fragmentation;
 
 /**
  * @author
- * @date 2019/4/3 16:56
- * @email 714081644@qq.com
+
  */
 public class App extends MultiDexApplication {
 

@@ -7,8 +7,7 @@ import io.reactivex.disposables.Disposable;
  * Disposable 管理类
  *
  * @author
- * @date 2018/11/23 16:46
- * @email 714081644@qq.com
+
  */
 public class RxSubscriptions {
 

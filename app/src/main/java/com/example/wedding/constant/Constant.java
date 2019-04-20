@@ -6,8 +6,7 @@ import java.io.File;
 
 /**
  * @author
- * @date 2018/9/12
- * Email: 714081644@qq.com
+
  */
 public class Constant {
     public static final String TAG = "Wedding";

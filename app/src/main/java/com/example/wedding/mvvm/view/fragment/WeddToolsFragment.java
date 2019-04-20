@@ -6,24 +6,23 @@ import android.support.annotation.Nullable;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseFragment;
 import com.example.wedding.base.BaseViewModel;
-import com.example.wedding.databinding.FragmentBrideSaidBinding;
+import com.example.wedding.databinding.FragmentToolsWeddBinding;
 
 /**
- * 新娘说Fragment
+ * 发现页Fragment
  *
  * @author
- * @date 2019/4/5 14:46
- * @email 714081644@qq.com
- */
-public class BrideSaidFragment extends BaseFragment<FragmentBrideSaidBinding, BaseViewModel> {
 
-    public static BrideSaidFragment newInstance() {
-        return new BrideSaidFragment();
+ */
+public class WeddToolsFragment extends BaseFragment<FragmentToolsWeddBinding, BaseViewModel> {
+
+    public static WeddToolsFragment newInstance() {
+        return new WeddToolsFragment();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_bride_said;
+        return R.layout.fragment_tools_wedd;
     }
 
     @Override

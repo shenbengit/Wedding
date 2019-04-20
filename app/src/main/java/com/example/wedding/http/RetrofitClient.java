@@ -19,8 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author
- * @date 2018/9/12
- * Email: 714081644@qq.com
+
  */
 public class RetrofitClient {
     private static final String BASE_URL = "https://www.hunliji.com/";

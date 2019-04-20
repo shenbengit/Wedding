@@ -13,8 +13,7 @@ import android.util.DisplayMetrics;
  * android 屏幕分辨率适配工具类，暂时舍弃，在透明化状态栏时会出现问题。
  *
  * @author
- * @date 2018/8/1
- * Email: 714081644@qq.com
+
  */
 
 public class DensityUtil {

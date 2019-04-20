@@ -15,8 +15,7 @@ import com.example.wedding.mvvm.viewmodel.SettingViewModel;
  * 设置页
  *
  * @author
- * @date 2019/4/8 22:35
- * @email 714081644@qq.com
+
  */
 
 @Route(path = ARouterPath.SETTING_ACTIVITY)

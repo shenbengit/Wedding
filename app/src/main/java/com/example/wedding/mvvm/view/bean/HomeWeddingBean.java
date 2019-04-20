@@ -7,8 +7,7 @@ import com.example.wedding.BR;
 
 /**
  * @author
- * @date 2019/4/7 16:09
- * @email 714081644@qq.com
+
  */
 public class HomeWeddingBean extends BaseObservable {
     @Bindable

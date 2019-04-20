@@ -9,8 +9,7 @@ import com.example.wedding.constant.SharedPreferencesKey;
 
 /**
  * @author
- * @date 2018/11/16 16:18
- * @email 714081644@qq.com
+
  */
 public class SharedPreferencesUtil {
 

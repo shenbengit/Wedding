@@ -14,8 +14,7 @@ import io.reactivex.functions.Consumer;
 
 /**
  * @author
- * @date 2019/4/15 22:11
- * @email 714081644@qq.com
+
  */
 public class WeModel extends BaseModel {
 
