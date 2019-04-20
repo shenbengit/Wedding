@@ -13,7 +13,7 @@ import com.example.wedding.base.support.AbstractSupportActivity;
 
 
 /**
- * @author Ben
+ * @author
  * @date 2018/8/1
  * Email: 714081644@qq.com
  */

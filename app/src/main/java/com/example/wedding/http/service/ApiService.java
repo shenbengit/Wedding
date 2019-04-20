@@ -24,7 +24,7 @@ import retrofit2.http.Url;
  * POST
  * 文件下载
  *
- * @author Ben
+ * @author
  * @date 2018/9/12
  * Email: 714081644@qq.com
  */

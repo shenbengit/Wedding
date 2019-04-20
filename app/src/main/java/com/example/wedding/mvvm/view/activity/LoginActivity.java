@@ -21,7 +21,7 @@ import cn.bmob.v3.BmobUser;
 /**
  * 用户登录Activity
  *
- * @author ShenBen
+ * @author
  * @date 2018/11/8 13:19
  * @email 714081644@qq.com
  */

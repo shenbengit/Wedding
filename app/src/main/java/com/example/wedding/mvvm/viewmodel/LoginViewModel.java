@@ -31,7 +31,7 @@ import cn.bmob.v3.listener.UpdateListener;
 import io.reactivex.disposables.Disposable;
 
 /**
- * @author ShenBen
+ * @author
  * @date 2019/4/6 19:14
  * @email 714081644@qq.com
  */

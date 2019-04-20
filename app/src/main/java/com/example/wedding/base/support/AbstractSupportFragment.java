@@ -19,7 +19,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 /**
  * 自己定制SupportFragment，继承自RxFragment
  *
- * @author ShenBen
+ * @author
  * @date 2018/11/8 16:31
  * @email 714081644@qq.com
  */

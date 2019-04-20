@@ -7,7 +7,7 @@ import com.example.wedding.mvvm.view.adapter.base.BaseBindingViewHolder;
 import com.example.wedding.mvvm.view.bean.HomeWeddingBean;
 
 /**
- * @author ShenBen
+ * @author
  * @date 2019/4/7 15:17
  * @email 714081644@qq.com
  */

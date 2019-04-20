@@ -15,7 +15,7 @@ import okhttp3.ResponseBody;
 /**
  * Get请求
  *
- * @author Ben
+ * @author
  * @date 2018/9/17
  * Email: 714081644@qq.com
  */

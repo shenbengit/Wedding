@@ -15,7 +15,7 @@ import java.util.List;
  * 封装RecyclerView.Adapter基类的Adapter
  * 使用DataBinding
  *
- * @author ShenBen
+ * @author
  * @date 2018/11/8 13:19
  * @email 714081644@qq.com
  */

@@ -1,7 +1,7 @@
 package com.example.wedding.http.callback;
 
 /**
- * @author Ben
+ * @author
  * @date 2018/9/17
  * Email: 714081644@qq.com
  */

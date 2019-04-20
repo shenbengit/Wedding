@@ -14,7 +14,7 @@ import com.example.wedding.widget.SureCancelDialog;
 import cn.bmob.v3.BmobUser;
 
 /**
- * @author ShenBen
+ * @author
  * @date 2019/4/8 22:38
  * @email 714081644@qq.com
  */

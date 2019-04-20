@@ -18,7 +18,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * @author Ben
+ * @author
  * @date 2018/9/12
  * Email: 714081644@qq.com
  */

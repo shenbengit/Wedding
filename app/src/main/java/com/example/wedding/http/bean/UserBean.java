@@ -6,7 +6,7 @@ import cn.bmob.v3.datatype.BmobFile;
 /**
  * Bmob云 扩展用户表
  *
- * @author ShenBen
+ * @author
  * @date 2019/4/7 9:55
  * @email 714081644@qq.com
  */

@@ -12,7 +12,7 @@ import io.reactivex.disposables.Disposable;
 import okhttp3.ResponseBody;
 
 /**
- * @author Ben
+ * @author
  * @date 2018/9/18
  * Email: 714081644@qq.com
  */

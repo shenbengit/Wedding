@@ -20,7 +20,7 @@ import cn.bmob.v3.BmobConfig;
 import me.yokeyword.fragmentation.Fragmentation;
 
 /**
- * @author ShenBen
+ * @author
  * @date 2019/4/3 16:56
  * @email 714081644@qq.com
  */

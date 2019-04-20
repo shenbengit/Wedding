@@ -15,7 +15,7 @@ import cn.bmob.v3.BmobUser;
 import io.reactivex.functions.Action;
 
 /**
- * @author ShenBen
+ * @author
  * @date 2019/4/16 22:33
  * @email 714081644@qq.com
  */

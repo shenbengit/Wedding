@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
 /**
  * body请求的基类
  *
- * @author Ben
+ * @author
  * @date 2018/9/17
  * Email: 714081644@qq.com
  */

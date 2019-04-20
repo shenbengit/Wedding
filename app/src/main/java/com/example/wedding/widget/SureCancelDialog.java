@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.wedding.R;
 
 /**
- * @author ShenBen
+ * @author
  * @date 2019/4/18 21:54
  * @email 714081644@qq.com
  */

@@ -8,7 +8,7 @@ import android.util.Log;
 import com.orhanobut.logger.LogStrategy;
 
 /**
- * @author Ben
+ * @author
  * @date 2018/9/12
  * Email: 714081644@qq.com
  */

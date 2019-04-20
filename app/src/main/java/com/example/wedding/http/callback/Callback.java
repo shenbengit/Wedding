@@ -6,7 +6,7 @@ import com.example.wedding.util.RxUtil;
 import java.lang.reflect.Type;
 
 /**
- * @author Ben
+ * @author
  * @date 2018/9/17
  * Email: 714081644@qq.com
  */

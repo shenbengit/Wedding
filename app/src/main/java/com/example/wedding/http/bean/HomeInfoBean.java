@@ -3,7 +3,7 @@ package com.example.wedding.http.bean;
 import java.util.List;
 
 /**
- * @author ShenBen
+ * @author
  * @date 2019/4/6 16:34
  * @email 714081644@qq.com
  */

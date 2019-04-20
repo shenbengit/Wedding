@@ -14,7 +14,7 @@ import com.example.wedding.databinding.ActivityNickNameBinding;
 import com.example.wedding.mvvm.viewmodel.NickNameViewModel;
 
 /**
- * @author ShenBen
+ * @author
  * @date 2019/4/16 22:11
  * @email 714081644@qq.com
  */

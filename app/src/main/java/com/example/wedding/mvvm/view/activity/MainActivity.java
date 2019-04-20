@@ -26,7 +26,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 /**
  * 主页
  *
- * @author ShenBen
+ * @author
  * @date 2019/4/2 13:11
  * @email 714081644@qq.com
  */
@@ -63,9 +63,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
             }
         }
         mBinding.bottomBar.addItem(new BottomBarTab(this, R.drawable.ic_tab_home, "主页"))
-                .addItem(new BottomBarTab(this, R.drawable.ic_tab_social, "新娘说"))
-                .addItem(new BottomBarTab(this, R.drawable.ic_tab_shop, "婚品"))
-                .addItem(new BottomBarTab(this, R.drawable.ic_tab_collect, "收藏"))
+                .addItem(new BottomBarTab(this, R.drawable.ic_tab_social, "婚备工具"))
+                .addItem(new BottomBarTab(this, R.drawable.ic_tab_shop, "发现"))
                 .addItem(new BottomBarTab(this, R.drawable.ic_tab_we, "我们"));
         mBinding.bottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
             @Override
@@ -92,21 +91,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
             mFragments[FIRST] = HomeFragment.newInstance();
             mFragments[SECOND] = BrideSaidFragment.newInstance();
             mFragments[THIRD] = MarriageGoodsFragment.newInstance();
-            mFragments[FOURTH] = CollectFragment.newInstance();
-            mFragments[FIFTH] = WeFragment.newInstance();
+            mFragments[FOURTH] = WeFragment.newInstance();
             loadMultipleRootFragment(R.id.fl_container,
                     FIRST,
                     mFragments[FIRST],
                     mFragments[SECOND],
                     mFragments[THIRD],
-                    mFragments[FOURTH],
-                    mFragments[FIFTH]);
+                    mFragments[FOURTH]);
         } else {
             mFragments[FIRST] = firstFragment;
             mFragments[SECOND] = BrideSaidFragment.newInstance();
             mFragments[THIRD] = MarriageGoodsFragment.newInstance();
-            mFragments[FOURTH] = CollectFragment.newInstance();
-            mFragments[FIFTH] = WeFragment.newInstance();
+            mFragments[FOURTH] = WeFragment.newInstance();
         }
     }
 

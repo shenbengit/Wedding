@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 封装DataBinding适配器
  *
- * @author ShenBen
+ * @author
  * @date 2018/11/22 9:16
  * @email 714081644@qq.com
  */

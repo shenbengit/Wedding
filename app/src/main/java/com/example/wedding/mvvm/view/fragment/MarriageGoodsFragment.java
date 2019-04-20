@@ -11,7 +11,7 @@ import com.example.wedding.databinding.FragmentMarriageGoodsBinding;
 /**
  * 婚品Fragment
  *
- * @author ShenBen
+ * @author
  * @date 2019/4/5 14:49
  * @email 714081644@qq.com
  */

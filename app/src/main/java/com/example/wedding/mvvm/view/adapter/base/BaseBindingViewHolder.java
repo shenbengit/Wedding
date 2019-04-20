@@ -10,7 +10,7 @@ import com.example.wedding.R;
  * 封装RecyclerView.ViewHolder基类ViewHolder
  * 使用DataBinding
  *
- * @author ShenBen
+ * @author
  * @date 2018/11/8 13:17
  * @email 714081644@qq.com
  */

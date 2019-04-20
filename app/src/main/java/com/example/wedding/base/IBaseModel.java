@@ -1,7 +1,7 @@
 package com.example.wedding.base;
 
 /**
- * @author ShenBen
+ * @author
  * @date 2018/12/4 15:19
  * @email 714081644@qq.com
  */

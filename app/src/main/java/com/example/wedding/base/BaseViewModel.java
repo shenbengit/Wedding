@@ -10,7 +10,7 @@ import android.support.annotation.NonNull;
 import com.trello.rxlifecycle2.LifecycleProvider;
 
 /**
- * @author ShenBen
+ * @author
  * @date 2018/11/8 15:26
  * @email 714081644@qq.com
  */
