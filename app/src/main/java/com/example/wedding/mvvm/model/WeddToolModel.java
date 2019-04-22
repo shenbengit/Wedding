@@ -127,6 +127,9 @@ public class WeddToolModel extends BaseModel {
         if (mInsertPositionDisposable != null) {
             mInsertPositionDisposable.dispose();
         }
+        if (mSearchPositionDisposable!=null){
+            mSearchPositionDisposable.dispose();
+        }
     }
 
     /**
@@ -158,7 +161,6 @@ public class WeddToolModel extends BaseModel {
                 }
             }
         });
-
 
     }
 }

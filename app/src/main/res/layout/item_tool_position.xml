@@ -11,7 +11,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/dp_200"
         android:padding="@dimen/dp_16">
 
         <TextView
@@ -22,11 +22,56 @@
             android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-            app:layout_constraintStart_toEndOf="@id/wedd_office"
-            app:layout_constraintLeft_toRightOf="@id/wedd_office"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@{weddPosition.weddName}"
+            app:layout_constraintStart_toEndOf="@id/wedd_office"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/wedd_position"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="地址"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wedd_office" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:hint="地址"
+            android:text="@{weddPosition.position}"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toEndOf="@id/wedd_office"
+            app:layout_constraintTop_toBottomOf="@id/wedd_office" />
+
+        <TextView
+            android:id="@+id/wedd_time"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="工作时间"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wedd_position" />
+
+        <TextView
+            android:lines="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:hint="时间"
+            android:text="@{}"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toEndOf="@id/wedd_office"
+            app:layout_constraintTop_toBottomOf="@id/wedd_position" />
+
+
 
     </android.support.constraint.ConstraintLayout>
 </layout>

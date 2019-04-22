@@ -6,9 +6,11 @@ import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
+import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.mvvm.model.WeddToolModel;
 import com.example.wedding.mvvm.view.adapter.WeddingToolAdapter;
 import com.example.wedding.util.LogUtil;
@@ -37,8 +39,10 @@ public class ToolsViewModel extends BaseViewModel<WeddToolModel> {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 LogUtil.d(position + "点击了");
-                if (position == 1) {
-                    mutableLiveData.postValue("1");
+                if (position == 2) {
+                    ARouter.getInstance()
+                            .build(ARouterPath.WEDD_POSITION_ACTIVITY)
+                            .navigation();
                 }
             }
         });

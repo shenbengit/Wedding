@@ -39,4 +39,8 @@ public class ARouterPath {
      * 真实姓名页
      */
     public static final String REAL_NAME_ACTIVITY = BASE_ACTIVITY_PATH + "RealNameActivity";
+    /**
+     * 登记所查询页
+     */
+    public static final String WEDD_POSITION_ACTIVITY = BASE_ACTIVITY_PATH + "WeddPositionActivity";
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.example.wedding.R;
@@ -20,7 +21,6 @@ import java.util.List;
  * 发现页Fragment
  *
  * @author
-
  */
 public class WeddToolsFragment extends BaseFragment<FragmentToolsWeddBinding, ToolsViewModel> {
 
@@ -62,18 +62,7 @@ public class WeddToolsFragment extends BaseFragment<FragmentToolsWeddBinding, To
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-        mViewModel.getBaseLiveData().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
 
-            }
-        });
-        mViewModel.mutableLiveData.observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-
-            }
-        });
         //备婚工具假数据
         HomeWeddingBean toolBean;
         toolBean = new HomeWeddingBean();
