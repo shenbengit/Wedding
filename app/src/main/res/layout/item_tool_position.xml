@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="weddPosition"
+            type="com.example.wedding.mvvm.view.bean.WeddPositionBen" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dp_16">
+
+        <TextView
+            android:id="@+id/wedd_office"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_20"
+            android:text="婚姻登记机关"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            app:layout_constraintStart_toEndOf="@id/wedd_office"
+            app:layout_constraintLeft_toRightOf="@id/wedd_office"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

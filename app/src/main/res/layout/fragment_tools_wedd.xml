@@ -4,6 +4,13 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.wedding.mvvm.viewmodel.ToolsViewModel" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -19,7 +26,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:overScrollMode="never"
-                android:scrollbars="none"></android.support.v7.widget.RecyclerView>
+                android:scrollbars="none">
+
+            </android.support.v7.widget.RecyclerView>
+
         </android.support.v4.widget.NestedScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fbtn_insert"
+            onClickCommand="@{viewModel.insertDataCommand}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:src="@drawable/icon_commit"
+            android:visibility="@{viewModel.isVisible.get()? view.VISIBLE : view.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </android.support.constraint.ConstraintLayout>
 </layout>
