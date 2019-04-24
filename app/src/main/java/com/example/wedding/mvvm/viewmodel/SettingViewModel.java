@@ -5,6 +5,7 @@ import android.app.Application;
 import android.support.annotation.NonNull;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.wedding.base.BaseModel;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.ARouterPath;
@@ -15,7 +16,7 @@ import cn.bmob.v3.BmobUser;
 /**
  * @author
  */
-public class SettingViewModel extends BaseViewModel {
+public class SettingViewModel extends BaseViewModel<BaseModel> {
     /**
      * 账号安全安全点击
      */
@@ -36,7 +37,7 @@ public class SettingViewModel extends BaseViewModel {
     private SureCancelDialog mDialog;
 
     public SettingViewModel(@NonNull Application application) {
-        super(application);
+        super(application, new BaseModel());
         accountCommand = new BindingCommand(() -> ARouter.getInstance()
                 .build(ARouterPath.ACCOUNT_SECURITY_ACTIVITY)
                 .navigation());

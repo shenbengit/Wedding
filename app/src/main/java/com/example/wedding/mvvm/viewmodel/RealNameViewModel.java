@@ -5,6 +5,7 @@ import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.example.wedding.base.BaseModel;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.http.bean.UserBean;
@@ -17,7 +18,7 @@ import cn.bmob.v3.listener.UpdateListener;
 import io.reactivex.disposables.Disposable;
 
 
-public class RealNameViewModel extends BaseViewModel {
+public class RealNameViewModel extends BaseViewModel<BaseModel> {
 
     private UserBean mCurrentUser;
     public ObservableField<String> realNameString;
@@ -26,7 +27,7 @@ public class RealNameViewModel extends BaseViewModel {
 
 
     public RealNameViewModel(@NonNull Application application) {
-        super(application);
+        super(application, new BaseModel());
         realNameString = new ObservableField<>();
         sureCommand = new BindingCommand(this::commitRealName);
     }

@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.example.wedding.R;
+import com.example.wedding.base.BaseModel;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.Constant;
@@ -32,9 +33,8 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * @author
-
  */
-public class LoginViewModel extends BaseViewModel {
+public class LoginViewModel extends BaseViewModel<BaseModel> {
 
     private Application mContext;
     /**
@@ -88,7 +88,7 @@ public class LoginViewModel extends BaseViewModel {
     private Disposable mUserUpdateDisposable;
 
     public LoginViewModel(@NonNull Application application) {
-        super(application);
+        super(application, new BaseModel());
         mContext = application;
         images = new MutableLiveData<>();
         sendCodeIcoVisible = new MutableLiveData<>();

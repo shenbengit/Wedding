@@ -10,7 +10,6 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.wedding.base.BaseViewModel;
-import com.example.wedding.binding.command.BindingAction;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.constant.Constant;

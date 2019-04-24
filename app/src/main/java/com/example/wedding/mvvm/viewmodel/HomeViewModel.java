@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.example.wedding.base.BaseModel;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.constant.SharedPreferencesKey;
@@ -28,7 +29,7 @@ import io.reactivex.disposables.Disposable;
  * @author
 
  */
-public class HomeViewModel extends BaseViewModel {
+public class HomeViewModel extends BaseViewModel<BaseModel> {
     /**
      * 定位位置
      */
@@ -48,7 +49,7 @@ public class HomeViewModel extends BaseViewModel {
 //    public WeddingTypeAdapter mWeddingToolAdapter;
 
     public HomeViewModel(@NonNull Application application) {
-        super(application);
+        super(application,new BaseModel());
         initCommand();
     }
 

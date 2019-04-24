@@ -21,29 +21,23 @@ public class ToolsViewModel extends BaseViewModel<WeddToolModel> {
     public BindingCommand insertDataCommand;
 
     public MutableLiveData<String> mutableLiveData;
-    private Application mContext;
     public ObservableField<Boolean> isVisible;
 
 
     public ToolsViewModel(@NonNull Application application) {
         super(application, new WeddToolModel());
-        mContext = application;
         mutableLiveData = new MutableLiveData<>();
         initCommand();
     }
 
     private void initCommand() {
         mWeddingToolAdapter = new WeddingToolAdapter();
-
-        mWeddingToolAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                LogUtil.d(position + "点击了");
-                if (position == 2) {
-                    ARouter.getInstance()
-                            .build(ARouterPath.WEDD_POSITION_ACTIVITY)
-                            .navigation();
-                }
+        mWeddingToolAdapter.setOnItemClickListener((adapter, view, position) -> {
+            LogUtil.d(position + "点击了");
+            if (position == 2) {
+                ARouter.getInstance()
+                        .build(ARouterPath.WEDD_POSITION_ACTIVITY)
+                        .navigation();
             }
         });
 

@@ -6,12 +6,12 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.trello.rxlifecycle2.LifecycleProvider;
 
 /**
  * @author
-
  */
 public class BaseViewModel<M extends BaseModel> extends AndroidViewModel implements IBaseViewModel {
 
@@ -26,7 +26,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
         this(application, null);
     }
 
-    public BaseViewModel(@NonNull Application application, M model) {
+    public BaseViewModel(@NonNull Application application, @Nullable M model) {
         super(application);
         mModel = model;
         mBaseLiveData = new MutableLiveData<>();

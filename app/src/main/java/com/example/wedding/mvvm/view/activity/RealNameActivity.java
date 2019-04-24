@@ -1,6 +1,5 @@
 package com.example.wedding.mvvm.view.activity;
 
-import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
@@ -44,7 +43,7 @@ public class RealNameActivity extends BaseActivity<ActivityRealNameBinding, Real
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-        mViewModel.getBaseLiveData().observe(this, (Observer<String>) s -> {
+        mViewModel.getBaseLiveData().observe(this, s -> {
             if (!TextUtils.isEmpty(s)) {
                 Intent intent = new Intent();
                 intent.putExtra(AccountSecurityViewModel.REAL_NAME, s);

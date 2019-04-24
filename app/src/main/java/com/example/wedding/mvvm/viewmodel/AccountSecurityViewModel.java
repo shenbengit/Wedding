@@ -7,6 +7,7 @@ import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.example.wedding.base.BaseModel;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.http.bean.UserBean;
@@ -16,7 +17,7 @@ import cn.bmob.v3.BmobUser;
 /**
  * @author
  */
-public class AccountSecurityViewModel extends BaseViewModel {
+public class AccountSecurityViewModel extends BaseViewModel<BaseModel> {
     public static final int REAL_NAME_TAG = 1001;
     public static final String REAL_NAME = "REAL_NAME";
     public ObservableField<String> realName;
@@ -24,7 +25,7 @@ public class AccountSecurityViewModel extends BaseViewModel {
     public BindingCommand realNameCommand;
 
     public AccountSecurityViewModel(@NonNull Application application) {
-        super(application);
+        super(application, new BaseModel());
         realName = new ObservableField<>();
         phone = new ObservableField<>();
         realNameCommand = new BindingCommand(() -> getBaseLiveData().postValue("RealName"));

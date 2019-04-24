@@ -5,6 +5,7 @@ import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.example.wedding.base.BaseModel;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
 import com.example.wedding.http.bean.FeedbackBean;
@@ -18,13 +19,13 @@ import cn.bmob.v3.listener.SaveListener;
 import io.reactivex.disposables.Disposable;
 
 
-public class FeedbackViewModel extends BaseViewModel {
+public class FeedbackViewModel extends BaseViewModel<BaseModel> {
     public ObservableField<String> feedbackString;
     public BindingCommand submitCommand;
     private Disposable mSubmitDisposable;
 
     public FeedbackViewModel(@NonNull Application application) {
-        super(application);
+        super(application, new BaseModel());
         feedbackString = new ObservableField<>();
 
         submitCommand = new BindingCommand(this::sumbitFeedback);

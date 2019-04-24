@@ -1,6 +1,5 @@
 package com.example.wedding.mvvm.view.activity;
 
-import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
@@ -47,7 +46,7 @@ public class AccountSecurityActivity extends BaseActivity<ActivityAccountSecurit
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-        mViewModel.getBaseLiveData().observe(this, (Observer<String>) s -> {
+        mViewModel.getBaseLiveData().observe(this, s -> {
             if (!TextUtils.isEmpty(s)) {
                 ARouter.getInstance()
                         .build(ARouterPath.REAL_NAME_ACTIVITY)
