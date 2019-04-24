@@ -6,7 +6,7 @@
 
         <variable
             name="weddPosition"
-            type="com.example.wedding.mvvm.view.bean.WeddPositionBen" />
+            type="com.example.wedding.http.bean.WeddingPositionBean" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weddPosition.weddName}"
+            android:text="@{weddPosition.weddingName}"
             app:layout_constraintStart_toEndOf="@id/wedd_office"
             app:layout_constraintTop_toTopOf="parent" />
 

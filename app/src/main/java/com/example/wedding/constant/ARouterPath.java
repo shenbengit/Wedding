@@ -1,5 +1,7 @@
 package com.example.wedding.constant;
 
+import com.example.wedding.mvvm.view.activity.BusinessActivity;
+
 /**
  * @author
  */
@@ -43,4 +45,8 @@ public class ARouterPath {
      * 登记所查询页
      */
     public static final String WEDD_POSITION_ACTIVITY = BASE_ACTIVITY_PATH + "WeddPositionActivity";
+    /**
+     * 商家页
+     */
+    public static final String BUSINESS_ACTIVITY = BASE_ACTIVITY_PATH + "BusinessActivity";
 }

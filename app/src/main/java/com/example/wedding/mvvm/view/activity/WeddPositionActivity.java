@@ -1,9 +1,6 @@
 package com.example.wedding.mvvm.view.activity;
 
-import android.arch.lifecycle.Observer;
-import android.databinding.ViewDataBinding;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 
@@ -13,10 +10,7 @@ import com.example.wedding.R;
 import com.example.wedding.base.BaseActivity;
 import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.databinding.ActivityWeddPositionBinding;
-import com.example.wedding.mvvm.view.bean.WeddPositionBen;
 import com.example.wedding.mvvm.viewmodel.WeddPositionViewModel;
-
-import java.util.List;
 
 @Route(path = ARouterPath.WEDD_POSITION_ACTIVITY)
 public class WeddPositionActivity extends BaseActivity<ActivityWeddPositionBinding, WeddPositionViewModel> {

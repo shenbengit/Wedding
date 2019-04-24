@@ -137,4 +137,5 @@ dependencies {
     implementation rootProject.ext.dependencies["ucrop"]
     implementation rootProject.ext.dependencies["Luban"]
     implementation rootProject.ext.dependencies["Android-PickerView"]
+    implementation rootProject.ext.dependencies["nice-spinner"]
 }

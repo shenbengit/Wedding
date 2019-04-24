@@ -6,7 +6,6 @@ import cn.bmob.v3.BmobObject;
 
 /**
  * @author
-
  */
 public class AddressAreaBean extends BmobObject {
 

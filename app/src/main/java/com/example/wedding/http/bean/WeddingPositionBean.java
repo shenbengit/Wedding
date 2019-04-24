@@ -1,30 +1,29 @@
-package com.example.wedding.mvvm.view.bean;
+package com.example.wedding.http.bean;
 
-import android.databinding.Observable;
 
 import cn.bmob.v3.BmobObject;
 
 /**
- * 婚姻登记处ben
+ * 婚姻登记处bean
  */
-public class WeddPositionBen extends BmobObject{
-    private String weddName; // 登记处全名
-    private String position; //详细地址
-    private String area; //区
-    private String weekStart; //每周工作开始日
-    private String weekStop; //每周工作结束日
-    private Integer amBegin;     //工作日上午开始时间
-    private Integer amStop;     //工作日上午结束时间
-    private Integer pmBegin;    //工作日下午开始时间
-    private Integer pmStop;     //工作日下午结束时间
-    private String telephone; //工作联系电话
-    private Boolean isHoliday;  //登记处是否节假日工作
+public class WeddingPositionBean extends BmobObject{
+    private String weddingName;     // 登记处全名
+    private String position;        //详细地址
+    private String area;            //区
+    private String weekStart;       //每周工作开始日
+    private String weekStop;        //每周工作结束日
+    private Integer amBegin;        //工作日上午开始时间
+    private Integer amStop;         //工作日上午结束时间
+    private Integer pmBegin;        //工作日下午开始时间
+    private Integer pmStop;         //工作日下午结束时间
+    private String telephone;       //工作联系电话
+    private Boolean isHoliday;      //登记处是否节假日工作
 
-    public WeddPositionBen() {
+    public WeddingPositionBean() {
     }
 
-    public WeddPositionBen(String weddName, String position, String area, String weekStart, String weekStop, Integer amBegin, Integer amStop, Integer pmBegin, Integer pmStop, String telephone, Boolean isHoliday) {
-        this.weddName = weddName;
+    public WeddingPositionBean(String weddingName, String position, String area, String weekStart, String weekStop, Integer amBegin, Integer amStop, Integer pmBegin, Integer pmStop, String telephone, Boolean isHoliday) {
+        this.weddingName = weddingName;
         this.position = position;
         this.area = area;
         this.weekStart = weekStart;
@@ -37,12 +36,12 @@ public class WeddPositionBen extends BmobObject{
         this.isHoliday = isHoliday;
     }
 
-    public String getWeddName() {
-        return weddName;
+    public String getWeddingName() {
+        return weddingName;
     }
 
-    public void setWeddName(String weddName) {
-        this.weddName = weddName;
+    public void setWeddingName(String weddingName) {
+        this.weddingName = weddingName;
     }
 
     public String getPosition() {

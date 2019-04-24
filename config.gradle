@@ -22,7 +22,7 @@ ext {
             "permissionsdispatcher"          : "com.github.hotchemi:permissionsdispatcher:3.3.1",
             "permissionsdispatcher-processor": "com.github.hotchemi:permissionsdispatcher-processor:3.3.1",
             //multidex
-            "multidex"                       : "com.android.support:multidex:1.0.1",
+            "multidex"                       : "com.android.support:multidex:1.0.2",
             //logger
             "logger"                         : "com.orhanobut:logger:2.2.0",
             //Glide
@@ -70,6 +70,8 @@ ext {
             //Luban图片压缩
             "Luban"                          : "top.zibin:Luban:1.1.8",
             //Android-PickerView
-            "Android-PickerView"             : "com.contrarywind:Android-PickerView:4.1.7",
+            "Android-PickerView"             : "com.contrarywind:Android-PickerView:4.1.6",
+            //nice-spinner
+            "nice-spinner"                   : "com.github.arcadefire:nice-spinner:1.4",
     ]
 }

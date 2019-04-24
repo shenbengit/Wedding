@@ -4,32 +4,29 @@ import android.app.Application;
 import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.example.wedding.base.BaseModel;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingCommand;
+import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.constant.SharedPreferencesKey;
-import com.example.wedding.http.RetrofitClient;
 import com.example.wedding.http.bean.HomeInfoBean;
+import com.example.wedding.mvvm.model.HomeModel;
 import com.example.wedding.mvvm.view.adapter.WeddingTypeAdapter;
+import com.example.wedding.mvvm.view.bean.HomeWeddingBean;
 import com.example.wedding.util.LogUtil;
-import com.example.wedding.util.RxUtil;
 import com.example.wedding.util.SharedPreferencesUtil;
+import com.example.wedding.util.ToastUtil;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author
-
  */
-public class HomeViewModel extends BaseViewModel<BaseModel> {
+public class HomeViewModel extends BaseViewModel<HomeModel> {
     /**
      * 定位位置
      */
@@ -43,18 +40,21 @@ public class HomeViewModel extends BaseViewModel<BaseModel> {
      */
     public BindingCommand searchCommand;
 
-    public MutableLiveData<HomeInfoBean> firstPageInfo;
+    public MutableLiveData<List<String>> bannerImageList;
 
     public WeddingTypeAdapter mWeddingTypeAdapter;
-//    public WeddingTypeAdapter mWeddingToolAdapter;
+    private List<String> mBannerList;
+    private List<HomeWeddingBean> mWeddingTypeList;
 
     public HomeViewModel(@NonNull Application application) {
-        super(application,new BaseModel());
-        initCommand();
+        super(application, new HomeModel());
+        init();
     }
 
-    private void initCommand() {
-        location = new ObservableField<>("");
+    private void init() {
+        mBannerList = new ArrayList<>();
+        mWeddingTypeList = new ArrayList<>();
+        location = new ObservableField<>();
         locationCommand = new BindingCommand(() -> {
             //
             //
@@ -65,14 +65,19 @@ public class HomeViewModel extends BaseViewModel<BaseModel> {
             //
         });
 
-        firstPageInfo = new MutableLiveData<>();
+        bannerImageList = new MutableLiveData<>();
 
         mWeddingTypeAdapter = new WeddingTypeAdapter();
-//        mWeddingToolAdapter = new WeddingTypeAdapter();
 
-        mWeddingTypeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        mWeddingTypeAdapter.setOnItemClickListener((adapter, view, position) -> {
+            HomeWeddingBean bean = mWeddingTypeList.get(position);
+            switch (bean.getTarget_type()) {
+                case "20"://商家
+                    ARouter.getInstance().build(ARouterPath.BUSINESS_ACTIVITY).navigation();
+                    break;
+                default:
+                    ToastUtil.show(getApplication(), "功能暂未开通");
+                    break;
 
             }
         });
@@ -80,7 +85,12 @@ public class HomeViewModel extends BaseViewModel<BaseModel> {
 
     @Override
     public void onCreate() {
-        getHomeInfo(118.833373, 31.759363, "江苏省", "南京市", "江宁区", 63, 63);
+        mModel.getHomeInfo(118.833373, 31.759363, "江苏省",
+                "南京市", "江宁区", 63, 63, mLifecycleProvider,
+                this::setHomePageInfo, throwable -> {
+                    ToastUtil.show(getApplication(), "获取主页数据失败，message：" + throwable.getMessage());
+                    LogUtil.e("获取主页数据失败，message：" + throwable.getMessage());
+                });
     }
 
     @Override
@@ -89,54 +99,40 @@ public class HomeViewModel extends BaseViewModel<BaseModel> {
     }
 
     /**
-     * 获取主页信息
+     * 设置主页信息
      *
-     * @param longitude     经度
-     * @param latitude      纬度
-     * @param province      省份
-     * @param city          城市
-     * @param district      区
-     * @param expo_cid      id
-     * @param community_cid id
+     * @param homeInfoBean
      */
-    private void getHomeInfo(double longitude, double latitude, String province, String city, String district, int expo_cid, int community_cid) {
-        try {
-            String header = SharedPreferencesUtil.getInstance().getString(SharedPreferencesKey.CITY_HEADER);
-            if (TextUtils.isEmpty(header)) {
-                header = "{\"gps_longitude\":" + longitude + ",\"gps_latitude\":" + latitude + ",\"gps_province\":\"" + URLEncoder.encode(province, "UTF-8") + "\"," +
-                        "\"gps_city\":\"" + URLEncoder.encode(city, "UTF-8") + "\",\"gps_district\":\"" + URLEncoder.encode(district, "UTF-8") + "\",\"expo_cid\":" + expo_cid + ",\"community_cid\":" + community_cid + "}";
-                SharedPreferencesUtil.getInstance().putString(SharedPreferencesKey.CITY_HEADER, header);
+    private void setHomePageInfo(HomeInfoBean homeInfoBean) {
+        mBannerList.clear();
+        mWeddingTypeList.clear();
+        if (homeInfoBean != null && homeInfoBean.getStatus().getRetCode() == 0) {
+            HomeInfoBean.DataBeanXX.ListBeanXX bannerXX = homeInfoBean.getData().getList().get(0);
+            for (HomeInfoBean.DataBeanXX.ListBeanXX.DataBeanX.ListBeanX beanX : bannerXX.getData().getList()) {
+                mBannerList.add(beanX.getImage_path());
             }
 
-            RetrofitClient.getInstance()
-                    .getApiService()
-                    .getHomePage(header)
-                    .compose(RxUtil.io_main())
-                    .compose(mLifecycleProvider.bindToLifecycle())
-                    .subscribe(new Observer<HomeInfoBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
-
-                        }
-
-                        @Override
-                        public void onNext(HomeInfoBean homeInfoBean) {
-                            firstPageInfo.postValue(homeInfoBean);
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            LogUtil.e("获取主页数据失败，message：" + e.getMessage());
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            HomeInfoBean.DataBeanXX.ListBeanXX typeXX = homeInfoBean.getData().getList().get(1);
+            HomeWeddingBean typeBean;
+            for (HomeInfoBean.DataBeanXX.ListBeanXX.DataBeanX.ListBeanX beanX : typeXX.getData().getList()) {
+                typeBean = new HomeWeddingBean();
+                typeBean.setId(beanX.getId());
+                typeBean.setTarget_type(beanX.getTarget_type());
+                typeBean.setTarget_url(beanX.getTarget_url());
+                typeBean.setTarget_id(beanX.getTarget_id());
+                typeBean.setImage_path(beanX.getImage_path());
+                typeBean.setTitle(beanX.getTitle());
+                typeBean.setWatch_count(beanX.getWatch_count());
+                typeBean.setExtention(beanX.getExtention());
+                typeBean.setSub_title(beanX.getSub_title());
+                typeBean.setIs_highlight(beanX.getIs_highlight());
+                typeBean.setIs_valid(beanX.getIs_valid());
+                typeBean.setRoute(beanX.getRoute());
+                mWeddingTypeList.add(typeBean);
+            }
         }
-
+        bannerImageList.postValue(mBannerList);
+        mWeddingTypeAdapter.setNewData(mWeddingTypeList);
     }
+
 }

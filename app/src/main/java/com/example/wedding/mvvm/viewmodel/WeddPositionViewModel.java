@@ -9,18 +9,17 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.mvvm.model.WeddPositionModel;
 import com.example.wedding.mvvm.view.adapter.WeddPositionAdapter;
-import com.example.wedding.mvvm.view.bean.WeddPositionBen;
+import com.example.wedding.http.bean.WeddingPositionBean;
 import com.example.wedding.util.ToastUtil;
 
 import java.util.List;
 
 import cn.bmob.v3.exception.BmobException;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
 public class WeddPositionViewModel extends BaseViewModel<WeddPositionModel> {
     public WeddPositionAdapter weddLocationAdapter;
-    public MutableLiveData<List<WeddPositionBen>> positionInfo;
+    public MutableLiveData<List<WeddingPositionBean>> positionInfo;
 
     public WeddPositionViewModel(@NonNull Application application) {
         super(application, new WeddPositionModel());
@@ -43,12 +42,8 @@ public class WeddPositionViewModel extends BaseViewModel<WeddPositionModel> {
     @Override
     public void onCreate() {
         super.onCreate();
-        mModel.searchWeddPosition(new Consumer<List<WeddPositionBen>>() {
-            @Override
-            public void accept(List<WeddPositionBen> weddPositionBens) throws Exception {
-                weddLocationAdapter.setNewData(weddPositionBens);
-            }
-        }, new Consumer<BmobException>() {
+        mModel.searchWeddingPosition(weddPositionBens -> weddLocationAdapter.setNewData(weddPositionBens),
+                new Consumer<BmobException>() {
             @Override
             public void accept(BmobException e) throws Exception {
 

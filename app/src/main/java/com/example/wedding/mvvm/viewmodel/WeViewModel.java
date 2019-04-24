@@ -27,7 +27,6 @@ import cn.bmob.v3.BmobUser;
 
 /**
  * @author
-
  */
 public class WeViewModel extends BaseViewModel<WeModel> {
     /**

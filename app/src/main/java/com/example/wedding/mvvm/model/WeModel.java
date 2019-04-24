@@ -39,7 +39,6 @@ public class WeModel extends BaseModel {
                 }
             }
         });
-
     }
 
     @Override
