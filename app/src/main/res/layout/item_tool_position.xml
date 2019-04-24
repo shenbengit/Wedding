@@ -6,10 +6,12 @@
 
         <variable
             name="weddPosition"
-            type="com.example.wedding.http.bean.WeddingPositionBean" />
+            type="com.example.wedding.mvvm.view.bean.PositionCombineBen" />
     </data>
 
     <android.support.constraint.ConstraintLayout
+        android:background="@color/white"
+        android:layout_margin="@dimen/dp_10"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_200"
         android:padding="@dimen/dp_16">
@@ -26,7 +28,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weddPosition.weddingName}"
+            android:text="@{weddPosition.weddName}"
+            android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toEndOf="@id/wedd_office"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,17 +64,54 @@
             app:layout_constraintTop_toBottomOf="@id/wedd_position" />
 
         <TextView
-            android:lines="2"
+            android:id="@+id/text_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:hint="时间"
-            android:text="@{}"
+            android:lines="2"
+            android:text="@{weddPosition.workTime}"
             android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toEndOf="@id/wedd_office"
             app:layout_constraintTop_toBottomOf="@id/wedd_position" />
 
+        <TextView
+            android:id="@+id/wedd_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="电话"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_time" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:hint="电话"
+            android:text="@{weddPosition.telephone}"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toEndOf="@id/wedd_office"
+            app:layout_constraintTop_toBottomOf="@id/text_time" />
+        <TextView
+            android:id="@+id/wedd_holi"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="节假日工作"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wedd_tel" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:hint="休息"
+            android:text="@{weddPosition.holiday}"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toEndOf="@id/wedd_office"
+            app:layout_constraintTop_toBottomOf="@id/wedd_tel" />
     </android.support.constraint.ConstraintLayout>
 </layout>

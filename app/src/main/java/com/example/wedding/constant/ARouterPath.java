@@ -44,9 +44,13 @@ public class ARouterPath {
     /**
      * 登记所查询页
      */
-    public static final String WEDD_POSITION_ACTIVITY = BASE_ACTIVITY_PATH + "WeddPositionActivity";
+    public static final String WEDD_POSITION_ACTIVITY = BASE_ACTIVITY_PATH + "WeddingPositionActivity";
     /**
      * 商家页
      */
     public static final String BUSINESS_ACTIVITY = BASE_ACTIVITY_PATH + "BusinessActivity";
+    /**
+     * 万年历查询页
+     */
+    public static final String CALENDAR_ACTIVITY = BASE_ACTIVITY_PATH + "CalendarActivity";
 }

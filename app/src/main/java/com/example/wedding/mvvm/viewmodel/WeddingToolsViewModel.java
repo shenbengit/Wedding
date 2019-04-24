@@ -19,7 +19,7 @@ import com.example.wedding.util.LogUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ToolsViewModel extends BaseViewModel<WeddToolModel> {
+public class WeddingToolsViewModel extends BaseViewModel<WeddToolModel> {
 
     public WeddingToolAdapter mWeddingToolAdapter;
     public BindingCommand insertDataCommand;
@@ -28,7 +28,7 @@ public class ToolsViewModel extends BaseViewModel<WeddToolModel> {
     private List<HomeWeddingBean> mWeddingToolList;
 
 
-    public ToolsViewModel(@NonNull Application application) {
+    public WeddingToolsViewModel(@NonNull Application application) {
         super(application, new WeddToolModel());
         initCommand();
     }
@@ -36,12 +36,26 @@ public class ToolsViewModel extends BaseViewModel<WeddToolModel> {
     private void initCommand() {
         mWeddingToolList = new ArrayList<>();
         mWeddingToolAdapter = new WeddingToolAdapter();
-        mWeddingToolAdapter.setOnItemClickListener((adapter, view, position) -> {
-            LogUtil.d(position + "点击了");
-            if (position == 2) {
-                ARouter.getInstance()
-                        .build(ARouterPath.WEDD_POSITION_ACTIVITY)
-                        .navigation();
+
+        mWeddingToolAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                LogUtil.d(position + "点击了");
+                switch (position){
+                    case 0:
+                        ARouter.getInstance()
+                                .build(ARouterPath.CALENDAR_ACTIVITY)
+                                .navigation();
+                        break;
+                    case 1:
+
+                        break;
+                    case 2:
+                        ARouter.getInstance()
+                                .build(ARouterPath.WEDD_POSITION_ACTIVITY)
+                                .navigation();
+                        break;
+                }
             }
         });
 

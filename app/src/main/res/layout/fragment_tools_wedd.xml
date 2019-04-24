@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.wedding.mvvm.viewmodel.ToolsViewModel" />
+            type="com.example.wedding.mvvm.viewmodel.WeddingToolsViewModel" />
 
         <variable
             name="view"
@@ -14,6 +14,7 @@
     </data>
 
     <android.support.constraint.ConstraintLayout
+        android:background="@color/back_hui"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -10,7 +10,7 @@ import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.constant.ARouterPath;
 import com.example.wedding.constant.Constant;
 import com.example.wedding.databinding.ActivityMainBinding;
-import com.example.wedding.mvvm.view.fragment.WeddToolsFragment;
+import com.example.wedding.mvvm.view.fragment.WeddingToolsFragment;
 import com.example.wedding.mvvm.view.fragment.HomeFragment;
 import com.example.wedding.mvvm.view.fragment.FindingFragment;
 import com.example.wedding.mvvm.view.fragment.WeFragment;
@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         ISupportFragment firstFragment = findFragment(HomeFragment.class);
         if (firstFragment == null) {
             mFragments[FIRST] = HomeFragment.newInstance();
-            mFragments[SECOND] = WeddToolsFragment.newInstance();
+            mFragments[SECOND] = WeddingToolsFragment.newInstance();
             mFragments[THIRD] = FindingFragment.newInstance();
             mFragments[FOURTH] = WeFragment.newInstance();
             loadMultipleRootFragment(R.id.fl_container,
@@ -97,7 +97,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
                     mFragments[FOURTH]);
         } else {
             mFragments[FIRST] = firstFragment;
-            mFragments[SECOND] = WeddToolsFragment.newInstance();
+            mFragments[SECOND] = WeddingToolsFragment.newInstance();
             mFragments[THIRD] = FindingFragment.newInstance();
             mFragments[FOURTH] = WeFragment.newInstance();
         }

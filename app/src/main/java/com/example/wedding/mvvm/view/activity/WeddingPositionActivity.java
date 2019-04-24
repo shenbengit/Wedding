@@ -13,7 +13,7 @@ import com.example.wedding.databinding.ActivityWeddPositionBinding;
 import com.example.wedding.mvvm.viewmodel.WeddPositionViewModel;
 
 @Route(path = ARouterPath.WEDD_POSITION_ACTIVITY)
-public class WeddPositionActivity extends BaseActivity<ActivityWeddPositionBinding, WeddPositionViewModel> {
+public class WeddingPositionActivity extends BaseActivity<ActivityWeddPositionBinding, WeddPositionViewModel> {
 
     @Override
     protected int getLayoutId() {
@@ -41,6 +41,9 @@ public class WeddPositionActivity extends BaseActivity<ActivityWeddPositionBindi
             }
         });
         mBinding.rvWeddPosi.setAdapter(mViewModel.weddLocationAdapter);
+
+        mBinding.toolbar.setTitle("婚姻登记处");
+        initToolbarNav(mBinding.toolbar);
     }
 
     @Override

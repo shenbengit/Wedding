@@ -1,5 +1,6 @@
 package com.example.wedding.http.service;
 
+import com.example.wedding.http.bean.CaldendarBen;
 import com.example.wedding.http.bean.HomeInfoBean;
 
 import java.util.Map;
@@ -14,6 +15,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
@@ -25,7 +27,6 @@ import retrofit2.http.Url;
  * 文件下载
  *
  * @author
-
  */
 public interface ApiService {
 
@@ -53,4 +54,6 @@ public interface ApiService {
     @GET("p/wedding/index.php/home/APIFallGroundV2/firstpage")
     Observable<HomeInfoBean> getHomePage(@Header("city") String city);
 
+    @GET
+    Observable<CaldendarBen> getCaldendar(@Url String url, @Query("key") String key, @Query("date") String date);
 }

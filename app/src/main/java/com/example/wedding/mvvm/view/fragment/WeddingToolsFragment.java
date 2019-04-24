@@ -8,18 +8,18 @@ import com.android.databinding.library.baseAdapters.BR;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseFragment;
 import com.example.wedding.databinding.FragmentToolsWeddBinding;
-import com.example.wedding.mvvm.viewmodel.ToolsViewModel;
+import com.example.wedding.mvvm.viewmodel.WeddingToolsViewModel;
 
 /**
  * 发现页Fragment
  *
  * @author
  */
-public class WeddToolsFragment extends BaseFragment<FragmentToolsWeddBinding, ToolsViewModel> {
+public class WeddingToolsFragment extends BaseFragment<FragmentToolsWeddBinding, WeddingToolsViewModel> {
 
 
-    public static WeddToolsFragment newInstance() {
-        return new WeddToolsFragment();
+    public static WeddingToolsFragment newInstance() {
+        return new WeddingToolsFragment();
     }
 
     @Override
@@ -28,8 +28,8 @@ public class WeddToolsFragment extends BaseFragment<FragmentToolsWeddBinding, To
     }
 
     @Override
-    protected Class<ToolsViewModel> getModelClass() {
-        return ToolsViewModel.class;
+    protected Class<WeddingToolsViewModel> getModelClass() {
+        return WeddingToolsViewModel.class;
     }
 
     @Override
