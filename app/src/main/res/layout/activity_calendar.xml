@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="calendarViewModel"
+            name="viewModel"
             type="com.example.wedding.mvvm.viewmodel.CalendarViewModel" />
     </data>
 
@@ -43,13 +43,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingStart="@dimen/dp_16"
-            android:text="@{calendarViewModel.lunar.get()}"
+            android:text="@{viewModel.lunar.get()}"
             android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/calendar_goodDay" />
 
         <ImageView
-            onClickCommand="@{calendarViewModel.suitCommand}"
+            onClickCommand="@{viewModel.suitCommand}"
             android:id="@+id/img_yi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             android:layout_marginStart="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:gravity="center"
-            android:text="@{calendarViewModel.suit.get()}"
+            android:text="@{viewModel.suit.get()}"
             android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toEndOf="@id/img_yi"
             app:layout_constraintTop_toBottomOf="@id/text_lunar" />
@@ -90,7 +90,7 @@
             android:layout_marginStart="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:gravity="center"
-            android:text="@{calendarViewModel.avoid.get()}"
+            android:text="@{viewModel.avoid.get()}"
             android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toEndOf="@id/img_yi"
             app:layout_constraintTop_toBottomOf="@id/img_yi" />
