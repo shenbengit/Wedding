@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mvvm.view.activity.CalendarActivity"></activity>
+        <activity android:name=".mvvm.view.activity.WeddingBudgetActivity"></activity>
+        <activity android:name=".mvvm.view.activity.CalendarActivity" />
         <activity android:name=".mvvm.view.activity.WeddingPositionActivity" />
         <activity android:name=".mvvm.view.activity.LoginActivity">
             <intent-filter>
@@ -57,7 +58,7 @@
         <activity android:name=".mvvm.view.activity.AccountSecurityActivity" />
         <activity android:name=".mvvm.view.activity.FeedbackActivity" />
         <activity android:name=".mvvm.view.activity.RealNameActivity" />
-        <activity android:name=".mvvm.view.activity.BusinessActivity"></activity>
+        <activity android:name=".mvvm.view.activity.BusinessActivity" />
     </application>
 
 </manifest>

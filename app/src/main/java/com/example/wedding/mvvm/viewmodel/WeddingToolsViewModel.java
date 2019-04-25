@@ -48,7 +48,9 @@ public class WeddingToolsViewModel extends BaseViewModel<WeddToolModel> {
                                 .navigation();
                         break;
                     case 1:
-
+                        ARouter.getInstance()
+                                .build(ARouterPath.BUGDET_ACTIVITY)
+                                .navigation();
                         break;
                     case 2:
                         ARouter.getInstance()

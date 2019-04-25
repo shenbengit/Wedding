@@ -138,4 +138,6 @@ dependencies {
     implementation rootProject.ext.dependencies["Luban"]
     implementation rootProject.ext.dependencies["Android-PickerView"]
     implementation rootProject.ext.dependencies["BasePopup"]
+    implementation rootProject.ext.dependencies["nice-spinner"]
+    implementation rootProject.ext.dependencies["MPAndroidChart"]
 }

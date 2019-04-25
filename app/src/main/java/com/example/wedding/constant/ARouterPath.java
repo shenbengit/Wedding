@@ -53,4 +53,8 @@ public class ARouterPath {
      * 万年历查询页
      */
     public static final String CALENDAR_ACTIVITY = BASE_ACTIVITY_PATH + "CalendarActivity";
+    /**
+     * 预算分析页
+     */
+    public static final String BUGDET_ACTIVITY = BASE_ACTIVITY_PATH + "WeddingBudgetActivity";
 }
