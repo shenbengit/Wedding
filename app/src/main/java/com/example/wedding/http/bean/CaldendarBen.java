@@ -2,7 +2,9 @@ package com.example.wedding.http.bean;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CaldendarBen {
+import java.util.Observable;
+
+public class CaldendarBen{
 
     /**
      * reason : Success
@@ -39,6 +41,13 @@ public class CaldendarBen {
     }
 
     public static class ResultBean {
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                    "data=" + data +
+                    '}';
+        }
+
         /**
          * data : {"avoid":"掘井.动土.破土.安葬.开光.","animalsYear":"猪","weekday":"星期四","suit":"祭祀.进人口.嫁娶.安床.解除.冠笄.出行.裁衣.扫舍.","lunarYear":"己亥年","lunar":"三月廿一","year-month":"2019-4","date":"2019-4-25"}
          */
@@ -64,7 +73,6 @@ public class CaldendarBen {
              * year-month : 2019-4
              * date : 2019-4-25
              */
-
             private String avoid;
             private String animalsYear;
             private String weekday;
