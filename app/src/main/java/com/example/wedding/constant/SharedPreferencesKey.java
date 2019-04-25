@@ -2,7 +2,6 @@ package com.example.wedding.constant;
 
 /**
  * @author
-
  */
 public class SharedPreferencesKey {
     /**
@@ -18,6 +17,10 @@ public class SharedPreferencesKey {
      * 网络请求city header
      */
     public static final String CITY_HEADER = "cityHeader";
+    /**
+     * 城市ID
+     */
+    public static final String CITY_ID = "cityId";
     /**
      * 用户登录手机号
      */

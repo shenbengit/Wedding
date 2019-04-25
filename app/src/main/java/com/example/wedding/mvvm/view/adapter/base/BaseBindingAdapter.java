@@ -2,6 +2,7 @@ package com.example.wedding.mvvm.view.adapter.base;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,6 @@ import java.util.List;
 /**
  * 封装RecyclerView.Adapter基类的Adapter
  * 使用DataBinding
- *
- * @author
-
  */
 public abstract class BaseBindingAdapter<T, K extends BaseBindingViewHolder> extends BaseQuickAdapter<T, K> {
 
@@ -24,11 +22,11 @@ public abstract class BaseBindingAdapter<T, K extends BaseBindingViewHolder> ext
         this(0, data);
     }
 
-    public BaseBindingAdapter(int layoutResId) {
+    public BaseBindingAdapter(@LayoutRes int layoutResId) {
         this(layoutResId, null);
     }
 
-    public BaseBindingAdapter(int layoutResId, @Nullable List<T> data) {
+    public BaseBindingAdapter(@LayoutRes int layoutResId, @Nullable List<T> data) {
         super(layoutResId, data);
     }
 

@@ -32,7 +32,7 @@ public class HomeModel extends BaseModel {
      * @param district          区
      * @param expo_cid          id
      * @param community_cid     id
-     * @param lifecycleProvider
+     * @param lifecycleProvider 避免内存泄漏，对应界面销毁时自动取消订阅
      * @param onNext            成功回调
      * @param onError           失败回调
      */

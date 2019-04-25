@@ -85,9 +85,11 @@ public class HomeViewModel extends BaseViewModel<HomeModel> {
 
     @Override
     public void onCreate() {
+        SharedPreferencesUtil.getInstance().putInt(SharedPreferencesKey.CITY_ID, 63);
         mModel.getHomeInfo(118.833373, 31.759363, "江苏省",
                 "南京市", "江宁区", 63, 63, mLifecycleProvider,
-                this::setHomePageInfo, throwable -> {
+                this::setHomePageInfo,
+                throwable -> {
                     ToastUtil.show(getApplication(), "获取主页数据失败，message：" + throwable.getMessage());
                     LogUtil.e("获取主页数据失败，message：" + throwable.getMessage());
                 });

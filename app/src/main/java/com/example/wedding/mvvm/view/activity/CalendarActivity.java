@@ -2,9 +2,6 @@ package com.example.wedding.mvvm.view.activity;
 
 import android.support.annotation.Nullable;
 import android.os.Bundle;
-import android.widget.CalendarView;
-
-import androidx.annotation.NonNull;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.wedding.BR;
@@ -38,12 +35,7 @@ public class CalendarActivity extends BaseActivity<ActivityCalendarBinding, Cale
         mBinding.toolbar.setTitle("结婚吉日");
         initToolbarNav(mBinding.toolbar);
 
-        mBinding.calendarGoodDay.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                mViewModel.getCalendar(year + "-" + (month + 1) + "-" + dayOfMonth);
-            }
-        });
+        mBinding.calendarGoodDay.setOnDateChangeListener((view, year, month, dayOfMonth) -> mViewModel.getCalendar(year + "-" + (month + 1) + "-" + dayOfMonth));
     }
 
     @Override

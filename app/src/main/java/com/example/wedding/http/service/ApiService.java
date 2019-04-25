@@ -1,5 +1,7 @@
 package com.example.wedding.http.service;
 
+import com.example.wedding.http.bean.BusinessListBean;
+import com.example.wedding.http.bean.BusinessOverviewBean;
 import com.example.wedding.http.bean.CaldendarBen;
 import com.example.wedding.http.bean.HomeInfoBean;
 
@@ -25,8 +27,6 @@ import retrofit2.http.Url;
  * GET
  * POST
  * 文件下载
- *
- * @author
  */
 public interface ApiService {
 
@@ -51,8 +51,49 @@ public interface ApiService {
     @GET
     Observable<ResponseBody> downloadFile(@Header("Range") String start, @Url String url);
 
+    /**
+     * https://www.hunliji.com/p/wedding/index.php/home/APIFallGroundV2/firstpage
+     * <p>
+     * 主页信息接口
+     *
+     * @param locationHeader 请求头
+     * @return
+     */
     @GET("p/wedding/index.php/home/APIFallGroundV2/firstpage")
-    Observable<HomeInfoBean> getHomePage(@Header("city") String city);
+    Observable<HomeInfoBean> getHomePage(@Header("city") String locationHeader);
+
+    /**
+     * https://www.hunliji.com/p/wedding/index.php/home/APITour/merchant_filter?city=63
+     * <p>
+     * 获取商家概况信息
+     *
+     * @param locationHeader 请求头
+     * @param cityId         城市id号
+     * @return
+     */
+    @GET("p/wedding/index.php/home/APITour/merchant_filter")
+    Observable<BusinessOverviewBean> getBusinessOverview(@Header("city") String locationHeader, @Query("city") int cityId);
+
+    /**
+     * https://www.hunliji.com/p/wedding/index.php/home/APIMerchant/merchantV3?per_page=20&page=1&property=13&category_id=0&area_id=0&sort=default&city=63
+     * <p>
+     * 获取对应商家列表信息
+     *
+     * @param locationHeader
+     * @param page
+     * @param perPage
+     * @param property
+     * @param categoryId
+     * @param areaId
+     * @param sort
+     * @param cityId
+     * @return
+     */
+    @GET("p/wedding/index.php/home/APIMerchant/merchantV3")
+    Observable<BusinessListBean> getBusinessList(@Header("city") String locationHeader, @Query("page") int page,
+                                                 @Query("per_page") int perPage, @Query("property") int property,
+                                                 @Query("category_id") int categoryId, @Query("area_id") int areaId,
+                                                 @Query("sort") String sort, @Query("city") int cityId);
 
     @GET
     Observable<CaldendarBen> getCaldendar(@Url String url, @Query("key") String key, @Query("date") String date);

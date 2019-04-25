@@ -71,7 +71,7 @@ ext {
             "Luban"                          : "top.zibin:Luban:1.1.8",
             //Android-PickerView
             "Android-PickerView"             : "com.contrarywind:Android-PickerView:4.1.6",
-            //nice-spinner
-            "nice-spinner"                   : "com.github.arcadefire:nice-spinner:1.4",
+            //BasePopup
+            "BasePopup"                      : "com.github.razerdp:BasePopup:2.1.9",
     ]
 }
