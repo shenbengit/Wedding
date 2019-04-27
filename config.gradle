@@ -73,5 +73,7 @@ ext {
             "Android-PickerView"             : "com.contrarywind:Android-PickerView:4.1.6",
             //BasePopup
             "BasePopup"                      : "com.github.razerdp:BasePopup:2.1.9",
+            //MPAndroidChart
+            "MPAndroidChart"                 : "com.github.PhilJay:MPAndroidChart:v3.1.0",
     ]
 }

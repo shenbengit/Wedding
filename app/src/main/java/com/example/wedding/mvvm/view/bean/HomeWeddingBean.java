@@ -7,38 +7,26 @@ import com.example.wedding.BR;
 
 /**
  * @author
-
  */
 public class HomeWeddingBean extends BaseObservable {
-    @Bindable
     private String id;
-    @Bindable
     private String target_type;
-    @Bindable
     private String target_url;
-    @Bindable
     private String target_id;
-    @Bindable
     private String image_path;
-    @Bindable
     private String title;
-    @Bindable
     private String watch_count;
-    @Bindable
     private String extention;
-    @Bindable
     private String sub_title;
-    @Bindable
     private String is_highlight;
-    @Bindable
     private int is_valid;
-    @Bindable
     private String route;
 
     public HomeWeddingBean() {
 
     }
 
+    @Bindable
     public String getId() {
         return id;
     }
@@ -48,6 +36,7 @@ public class HomeWeddingBean extends BaseObservable {
         notifyPropertyChanged(BR.id);
     }
 
+    @Bindable
     public String getTarget_type() {
         return target_type;
     }
@@ -57,6 +46,7 @@ public class HomeWeddingBean extends BaseObservable {
         notifyPropertyChanged(BR.target_type);
     }
 
+    @Bindable
     public String getTarget_url() {
         return target_url;
     }
@@ -66,6 +56,7 @@ public class HomeWeddingBean extends BaseObservable {
         notifyPropertyChanged(BR.target_url);
     }
 
+    @Bindable
     public String getTarget_id() {
         return target_id;
     }
@@ -75,6 +66,7 @@ public class HomeWeddingBean extends BaseObservable {
         notifyPropertyChanged(BR.target_id);
     }
 
+    @Bindable
     public String getImage_path() {
         return image_path;
     }
@@ -84,6 +76,7 @@ public class HomeWeddingBean extends BaseObservable {
         notifyPropertyChanged(BR.image_path);
     }
 
+    @Bindable
     public String getTitle() {
         return title;
     }
@@ -93,6 +86,7 @@ public class HomeWeddingBean extends BaseObservable {
         notifyPropertyChanged(BR.title);
     }
 
+    @Bindable
     public String getWatch_count() {
         return watch_count;
     }
@@ -102,6 +96,7 @@ public class HomeWeddingBean extends BaseObservable {
         notifyPropertyChanged(BR.watch_count);
     }
 
+    @Bindable
     public String getExtention() {
         return extention;
     }
@@ -111,6 +106,7 @@ public class HomeWeddingBean extends BaseObservable {
         notifyPropertyChanged(BR.extention);
     }
 
+    @Bindable
     public String getSub_title() {
         return sub_title;
     }
@@ -120,6 +116,7 @@ public class HomeWeddingBean extends BaseObservable {
         notifyPropertyChanged(BR.sub_title);
     }
 
+    @Bindable
     public String getIs_highlight() {
         return is_highlight;
     }
@@ -129,6 +126,7 @@ public class HomeWeddingBean extends BaseObservable {
         notifyPropertyChanged(BR.is_highlight);
     }
 
+    @Bindable
     public int getIs_valid() {
         return is_valid;
     }
@@ -138,6 +136,7 @@ public class HomeWeddingBean extends BaseObservable {
         notifyPropertyChanged(BR.is_valid);
     }
 
+    @Bindable
     public String getRoute() {
         return route;
     }

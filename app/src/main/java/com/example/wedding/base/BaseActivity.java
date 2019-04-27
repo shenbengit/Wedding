@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
@@ -14,7 +15,6 @@ import com.example.wedding.base.support.AbstractSupportActivity;
 
 /**
  * @author
-
  */
 
 public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends BaseViewModel> extends AbstractSupportActivity {
@@ -100,8 +100,9 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends BaseV
      *
      * @param toolbar 传入子类中的ToolBar
      */
-    protected void initToolbarNav(Toolbar toolbar) {
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+    protected void initToolbarNav(@NonNull Toolbar toolbar) {
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
     }
 

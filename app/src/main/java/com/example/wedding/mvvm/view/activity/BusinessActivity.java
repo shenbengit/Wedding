@@ -2,6 +2,8 @@ package com.example.wedding.mvvm.view.activity;
 
 import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.wedding.BR;
@@ -36,10 +38,17 @@ public class BusinessActivity extends BaseActivity<ActivityBusinessBinding, Busi
     protected void initView() {
         mBinding.toolbar.setTitle("全部商家");
         initToolbarNav(mBinding.toolbar);
+        mViewModel.mAdapter.bindToRecyclerView(mBinding.rvBusiness);
+        mBinding.rvBusiness.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-
+        mViewModel.initPopup(this);
+        mViewModel.getBaseLiveData().observe(this, s -> {
+            if (TextUtils.equals(s, BusinessViewModel.SHOW_RECYCLER_POPUP)) {
+                mViewModel.mPopup.showPopupWindow(mBinding.ivTypeBg);
+            }
+        });
     }
 }

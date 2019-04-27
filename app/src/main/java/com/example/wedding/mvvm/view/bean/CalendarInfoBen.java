@@ -16,21 +16,13 @@ public class CalendarInfoBen extends BaseObservable {
      * year-month : 2019-4
      * date : 2019-4-25
      */
-    @Bindable
     private String avoid;
-    @Bindable
     private String animalsYear;
-    @Bindable
     private String weekday;
-    @Bindable
     private String suit;
-    @Bindable
     private String lunarYear;
-    @Bindable
     private String lunar;
-    @Bindable
     private String yearmonth;
-    @Bindable
     private String date;
 
     public CalendarInfoBen() {
@@ -54,6 +46,7 @@ public class CalendarInfoBen extends BaseObservable {
         this.lunar = lunar;
     }
 
+    @Bindable
     public String getAvoid() {
         return avoid;
     }
@@ -63,6 +56,7 @@ public class CalendarInfoBen extends BaseObservable {
         notifyPropertyChanged(BR.avoid);
     }
 
+    @Bindable
     public String getAnimalsYear() {
         return animalsYear;
     }
@@ -72,6 +66,7 @@ public class CalendarInfoBen extends BaseObservable {
         notifyPropertyChanged(BR.animalsYear);
     }
 
+    @Bindable
     public String getWeekday() {
         return weekday;
     }
@@ -81,6 +76,7 @@ public class CalendarInfoBen extends BaseObservable {
         notifyPropertyChanged(BR.weekday);
     }
 
+    @Bindable
     public String getSuit() {
         return suit;
     }
@@ -90,6 +86,7 @@ public class CalendarInfoBen extends BaseObservable {
         notifyPropertyChanged(BR.suit);
     }
 
+    @Bindable
     public String getLunarYear() {
         return lunarYear;
     }
@@ -99,6 +96,7 @@ public class CalendarInfoBen extends BaseObservable {
         notifyPropertyChanged(BR.lunarYear);
     }
 
+    @Bindable
     public String getLunar() {
         return lunar;
     }
@@ -108,6 +106,7 @@ public class CalendarInfoBen extends BaseObservable {
         notifyPropertyChanged(BR.lunar);
     }
 
+    @Bindable
     public String getYearmonth() {
         return yearmonth;
     }
@@ -117,6 +116,7 @@ public class CalendarInfoBen extends BaseObservable {
         notifyPropertyChanged(BR.yearmonth);
     }
 
+    @Bindable
     public String getDate() {
         return date;
     }

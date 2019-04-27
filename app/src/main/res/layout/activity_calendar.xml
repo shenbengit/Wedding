@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingStart="@dimen/dp_16"
-            android:text="@{viewModel.lunar.get()}"
+            android:text="@{viewModel.lunar}"
             android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/calendar_goodDay" />
@@ -67,7 +67,7 @@
             android:layout_marginStart="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:gravity="center"
-            android:text="@{viewModel.suit.get()}"
+            android:text="@{viewModel.suit}"
             android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toEndOf="@id/img_yi"
             app:layout_constraintTop_toBottomOf="@id/text_lunar" />
@@ -90,7 +90,7 @@
             android:layout_marginStart="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:gravity="center"
-            android:text="@{viewModel.avoid.get()}"
+            android:text="@{viewModel.avoid}"
             android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toEndOf="@id/img_yi"
             app:layout_constraintTop_toBottomOf="@id/img_yi" />

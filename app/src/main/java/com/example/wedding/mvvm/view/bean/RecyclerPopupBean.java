@@ -2,38 +2,42 @@ package com.example.wedding.mvvm.view.bean;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.support.annotation.NonNull;
 
 import com.example.wedding.BR;
 
 /**
- *
+ * 下拉列表popup实体bean
  */
-public class RecyclerPopupBean extends BaseObservable {
+public class RecyclerPopupBean extends BaseObservable implements Comparable<RecyclerPopupBean> {
     /**
      * 选项
      */
-    @Bindable
     private String option;
     /**
      * 是否以选中
      */
-    @Bindable
     private boolean isChecked;
     /**
      * 对应标识
      */
-    @Bindable
     private int index;
+    /**
+     * 排序
+     */
+    private int sort;
 
     public RecyclerPopupBean() {
     }
 
-    public RecyclerPopupBean(String option, boolean isChecked, int index) {
+    public RecyclerPopupBean(String option, boolean isChecked, int index, int sort) {
         this.option = option;
         this.isChecked = isChecked;
         this.index = index;
+        this.sort = sort;
     }
 
+    @Bindable
     public String getOption() {
         return option;
     }
@@ -43,15 +47,17 @@ public class RecyclerPopupBean extends BaseObservable {
         notifyPropertyChanged(BR.option);
     }
 
+    @Bindable
     public boolean isChecked() {
         return isChecked;
     }
 
     public void setChecked(boolean checked) {
         isChecked = checked;
-        notifyPropertyChanged(BR.isChecked);
+        notifyPropertyChanged(BR.checked);
     }
 
+    @Bindable
     public int getIndex() {
         return index;
     }
@@ -59,5 +65,18 @@ public class RecyclerPopupBean extends BaseObservable {
     public void setIndex(int index) {
         this.index = index;
         notifyPropertyChanged(BR.index);
+    }
+
+    public int getSort() {
+        return sort;
+    }
+
+    public void setSort(int sort) {
+        this.sort = sort;
+    }
+
+    @Override
+    public int compareTo(@NonNull RecyclerPopupBean o) {
+        return getSort() - o.getSort();
     }
 }

@@ -17,7 +17,6 @@ import com.example.wedding.base.support.AbstractSupportFragment;
 
 /**
  * @author
-
  */
 
 public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends BaseViewModel> extends AbstractSupportFragment {
@@ -111,7 +110,7 @@ public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends BaseV
      *
      * @param toolbar 传入子类中的ToolBar
      */
-    protected void initToolbarNav(Toolbar toolbar) {
+    protected void initToolbarNav(@NonNull Toolbar toolbar) {
         toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setNavigationOnClickListener(v -> _mActivity.onBackPressed());
     }
