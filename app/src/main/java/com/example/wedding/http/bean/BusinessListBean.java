@@ -753,6 +753,7 @@ public class BusinessListBean {
                  * marks : null
                  * coupon : null
                  * merchant_comment : {"score":"5.0"}
+                 * hotel_order_view_count : 339
                  */
 
                 private String id;
@@ -763,7 +764,7 @@ public class BusinessListBean {
                 private String is_pro;
                 private String active_works_pcount;
                 private String grade;
-                private int comments_count;
+                private String comments_count;
                 private String latitude;
                 private String longitude;
                 private MerchantAchievementBeanX merchant_achievement;
@@ -785,6 +786,7 @@ public class BusinessListBean {
                 private Object coupon;
                 private MerchantCommentBeanX merchant_comment;
                 private List<MerchantTagsBeanX> merchant_tags;
+                private String hotel_order_view_count;
 
                 public String getId() {
                     return id;
@@ -850,11 +852,11 @@ public class BusinessListBean {
                     this.grade = grade;
                 }
 
-                public int getComments_count() {
+                public String getComments_count() {
                     return comments_count;
                 }
 
-                public void setComments_count(int comments_count) {
+                public void setComments_count(String comments_count) {
                     this.comments_count = comments_count;
                 }
 
@@ -1024,6 +1026,14 @@ public class BusinessListBean {
 
                 public void setMerchant_tags(List<MerchantTagsBeanX> merchant_tags) {
                     this.merchant_tags = merchant_tags;
+                }
+
+                public String getHotel_order_view_count() {
+                    return hotel_order_view_count;
+                }
+
+                public void setHotel_order_view_count(String hotel_order_view_count) {
+                    this.hotel_order_view_count = hotel_order_view_count;
                 }
 
                 public static class MerchantAchievementBeanX {

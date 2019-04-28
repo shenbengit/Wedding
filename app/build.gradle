@@ -139,4 +139,5 @@ dependencies {
     implementation rootProject.ext.dependencies["Android-PickerView"]
     implementation rootProject.ext.dependencies["BasePopup"]
     implementation rootProject.ext.dependencies["MPAndroidChart"]
+    implementation rootProject.ext.dependencies["RoundedImageView"]
 }

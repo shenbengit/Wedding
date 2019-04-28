@@ -23,7 +23,7 @@ public class BusinessHotelBean implements MultiItemEntity, Observable {
     /**
      * 商家等级
      */
-    private int grade;
+    private String grade;
     /**
      * 商家评分
      */
@@ -59,9 +59,9 @@ public class BusinessHotelBean implements MultiItemEntity, Observable {
     /**
      * 已下订单数量
      */
-    private int orderCount;
-    private transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
+    private String orderCount;
 
+    private transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
 
     @Bindable
     @Override
@@ -95,11 +95,11 @@ public class BusinessHotelBean implements MultiItemEntity, Observable {
     }
 
     @Bindable
-    public int getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
         notifyChange(BR.grade);
     }
@@ -185,11 +185,11 @@ public class BusinessHotelBean implements MultiItemEntity, Observable {
     }
 
     @Bindable
-    public int getOrderCount() {
+    public String getOrderCount() {
         return orderCount;
     }
 
-    public void setOrderCount(int orderCount) {
+    public void setOrderCount(String orderCount) {
         this.orderCount = orderCount;
         notifyChange(BR.orderCount);
     }

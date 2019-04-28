@@ -3,9 +3,11 @@ package com.example.wedding.mvvm.view.bean;
 import android.databinding.Bindable;
 import android.databinding.Observable;
 import android.databinding.PropertyChangeRegistry;
+import android.text.TextUtils;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.wedding.BR;
+import com.example.wedding.R;
 
 /**
  * 婚纱摄影
@@ -23,7 +25,7 @@ public class BusinessPhotographyBean implements MultiItemEntity, Observable {
     /**
      * 商家等级
      */
-    private int grade;
+    private String grade;
     /**
      * 商家评分
      */
@@ -68,6 +70,7 @@ public class BusinessPhotographyBean implements MultiItemEntity, Observable {
      * 到店礼图标
      */
     private int shopGiftImage;
+
     private transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
 
     @Bindable
@@ -103,10 +106,22 @@ public class BusinessPhotographyBean implements MultiItemEntity, Observable {
 
     @Bindable
     public int getGrade() {
-        return grade;
+        if (TextUtils.isEmpty(grade)) {
+            return R.drawable.ic_merchant_level2;
+        }
+        switch (grade) {
+            case "2":
+                return R.drawable.ic_merchant_level2;
+            case "3":
+                return R.drawable.ic_merchant_level3;
+            case "4":
+                return R.drawable.ic_merchant_level4;
+            default:
+                return R.drawable.ic_merchant_level3;
+        }
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
         notifyChange(BR.grade);
     }

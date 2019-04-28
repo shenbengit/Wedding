@@ -75,5 +75,7 @@ ext {
             "BasePopup"                      : "com.github.razerdp:BasePopup:2.1.9",
             //MPAndroidChart
             "MPAndroidChart"                 : "com.github.PhilJay:MPAndroidChart:v3.1.0",
+            //RoundedImageView
+            "RoundedImageView"               : "com.makeramen:roundedimageview:2.3.0",
     ]
 }

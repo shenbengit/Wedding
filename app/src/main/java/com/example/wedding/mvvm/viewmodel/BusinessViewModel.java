@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.example.wedding.R;
 import com.example.wedding.base.BaseViewModel;
 import com.example.wedding.binding.command.BindingAction;
 import com.example.wedding.binding.command.BindingCommand;
@@ -17,6 +19,9 @@ import com.example.wedding.http.bean.BusinessListBean;
 import com.example.wedding.http.bean.BusinessOverviewBean;
 import com.example.wedding.mvvm.model.BusinessModel;
 import com.example.wedding.mvvm.view.adapter.BusinessAdapter;
+import com.example.wedding.mvvm.view.bean.BusinessEmceeBean;
+import com.example.wedding.mvvm.view.bean.BusinessHotelBean;
+import com.example.wedding.mvvm.view.bean.BusinessPhotographyBean;
 import com.example.wedding.mvvm.view.bean.RecyclerPopupBean;
 import com.example.wedding.util.LogUtil;
 import com.example.wedding.util.ToastUtil;
@@ -81,10 +86,15 @@ public class BusinessViewModel extends BaseViewModel<BusinessModel> {
      */
     private int mBusinessType;
     public BusinessAdapter mAdapter;
+    /**
+     * 商家列表信息数据
+     */
+    private List<MultiItemEntity> mBusinessInfoList;
 
     public BusinessViewModel(@NonNull Application application) {
         super(application, new BusinessModel());
         mAdapter = new BusinessAdapter();
+        mBusinessInfoList = new ArrayList<>();
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -131,7 +141,7 @@ public class BusinessViewModel extends BaseViewModel<BusinessModel> {
                 },
                 this::parseBusinessOverviewData,
                 throwable -> {
-                    ToastUtil.show(getApplication(), "出错啦！请稍后重试。ErrorMessage: " + throwable.getMessage());
+                    ToastUtil.show(getApplication(), "获取商家概览出错啦！请稍后重试。ErrorMessage: " + throwable.getMessage());
                     LogUtil.e("商家概览: onError: " + throwable.getMessage());
                 });
     }
@@ -158,7 +168,8 @@ public class BusinessViewModel extends BaseViewModel<BusinessModel> {
                     businessString.set(bean.getOption());
                     int index = bean.getIndex();
                     if (mBusinessType != index) {
-                        getBusinessList(1, 20, index);
+                        mBusinessType = index;
+                        getBusinessList(1, 30);
                     }
                     break;
                 case POPUP_TYPE_AREA:
@@ -219,33 +230,174 @@ public class BusinessViewModel extends BaseViewModel<BusinessModel> {
         Collections.sort(mAreaList);
         areaString.set(mAreaList.get(0).getOption());
 
-        getBusinessList(1, 20, mBusinessType);
+        getBusinessList(1, 30);
     }
 
     /**
      * 获取商家列表信息
      *
-     * @param page     查询页
-     * @param perPage  每页数量
-     * @param property 商家类型
+     * @param page    查询页
+     * @param perPage 每页数量
      */
-    private void getBusinessList(int page, int perPage, int property) {
-        mModel.getBusinessList(mLifecycleProvider, page, perPage, property, 0, 0, "default",
+    private synchronized void getBusinessList(int page, int perPage) {
+        mModel.getBusinessList(mLifecycleProvider, page, perPage, mBusinessType, 0, 0, "default",
                 new Action() {
                     @Override
                     public void run() throws Exception {
 
                     }
-                }, new Consumer<BusinessListBean>() {
-                    @Override
-                    public void accept(BusinessListBean businessListBean) throws Exception {
-                        LogUtil.i("商家列表信息： " + businessListBean.getStatus().getRetCode());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-
-                    }
+                }, this::parseBusinessListData,
+                throwable -> {
+                    ToastUtil.show(getApplication(), "获取商家列表出错啦！请稍后重试。ErrorMessage: " + throwable.getMessage());
+                    LogUtil.e("商家列表: onError: " + throwable.getMessage());
                 });
+    }
+
+    /**
+     * 解析商家列表数据
+     *
+     * @param bean 数据
+     */
+    private void parseBusinessListData(BusinessListBean bean) {
+        if (bean == null || bean.getStatus() == null) {
+            LogUtil.e("商家列表: parseBusinessListData: 数据出错");
+            return;
+        }
+        if (bean.getStatus().getRetCode() != 0 || bean.getData() == null) {
+            LogUtil.e("商家列表: parseBusinessListData: Message: " + bean.getStatus().getMsg());
+            return;
+        }
+        mBusinessInfoList.clear();
+        switch (mBusinessType) {
+            case BUSINESS_PHOTOGRAPHY://婚纱摄影
+                parseBusinessPhotographyData(bean.getData());
+                break;
+            case BUSINESS_EMCEE://婚礼司仪
+                parseBusinessEmceeData(bean.getData());
+                break;
+            case BUSINESS_HOTEL://婚宴酒店
+                parseBusinessHotelData(bean.getData());
+                break;
+        }
+        mAdapter.setNewData(mBusinessInfoList);
+    }
+
+    /**
+     * 解析婚纱摄影数据
+     *
+     * @param data
+     */
+    private void parseBusinessPhotographyData(BusinessListBean.DataBean data) {
+        BusinessPhotographyBean bean;
+        if (data.getPopular_merchant() != null && data.getPopular_merchant().getList() != null) {
+            for (BusinessListBean.DataBean.PopularMerchantBean.ListBean listBean : data.getPopular_merchant().getList()) {
+                bean = new BusinessPhotographyBean();
+                bean.setItemType(BUSINESS_PHOTOGRAPHY);
+                bean.setImagePath(listBean.getLogo_path());
+                bean.setName(listBean.getName());
+                bean.setGrade(listBean.getGrade());
+                bean.setScore(listBean.getMerchant_comment() != null ? listBean.getMerchant_comment().getScore() : null);
+                bean.setCommentCount(listBean.getComments_count());
+                bean.setPriceStart(listBean.getPrice_start());
+                bean.setArea(listBean.getArea());
+                bean.setLatitude(listBean.getLatitude());
+                bean.setLongitude(listBean.getLongitude());
+                if (listBean.getMerchant_tags() != null && !listBean.getMerchant_tags().isEmpty()) {
+                    bean.setMerchantTag(listBean.getMerchant_tags().get(0).getName());
+                }
+                if (listBean.getMerchant_achievement() != null) {
+                    bean.setAchievementTitle(listBean.getMerchant_achievement().getTitle());
+                    bean.setAchievementImage(listBean.getMerchant_achievement().getLabel_img());
+                }
+                if (listBean.getPrivilege() != null) {
+                    bean.setShopGift(listBean.getPrivilege().getShop_gift());
+                }
+                bean.setShopGiftImage(R.drawable.ic_gift);
+                mBusinessInfoList.add(bean);
+            }
+        }
+
+        if (data.getNormal_merchant() != null && data.getNormal_merchant().getList() != null) {
+            for (BusinessListBean.DataBean.NormalMerchantBean.ListBeanX listBeanX : data.getNormal_merchant().getList()) {
+                bean = new BusinessPhotographyBean();
+                bean.setItemType(BUSINESS_PHOTOGRAPHY);
+                bean.setImagePath(listBeanX.getLogo_path());
+                bean.setName(listBeanX.getName());
+                bean.setGrade(listBeanX.getGrade());
+                bean.setScore(listBeanX.getMerchant_comment() != null ? listBeanX.getMerchant_comment().getScore() : null);
+                bean.setCommentCount(listBeanX.getComments_count());
+                bean.setPriceStart(listBeanX.getPrice_start());
+                bean.setArea(listBeanX.getArea());
+                bean.setLatitude(listBeanX.getLatitude());
+                bean.setLongitude(listBeanX.getLongitude());
+                if (listBeanX.getMerchant_tags() != null && !listBeanX.getMerchant_tags().isEmpty()) {
+                    bean.setMerchantTag(listBeanX.getMerchant_tags().get(0).getName());
+                }
+                if (listBeanX.getPrivilege() != null) {
+                    bean.setShopGift(listBeanX.getPrivilege().getShop_gift());
+                }
+                bean.setShopGiftImage(R.drawable.ic_gift);
+                mBusinessInfoList.add(bean);
+            }
+        }
+
+        LogUtil.i("解析婚纱摄影数据: " + mBusinessInfoList.size());
+    }
+
+    /**
+     * 解析婚礼司仪数据
+     *
+     * @param data
+     */
+    private void parseBusinessEmceeData(BusinessListBean.DataBean data) {
+        BusinessEmceeBean bean;
+        if (data.getNormal_merchant() != null && data.getNormal_merchant().getList() != null) {
+            for (BusinessListBean.DataBean.NormalMerchantBean.ListBeanX listBeanX : data.getNormal_merchant().getList()) {
+                bean = new BusinessEmceeBean();
+                bean.setItemType(BUSINESS_EMCEE);
+                bean.setImagePath(listBeanX.getLogo_path());
+                bean.setName(listBeanX.getName());
+                bean.setGrade(listBeanX.getGrade());
+                bean.setScore(listBeanX.getMerchant_comment() != null ? listBeanX.getMerchant_comment().getScore() : null);
+                bean.setCommentCount(listBeanX.getComments_count());
+                bean.setPriceStart(listBeanX.getPrice_start());
+                bean.setArea(listBeanX.getArea());
+                bean.setLatitude(listBeanX.getLatitude());
+                bean.setLongitude(listBeanX.getLongitude());
+                mBusinessInfoList.add(bean);
+            }
+        }
+        LogUtil.i("解析婚礼司仪数据: " + mBusinessInfoList.size());
+    }
+
+    /**
+     * 解析婚宴酒店数据
+     *
+     * @param data
+     */
+    private void parseBusinessHotelData(BusinessListBean.DataBean data) {
+        BusinessHotelBean bean;
+        if (data.getNormal_merchant() != null && data.getNormal_merchant().getList() != null) {
+            for (BusinessListBean.DataBean.NormalMerchantBean.ListBeanX listBeanX : data.getNormal_merchant().getList()) {
+                bean = new BusinessHotelBean();
+                bean.setItemType(BUSINESS_HOTEL);
+                bean.setImagePath(listBeanX.getLogo_path());
+                bean.setName(listBeanX.getName());
+                bean.setGrade(listBeanX.getGrade());
+                bean.setScore(listBeanX.getMerchant_comment() != null ? listBeanX.getMerchant_comment().getScore() : null);
+                bean.setArea(listBeanX.getArea());
+                bean.setLatitude(listBeanX.getLatitude());
+                bean.setLongitude(listBeanX.getLongitude());
+                if (listBeanX.getHotel() != null) {
+                    bean.setKind(listBeanX.getHotel().getKind());
+                    bean.setTableMin(listBeanX.getHotel().getTable_min());
+                    bean.setTableMax(listBeanX.getHotel().getTable_max());
+                    bean.setTablePriceStart(listBeanX.getHotel().getPrice_start());
+                }
+                bean.setOrderCount(listBeanX.getHotel_order_view_count());
+                mBusinessInfoList.add(bean);
+            }
+        }
+        LogUtil.i("解析婚宴酒店数据: " + mBusinessInfoList.size());
     }
 }

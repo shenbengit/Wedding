@@ -23,7 +23,7 @@ public class BusinessEmceeBean implements MultiItemEntity, Observable {
     /**
      * 商家等级
      */
-    private int grade;
+    private String grade;
     /**
      * 商家评分
      */
@@ -48,8 +48,8 @@ public class BusinessEmceeBean implements MultiItemEntity, Observable {
      * 纬度
      */
     private String longitude;
-    private transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
 
+    private transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
 
     @Bindable
     @Override
@@ -83,11 +83,11 @@ public class BusinessEmceeBean implements MultiItemEntity, Observable {
     }
 
     @Bindable
-    public int getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
         notifyChange(BR.grade);
     }
