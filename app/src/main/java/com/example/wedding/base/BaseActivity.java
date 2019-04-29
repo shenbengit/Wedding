@@ -105,5 +105,14 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends BaseV
         toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
     }
-
+    /**
+     * 设置ToolBar
+     *
+     * @param toolbar 传入子类中的ToolBar
+     */
+    protected void initToolbarWhite(@NonNull Toolbar toolbar) {
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
+    }
 }
