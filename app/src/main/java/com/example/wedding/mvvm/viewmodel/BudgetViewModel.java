@@ -3,13 +3,7 @@ package com.example.wedding.mvvm.viewmodel;
 import android.app.Application;
 import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableField;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
 import com.example.wedding.R;
 import com.example.wedding.base.BaseViewModel;
@@ -58,11 +52,9 @@ public class BudgetViewModel extends BaseViewModel<BudgetModel> {
     public BudgetStyleAdapter atAdapter;
     public BudgetStyleAdapter afterAdapter;
 
-    private Application application;
 
     public BudgetViewModel(@NonNull Application application) {
         super(application, new BudgetModel());
-        this.application = application;
         initCommand();
     }
 
@@ -99,7 +91,7 @@ public class BudgetViewModel extends BaseViewModel<BudgetModel> {
 
         });
         rechangeBudget = new BindingCommand(() -> {
-                isVisible.set(true);
+            isVisible.set(true);
         });
 
     }

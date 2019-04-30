@@ -142,7 +142,6 @@ public class WeddToolModel extends BaseModel {
                         }
                         if (success != null) {
                             success.run();
-                            LogUtil.d("成功返回");
                         }
                     } else {
                         if (error != null) {
