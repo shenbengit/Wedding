@@ -3,6 +3,7 @@ package com.example.wedding.mvvm.view.bean;
 import android.databinding.Bindable;
 import android.databinding.Observable;
 import android.databinding.PropertyChangeRegistry;
+import android.text.TextUtils;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.wedding.BR;
@@ -94,7 +95,10 @@ public class BusinessEmceeBean implements MultiItemEntity, Observable {
 
     @Bindable
     public String getScore() {
-        return score;
+        if (TextUtils.isEmpty(score)) {
+            return "0分";
+        }
+        return score + "分";
     }
 
     public void setScore(String score) {
@@ -104,7 +108,10 @@ public class BusinessEmceeBean implements MultiItemEntity, Observable {
 
     @Bindable
     public String getCommentCount() {
-        return commentCount;
+        if (TextUtils.isEmpty(commentCount)) {
+            return "0条";
+        }
+        return commentCount + "条";
     }
 
     public void setCommentCount(String commentCount) {
@@ -114,7 +121,10 @@ public class BusinessEmceeBean implements MultiItemEntity, Observable {
 
     @Bindable
     public String getPriceStart() {
-        return priceStart;
+        if (TextUtils.isEmpty(priceStart)) {
+            return "￥0起";
+        }
+        return "￥" + priceStart + "起";
     }
 
     public void setPriceStart(String priceStart) {

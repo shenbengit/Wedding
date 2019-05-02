@@ -6,6 +6,7 @@ import android.app.Application;
 import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -87,18 +88,39 @@ public class BusinessViewModel extends BaseViewModel<BusinessModel> {
     private int mBusinessType;
     public BusinessAdapter mAdapter;
     /**
-     * 商家列表信息数据
+     * 当前商家列表信息所有数据
      */
     private List<MultiItemEntity> mBusinessInfoList;
+    /**
+     * 当前商家列表信息符合地区选择的所有数据
+     */
+    private List<MultiItemEntity> mBusinessInfoAreaList;
 
     public BusinessViewModel(@NonNull Application application) {
         super(application, new BusinessModel());
         mAdapter = new BusinessAdapter();
         mBusinessInfoList = new ArrayList<>();
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        mBusinessInfoAreaList = new ArrayList<>();
 
+        //商家列表点击事件
+        mAdapter.setOnItemClickListener((adapter, view, position) -> {
+            MultiItemEntity entity = mBusinessInfoAreaList.get(position);
+            BusinessPhotographyBean photographyBean;
+            BusinessEmceeBean emceeBean;
+            BusinessHotelBean hotelBean;
+            switch (mBusinessType) {
+                case BUSINESS_PHOTOGRAPHY:
+                    photographyBean = (BusinessPhotographyBean) entity;
+
+                    break;
+                case BUSINESS_EMCEE:
+                    emceeBean = (BusinessEmceeBean) entity;
+
+                    break;
+                case BUSINESS_HOTEL:
+                    hotelBean = (BusinessHotelBean) entity;
+
+                    break;
             }
         });
         mBusinessList = new ArrayList<>();
@@ -174,7 +196,7 @@ public class BusinessViewModel extends BaseViewModel<BusinessModel> {
                     break;
                 case POPUP_TYPE_AREA:
                     areaString.set(mAreaList.get(position).getOption());
-                    LogUtil.i("Popup列表：" + mAreaList.get(position).getOption());
+                    screenBusinessAreaList();
                     break;
                 default:
                     break;
@@ -279,7 +301,7 @@ public class BusinessViewModel extends BaseViewModel<BusinessModel> {
                 parseBusinessHotelData(bean.getData());
                 break;
         }
-        mAdapter.setNewData(mBusinessInfoList);
+        screenBusinessAreaList();
     }
 
     /**
@@ -399,5 +421,42 @@ public class BusinessViewModel extends BaseViewModel<BusinessModel> {
             }
         }
         LogUtil.i("解析婚宴酒店数据: " + mBusinessInfoList.size());
+    }
+
+    /**
+     * 筛选符合地区选择的商家信息
+     */
+    private void screenBusinessAreaList() {
+        mBusinessInfoAreaList.clear();
+        if (TextUtils.equals(areaString.get(), mAreaList.get(0).getOption())) {
+            mBusinessInfoAreaList.addAll(mBusinessInfoList);
+        } else {
+            BusinessPhotographyBean photographyBean;
+            BusinessEmceeBean emceeBean;
+            BusinessHotelBean hotelBean;
+            for (MultiItemEntity entity : mBusinessInfoList) {
+                switch (mBusinessType) {
+                    case BUSINESS_PHOTOGRAPHY:
+                        photographyBean = (BusinessPhotographyBean) entity;
+                        if (TextUtils.equals(areaString.get(), photographyBean.getArea())) {
+                            mBusinessInfoAreaList.add(entity);
+                        }
+                        break;
+                    case BUSINESS_EMCEE:
+                        emceeBean = (BusinessEmceeBean) entity;
+                        if (TextUtils.equals(areaString.get(), emceeBean.getArea())) {
+                            mBusinessInfoAreaList.add(entity);
+                        }
+                        break;
+                    case BUSINESS_HOTEL:
+                        hotelBean = (BusinessHotelBean) entity;
+                        if (TextUtils.equals(areaString.get(), hotelBean.getArea())) {
+                            mBusinessInfoAreaList.add(entity);
+                        }
+                        break;
+                }
+            }
+        }
+        mAdapter.setNewData(mBusinessInfoAreaList);
     }
 }

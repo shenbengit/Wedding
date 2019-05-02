@@ -3,6 +3,7 @@ package com.example.wedding.mvvm.view.bean;
 import android.databinding.Bindable;
 import android.databinding.Observable;
 import android.databinding.PropertyChangeRegistry;
+import android.text.TextUtils;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.wedding.BR;
@@ -106,7 +107,10 @@ public class BusinessHotelBean implements MultiItemEntity, Observable {
 
     @Bindable
     public String getScore() {
-        return score;
+        if (TextUtils.isEmpty(score)) {
+            return "0分";
+        }
+        return score + "分";
     }
 
     public void setScore(String score) {
@@ -176,7 +180,10 @@ public class BusinessHotelBean implements MultiItemEntity, Observable {
 
     @Bindable
     public String getTablePriceStart() {
-        return tablePriceStart;
+        if (TextUtils.isEmpty(tablePriceStart)) {
+            return "￥9999元/桌";
+        }
+        return "￥" + tablePriceStart + "元/桌";
     }
 
     public void setTablePriceStart(String tablePriceStart) {
@@ -186,7 +193,10 @@ public class BusinessHotelBean implements MultiItemEntity, Observable {
 
     @Bindable
     public String getOrderCount() {
-        return orderCount;
+        if (TextUtils.isEmpty(orderCount)) {
+            return "0人已定";
+        }
+        return orderCount + "人已定";
     }
 
     public void setOrderCount(String orderCount) {

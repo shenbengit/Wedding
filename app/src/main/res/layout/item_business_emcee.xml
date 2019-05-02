@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,7 +11,86 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_0"
+        android:paddingBottom="@dimen/dp_10">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_0_1"
+            android:layout_marginStart="@dimen/dp_5"
+            android:background="@color/c"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/iv_business_logo"
+            loadImageData="@{item.imagePath}"
+            android:layout_width="@dimen/dp_90"
+            android:layout_height="@dimen/dp_90"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:riv_border_color="@color/c"
+            app:riv_border_width="@dimen/dp_0_1"
+            app:riv_corner_radius="@dimen/dp_20" />
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_5"
+            android:layout_marginEnd="@dimen/dp_5"
+            android:singleLine="true"
+            android:text="@{item.name}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_business_logo"
+            app:layout_constraintTop_toTopOf="@+id/iv_business_logo" />
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="@{item.score}"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <TextView
+            android:id="@+id/tv_comment_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_5"
+            android:text="@{item.commentCount}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_score"
+            app:layout_constraintStart_toEndOf="@id/tv_score"
+            app:layout_constraintTop_toTopOf="@id/tv_score" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_5"
+            android:text="@{item.priceStart}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_comment_count"
+            app:layout_constraintStart_toEndOf="@id/tv_comment_count"
+            app:layout_constraintTop_toTopOf="@id/tv_comment_count" />
+
+        <TextView
+            android:id="@+id/tv_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="@{item.area}"
+            app:layout_constraintStart_toStartOf="@+id/tv_score"
+            app:layout_constraintTop_toBottomOf="@+id/tv_score" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -7,6 +7,8 @@
         <variable
             name="item"
             type="com.example.wedding.mvvm.view.bean.BusinessPhotographyBean" />
+
+        <import type="android.view.View" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -32,6 +34,7 @@
             android:layout_height="@dimen/dp_100"
             android:layout_marginStart="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
+            android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/view"
             app:riv_border_color="@color/c"
@@ -172,6 +175,7 @@
             android:paddingBottom="@dimen/dp_1"
             android:text="@{item.merchantTag}"
             android:textColor="#F74455"
+            android:visibility="@{item.merchantTag != null ? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="@id/iv_gift"
             app:layout_constraintTop_toBottomOf="@id/iv_gift" />
     </android.support.constraint.ConstraintLayout>
