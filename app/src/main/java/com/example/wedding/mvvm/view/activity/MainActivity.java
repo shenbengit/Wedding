@@ -12,7 +12,7 @@ import com.example.wedding.constant.Constant;
 import com.example.wedding.databinding.ActivityMainBinding;
 import com.example.wedding.mvvm.view.fragment.WeddingToolsFragment;
 import com.example.wedding.mvvm.view.fragment.HomeFragment;
-import com.example.wedding.mvvm.view.fragment.FindingFragment;
+import com.example.wedding.mvvm.view.fragment.GoodsFragment;
 import com.example.wedding.mvvm.view.fragment.WeFragment;
 import com.example.wedding.widget.BottomBar;
 import com.example.wedding.widget.BottomBarTab;
@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         if (firstFragment == null) {
             mFragments[FIRST] = HomeFragment.newInstance();
             mFragments[SECOND] = WeddingToolsFragment.newInstance();
-            mFragments[THIRD] = FindingFragment.newInstance();
+            mFragments[THIRD] = GoodsFragment.newInstance();
             mFragments[FOURTH] = WeFragment.newInstance();
             loadMultipleRootFragment(R.id.fl_container,
                     FIRST,
@@ -98,7 +98,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         } else {
             mFragments[FIRST] = firstFragment;
             mFragments[SECOND] = WeddingToolsFragment.newInstance();
-            mFragments[THIRD] = FindingFragment.newInstance();
+            mFragments[THIRD] = GoodsFragment.newInstance();
             mFragments[FOURTH] = WeFragment.newInstance();
         }
     }

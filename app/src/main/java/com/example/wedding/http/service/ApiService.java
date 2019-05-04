@@ -3,6 +3,7 @@ package com.example.wedding.http.service;
 import com.example.wedding.http.bean.BusinessListBean;
 import com.example.wedding.http.bean.BusinessOverviewBean;
 import com.example.wedding.http.bean.CaldendarBen;
+import com.example.wedding.http.bean.GoodsHttpBen;
 import com.example.wedding.http.bean.HomeInfoBean;
 
 import java.util.Map;
@@ -97,4 +98,16 @@ public interface ApiService {
 
     @GET
     Observable<CaldendarBen> getCaldendar(@Url String url, @Query("key") String key, @Query("date") String date);
+
+
+    /**
+     * https://www.hunliji.com/p/wedding/index.php/home/APIPosterBlock/block_info?id=1026&app_version=8.3.3&city=63
+     * <p>
+     * 主页信息接口
+     *
+     * @param locationHeader 请求头
+     * @return
+     */
+    @GET("p/wedding/index.php/home/APIPosterBlock/block_info?id=1026&app_version=8.3.3&city=63")
+    Observable<GoodsHttpBen> getGoods(@Header("city") String locationHeader);
 }
