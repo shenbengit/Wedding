@@ -11,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.wedding.R;
 import com.example.wedding.mvvm.view.adapter.RecyclerPopupAdapter;
 import com.example.wedding.mvvm.view.bean.RecyclerPopupBean;

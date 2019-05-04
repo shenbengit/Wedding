@@ -71,9 +71,13 @@ public class HomeViewModel extends BaseViewModel<HomeModel> {
 
         mWeddingTypeAdapter.setOnItemClickListener((adapter, view, position) -> {
             HomeWeddingBean bean = mWeddingTypeList.get(position);
+            LogUtil.e(bean.getTarget_type() + "");
             switch (bean.getTarget_type()) {
                 case "20"://商家
                     ARouter.getInstance().build(ARouterPath.BUSINESS_ACTIVITY).navigation();
+                    break;
+                case "39":
+                    ARouter.getInstance().build(ARouterPath.PHOTO_BUSINESS_ACTIVITY).navigation();
                     break;
                 default:
                     ToastUtil.show(getApplication(), "功能暂未开通");

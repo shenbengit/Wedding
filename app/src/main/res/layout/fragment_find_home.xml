@@ -24,6 +24,7 @@
             </com.youth.banner.Banner>
 
             <android.support.v7.widget.RecyclerView
+                android:padding="@dimen/dp_7"
                 android:id="@+id/rv_goods"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

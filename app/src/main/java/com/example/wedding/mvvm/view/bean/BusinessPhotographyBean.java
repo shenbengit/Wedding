@@ -267,4 +267,26 @@ public class BusinessPhotographyBean implements MultiItemEntity, Observable {
             propertyChangeRegistry.remove(callback);
         }
     }
+
+    @Override
+    public String toString() {
+        return "BusinessPhotographyBean{" +
+                "itemType=" + itemType +
+                ", imagePath='" + imagePath + '\'' +
+                ", name='" + name + '\'' +
+                ", grade='" + grade + '\'' +
+                ", score='" + score + '\'' +
+                ", commentCount='" + commentCount + '\'' +
+                ", priceStart='" + priceStart + '\'' +
+                ", area='" + area + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", merchantTag='" + merchantTag + '\'' +
+                ", achievementTitle='" + achievementTitle + '\'' +
+                ", achievementImage='" + achievementImage + '\'' +
+                ", shopGift='" + shopGift + '\'' +
+                ", shopGiftImage=" + shopGiftImage +
+                ", propertyChangeRegistry=" + propertyChangeRegistry +
+                '}';
+    }
 }
