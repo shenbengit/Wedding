@@ -60,5 +60,13 @@ public class ARouterPath {
     /**
      * 摄影商家页分析页
      */
-    public static final String PHOTO_BUSINESS_ACTIVITY = BASE_ACTIVITY_PATH + "WeddingBudgetActivity";
+    public static final String PHOTO_BUSINESS_ACTIVITY = BASE_ACTIVITY_PATH + "PhotoBusinessActivity";
+    /**
+     * 酒店商家页分析页
+     */
+    public static final String HOTEL_BUSINESS_ACTIVITY = BASE_ACTIVITY_PATH + "HotelBusinessActivity";
+    /**
+     * 酒店商家页分析页
+     */
+    public static final String COMPERE_BUSINESS_ACTIVITY = BASE_ACTIVITY_PATH + "CompereBusinessActivity";
 }

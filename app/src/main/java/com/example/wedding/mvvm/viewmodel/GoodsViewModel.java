@@ -72,12 +72,9 @@ public class GoodsViewModel extends BaseViewModel<WeddGoodsModel> {
         if (goodsHttpBen != null && goodsHttpBen.getStatus().getRetCode() == 0) {
             GoodsHttpBen.DataBean.FloorsBean.SiteShopChannelBean bannerBean = goodsHttpBen.getData().getFloors().getSITE_SHOP_CHANNEL_BANNER();
 
-            int i = 0;
             for (GoodsHttpBen.DataBean.FloorsBean.SiteShopChannelBean.HolesBeanX beanX : bannerBean.getHoles()) {
-                if (++i >= 5) {
-                    break;
-                }
-                mBannerList.add(beanX.getPosters().getImage_path());
+                if (beanX.getPosters() != null)
+                    mBannerList.add(beanX.getPosters().getImage_path());
             }
 
             GoodsHttpBen.DataBean.FloorsBean.SiteShopCategoryBean categoryBean = goodsHttpBen.getData().getFloors().getSITE_SHOP_CATEGORY();

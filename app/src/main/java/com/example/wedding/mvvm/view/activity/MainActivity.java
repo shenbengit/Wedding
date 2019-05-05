@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         }
         mBinding.bottomBar.addItem(new BottomBarTab(this, R.drawable.ic_tab_home, "主页"))
                 .addItem(new BottomBarTab(this, R.drawable.ic_tab_social, "婚备工具"))
-                .addItem(new BottomBarTab(this, R.drawable.ic_tab_shop, "发现"))
+                .addItem(new BottomBarTab(this, R.drawable.ic_tab_shop, "婚品"))
                 .addItem(new BottomBarTab(this, R.drawable.ic_tab_we, "我们"));
         mBinding.bottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
             @Override

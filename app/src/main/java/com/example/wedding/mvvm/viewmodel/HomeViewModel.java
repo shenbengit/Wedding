@@ -79,6 +79,12 @@ public class HomeViewModel extends BaseViewModel<HomeModel> {
                 case "39":
                     ARouter.getInstance().build(ARouterPath.PHOTO_BUSINESS_ACTIVITY).navigation();
                     break;
+                case "74":
+                    ARouter.getInstance().build(ARouterPath.HOTEL_BUSINESS_ACTIVITY).navigation();
+                    break;
+                case "57":
+                    ARouter.getInstance().build(ARouterPath.COMPERE_BUSINESS_ACTIVITY).navigation();
+                    break;
                 default:
                     ToastUtil.show(getApplication(), "功能暂未开通");
                     break;

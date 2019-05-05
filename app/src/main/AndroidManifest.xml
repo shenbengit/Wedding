@@ -19,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mvvm.view.activity.PhotoBusinessActivity"></activity>
+        <activity android:name=".mvvm.view.activity.CompereBusinessActivity"></activity>
+        <activity android:name=".mvvm.view.activity.HotelBusinessActivity" />
+        <activity android:name=".mvvm.view.activity.PhotoBusinessActivity" />
         <activity android:name=".mvvm.view.activity.WeddingBudgetActivity" />
         <activity android:name=".mvvm.view.activity.CalendarActivity" />
         <activity android:name=".mvvm.view.activity.WeddingPositionActivity" />

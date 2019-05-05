@@ -47,7 +47,7 @@ public class GoodsFragment extends BaseFragment<FragmentFindHomeBinding, GoodsVi
         mBinding.bannerGoods.setImageLoader(new GlideImageLoader());
         mBinding.bannerGoods.setBannerAnimation(Transformer.DepthPage);
 
-        mBinding.rvGoods.setLayoutManager(new GridLayoutManager(_mActivity, 4) {
+        mBinding.rvGoods.setLayoutManager(new GridLayoutManager(_mActivity, 5) {
             @Override
             public boolean canScrollVertically() {
                 return false;

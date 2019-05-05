@@ -1,30 +1,29 @@
 package com.example.wedding.mvvm.view.activity;
 
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.wedding.BR;
 import com.example.wedding.R;
 import com.example.wedding.base.BaseActivity;
 import com.example.wedding.constant.ARouterPath;
-import com.example.wedding.databinding.ActivityPhotoBusinessBinding;
-import com.example.wedding.mvvm.viewmodel.BusinessViewModel;
-import com.example.wedding.mvvm.viewmodel.PhotoBusinessViewModel;
+import com.example.wedding.databinding.ActivityCompereBusinessBinding;
+import com.example.wedding.mvvm.viewmodel.ComPereViewModel;
 
-@Route(path = ARouterPath.PHOTO_BUSINESS_ACTIVITY)
-public class PhotoBusinessActivity extends BaseActivity<ActivityPhotoBusinessBinding, PhotoBusinessViewModel> {
+@Route(path = ARouterPath.COMPERE_BUSINESS_ACTIVITY)
+public class CompereBusinessActivity extends BaseActivity<ActivityCompereBusinessBinding, ComPereViewModel> {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_photo_business;
+        return R.layout.activity_compere_business;
     }
 
     @Override
-    protected Class<PhotoBusinessViewModel> getModelClass() {
-        return PhotoBusinessViewModel.class;
+    protected Class<ComPereViewModel> getModelClass() {
+        return ComPereViewModel.class;
     }
 
     @Override
@@ -35,7 +34,7 @@ public class PhotoBusinessActivity extends BaseActivity<ActivityPhotoBusinessBin
     @Override
     protected void initView() {
         super.initView();
-        mBinding.toolbar.setTitle("摄影商家");
+        mBinding.toolbar.setTitle("酒店商家");
         initToolbarWhite(mBinding.toolbar);
 
         mViewModel.mAdapter.bindToRecyclerView(mBinding.rvPhoto);
